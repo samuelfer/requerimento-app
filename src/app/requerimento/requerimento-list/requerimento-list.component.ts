@@ -1,3 +1,4 @@
+import { Requerimento } from './../../shared/requerimento.model';
 import { RequerimentoService } from './../requerimento.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./requerimento-list.component.scss'],
 })
 export class RequerimentoListComponent implements OnInit {
-  requerimento: any;
+  requerimentoList: Requerimento[];
   loading = false;
   constructor(private requerimentoService: RequerimentoService) {}
 
@@ -17,14 +18,40 @@ export class RequerimentoListComponent implements OnInit {
 
   public listar() {
     this.loading = true;
-    this.requerimentoService.listarRequerimentos(2).subscribe(
-      (response): void => {
-        this.requerimento = response;
-        console.log(response);
+    this.requerimentoService.listarTodos().subscribe(
+      (response: Requerimento[]): void => {
+        this.requerimentoList = response;
         this.loading = false;
       },
       (error) => {
         this.loading = false;
+      }
+    );
+  }
+
+  gerarPdf(requerimento: Requerimento): void {
+    this.requerimentoService.gerarPdf(requerimento).subscribe(
+      (data) => {
+        data = new Blob([data], { type: 'application/pdf' });
+        const objUrl = window.URL.createObjectURL(data);
+        const a = document.createElement('a');
+        a.href = objUrl;
+        a.target = '_blank';
+        a.download = 'requerimento' + requerimento.id + '.pdf';
+        window.document.body.appendChild(a);
+        a.click();
+        a.remove();
+        // this.mensagemService.mensagemSucesso(
+        //   'PDF de Recibo de Pagamento de Diária gerado com sucesso.'
+        // );
+      },
+
+      (error) => {
+        alert('Erro2');
+        // this.mensagemService.mensagemErrorInfo(
+        //   error,
+        //   'Houve algum problema ao tentar gerar o PDF.'
+        // );
       }
     );
   }
