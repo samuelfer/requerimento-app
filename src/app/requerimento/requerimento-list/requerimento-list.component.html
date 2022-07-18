@@ -9,66 +9,51 @@
             <div class="card-header">
               <h3 class="card-title">Listagem de requerimento</h3>
 
-              <div class="card-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
+              <div class="card-tools float-right">
+                <div class="input-group input-group-sm">
                   <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                      <i class="fas fa-search"></i>
-                    </button>
+                    <a [routerLink]="['/requerimentos/cadastro']" type="button" class="btn btn-block btn-primary">Novo
+                      requerimento</a>
                   </div>
                 </div>
               </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
-              <table class="table table-hover text-nowrap">
-                <thead>
+
+              <p-table [value]="requerimentoList" responsiveLayout="scroll" class="table table-hover text-nowrap">
+                <ng-template pTemplate="header">
                   <tr>
                     <th>Número</th>
-                    <th>Data</th>
                     <th>Vereador</th>
+                    <th>Data</th>
                     <th>Motivo</th>
-                    <th>Justificativa</th>
-                    <th>Arquivo</th>
+                    <th>Ações</th>
                   </tr>
-                </thead>
-                <tbody>
+                </ng-template>
+                <ng-template pTemplate="body" let-requerimento>
                   <tr>
-                    <td>183</td>
-                    <td>John Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-success">Approved</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    <td></td>
+                    <td>{{ requerimento.numero }}</td>
+                    <td>{{ requerimento.pessoa?.nome }}</td>
+                    <td>{{ requerimento.dataRequerimento | date: "dd/MM/yyyy HH:mm" }}</td>
+                    <td>{{ requerimento.assunto | slice:0:50 }}</td>
+                    <td>
+                      <div class="btn-group">
+                        <a (click)="gerarPdf(requerimento)" class="btn btn-white" title="Gerar arquivo">
+                          <span class="fa-solid fa-file-pdf"></span>
+                        </a>
+                        <a class="btn btn-white" title="Detalhar">
+                          <span class="fa fa-search"></span>
+                        </a>
+                      </div>
+                      <button title="Editar" type="button" class="btn btn-white"
+                        [routerLink]="['/requerimentos', requerimento.id]">
+                        <em class="fa fa-edit"></em>
+                      </button>
+                    </td>
                   </tr>
-                  <tr>
-                    <td>219</td>
-                    <td>Alexander Pierce</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-warning">Pending</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>657</td>
-                    <td>Bob Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-primary">Approved</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>175</td>
-                    <td>Mike Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-danger">Denied</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
+                </ng-template>
+              </p-table>
             </div>
             <!-- /.card-body -->
           </div>
