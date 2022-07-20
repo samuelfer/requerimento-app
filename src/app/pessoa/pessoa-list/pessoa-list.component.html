@@ -7,13 +7,13 @@
         <div class="col-12">
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Listagem de requerimentos</h3>
+              <h3 class="card-title">Listagem de vereadores</h3>
 
               <div class="card-tools float-right">
                 <div class="input-group input-group-sm">
                   <div class="input-group-append">
-                    <a [routerLink]="['/requerimentos/cadastro']" type="button" class="btn btn-block btn-primary">Novo
-                      requerimento</a>
+                    <a [routerLink]="['/vereadores/cadastro']" type="button" class="btn btn-block btn-primary">Novo
+                      cadastro</a>
                   </div>
                 </div>
               </div>
@@ -21,32 +21,24 @@
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
 
-              <p-table [value]="requerimentoList" responsiveLayout="scroll" class="table">
+              <p-table [value]="pessoaList" responsiveLayout="scroll" class="table">
                 <ng-template pTemplate="header">
                   <tr>
-                    <th>Número</th>
-                    <th>Vereador</th>
-                    <th>Data</th>
-                    <th>Motivo</th>
+                    <th>Nome</th>
                     <th>Ações</th>
                   </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-requerimento>
+                <ng-template pTemplate="body" let-pessoa>
                   <tr>
-                    <td>{{ requerimento.numero }}</td>
-                    <td>{{ requerimento.pessoa?.nome }}</td>
-                    <td>{{ requerimento.dataRequerimento }}</td>
-                    <td>{{ requerimento.assunto | slice:0:50 }}</td>
+                    <td>{{ pessoa.nome }}</td>
+
                     <td>
                       <div class="btn-group">
-                        <a (click)="gerarPdf(requerimento)" class="btn btn-white" title="Gerar arquivo">
-                          <i class="pi pi-file-pdf"></i>
-                        </a>
                         <a class="btn btn-white" title="Detalhar">
                           <span class="fa fa-search"></span>
                         </a>
                         <button title="Editar" type="button" class="btn btn-white"
-                          [routerLink]="['/requerimentos', requerimento.id]">
+                          [routerLink]="['/vereadores', pessoa.id]">
                           <em class="fa fa-edit"></em>
                         </button>
                       </div>

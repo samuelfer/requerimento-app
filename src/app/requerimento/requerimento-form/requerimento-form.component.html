@@ -5,54 +5,74 @@
       <div class="card card-info">
         <div class="card-header">
           <h3 class="card-title">Preencher requerimento</h3>
-
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse">
               <i class="fas fa-minus"></i>
             </button>
           </div>
         </div>
-
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Vereador</label>
-                <select class="form-control select2" style="width: 100%;">
-                  <option selected="selected">Alabama</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              </div>
-            </div>
-            <!-- /.form-group -->
-            <div class="form-group">
-              <label>Data:</label>
-              <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate">
-                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        <form #requerimentoForm="ngForm">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Vereador</label>
+                  <br>
+                  <p-dropdown [options]="vereadorList" [(ngModel)]="requerimento.pessoa" name="pessoa"
+                    optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'305px'}">
+                  </p-dropdown>
                 </div>
               </div>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Solicitação</label>
-              <textarea class="form-control" rows="3" placeholder="Informe o motivo"></textarea>
-            </div>
-            <!-- /.form-group -->
-          </div>
+              <!-- /.form-group -->
+              <div class="form-group col-md-4">
+                <label>Data:</label>
+                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                  <p-calendar [(ngModel)]="requerimento.dataRequerimento" name="dataRequerimento"
+                    class="calendar-control" view="date" dateFormat="dd/mm/yy" [showIcon]="true" [showButtonBar]="true"
+                    [yearNavigator]="true">
+                  </p-calendar>
+                </div>
+              </div>
 
-          <!-- /.col -->
-        </div>
+              <!-- /.col -->
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label for="texto">Assunto</label>
+                  <div>
+                    <p-editor [style]="{'height':'120px','font-size':'16px'}" [(ngModel)]="requerimento.assunto"
+                      name="assunto" required>
+                      <p-header>
+                        <span class="ql-formats">
+                          <button class="ql-bold" aria-label="Bold" tabindex="-1"></button>
+                          <button class="ql-italic" aria-label="Italic" tabindex="-1"></button>
+                          <button class="ql-underline" aria-label="Underline" tabindex="-1"></button>
+                          <button class="ql-clean" tabindex="-1"></button>
+                        </span>
+                        <span class="ql-formats">
+                          <select class="ql-color" tabindex="-1"></select>
+                          <select class="ql-background" tabindex="-1"></select>
+                        </span>
+                      </p-header>
+                    </p-editor>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <p-footer>
+              <div class="btn-right">
+                <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                  class="p-button-success p-button-sm"></button>
+                <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
+                  class="p-button-secondary p-button-sm ml-2"></button>
+              </div>
+            </p-footer>
+            <!-- /.col -->
+          </div>
+        </form>
       </div>
       <!-- /.card-body -->
+
 
     </div>
     <!-- /.card -->

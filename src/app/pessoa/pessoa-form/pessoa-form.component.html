@@ -1,0 +1,40 @@
+<div class="content-wrapper mt-4">
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Cadastrar vereador</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <form #vereadorForm="ngForm">
+          <div class="card-body">
+            <div class="row col-md-12 p-float-label">
+              <input id="float-input" type="text" pInputText [style]="{ width: '45%' }">
+              <label for="float-input">Nome</label>
+            </div>
+            <!-- /.col -->
+            <p-footer class="mt-2">
+              <div class="btn-right">
+                <button pButton type="button" label="Salvar" icon="pi pi-save" class="p-button-success"></button>
+                <button pButton type="button" label="Atualizar" icon="pi pi-save" class="p-button-success"></button>
+              </div>
+            </p-footer>
+            <!-- /.col -->
+          </div>
+        </form>
+      </div>
+      <!-- /.card-body -->
+
+
+    </div>
+    <!-- /.card -->
+
+    <!-- /.container-fluid -->
+  </section>
+</div>
