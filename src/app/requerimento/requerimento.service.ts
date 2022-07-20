@@ -25,4 +25,8 @@ export class RequerimentoService {
       responseType: 'blob' as 'json',
     });
   }
+
+  cadastrar(requerimento: Requerimento): Observable<Requerimento> {
+    return this.http.post<Requerimento>(`${this.apiUrl}`, requerimento);
+  }
 }

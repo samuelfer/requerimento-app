@@ -15,6 +15,11 @@ const routes: Routes = [
         (m) => m.RequerimentoModule
       ),
   },
+  {
+    path: 'vereadores',
+    loadChildren: () =>
+      import('./pessoa/pessoa.module').then((m) => m.PessoaModule),
+  },
 ];
 
 @NgModule({

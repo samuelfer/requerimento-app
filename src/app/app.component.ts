@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PrimeNGConfig } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,21 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'requerimento-app';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private config: PrimeNGConfig,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
-    this.router.navigate(['requerimentos']);
+    this.translate('pt');
+    this.router.navigate(['requerimentos/cadastro']);
+  }
+
+  translate(lang: string) {
+    this.translateService.use(lang);
+    this.translateService
+      .get('primeng')
+      .subscribe((res) => this.config.setTranslation(res));
   }
 }

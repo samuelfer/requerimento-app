@@ -2,12 +2,27 @@ import { RequerimentoRoutes } from './requerimento.routing';
 import { RequerimentoFormComponent } from './requerimento-form/requerimento-form.component';
 import { RequerimentoListComponent } from './requerimento-list/requerimento-list.component';
 import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
+import { EditorModule } from 'primeng/editor';
+import { ButtonModule } from 'primeng/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [RequerimentoListComponent, RequerimentoFormComponent],
-  imports: [CommonModule, RequerimentoRoutes, TableModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RequerimentoRoutes,
+    TableModule,
+    DropdownModule,
+    FormsModule,
+    CalendarModule,
+    EditorModule,
+    ButtonModule,
+  ],
 })
 export class RequerimentoModule {}
