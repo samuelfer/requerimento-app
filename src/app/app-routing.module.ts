@@ -1,3 +1,5 @@
+import { TopMenuComponent } from './template/top-menu/top-menu.component';
+import { AuthGuard } from './auth/auth.guard';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
@@ -9,8 +11,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: '',
-    component: SidebarComponent,
-    canActivate: [],
+    component: TopMenuComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',

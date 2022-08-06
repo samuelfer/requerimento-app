@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.translate('pt');
-    this.router.navigate(['login']);
   }
 
   translate(lang: string) {
