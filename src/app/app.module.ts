@@ -33,7 +33,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     RequerimentoModule,
-    ToastrModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      closeButton: true,
+      progressBar: true,
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

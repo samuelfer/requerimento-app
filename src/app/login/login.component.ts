@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Credenciais } from './../shared/model/credenciais.interface';
 import { Component, OnInit } from '@angular/core';
@@ -18,15 +19,28 @@ export class LoginComponent implements OnInit {
   email = new FormControl(null, Validators.email);
   senha = new FormControl(null, Validators.minLength(3));
 
-  constructor(private router: Router, private toastr: ToastrService) {}
+  constructor(
+    private router: Router,
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
   validaCampos(): boolean {
-    if (this.email.valid && this.senha.valid) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.email.valid && this.senha.valid;
+  }
+
+  login() {
+    this.authService.login(this.credenciais).subscribe(
+      (response) => {
+        this.authService.successLogin(
+          response.headers.get('Authorization').substring(7)
+        );
+      },
+      () => {
+        this.toastr.error('Usuário e/ou senha inválidos!', 'Login');
+      }
+    );
   }
 }

@@ -11,7 +11,7 @@
         <form>
           <div class="input-group mb-3">
             <input [(ngModel)]="credenciais.email" type="email" name="email" class="form-control" placeholder="Email"
-              [formControl]="email" required>
+              required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -20,7 +20,7 @@
           </div>
           <div class="input-group mb-3">
             <input [(ngModel)]="credenciais.senha" type="password" name="senha" class="form-control" placeholder="Senha"
-              [formControl]="senha" required>
+              required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -35,7 +35,7 @@
             </div>
             <!-- /.col -->
             <div class="col-4">
-              <button [disabled]="!validaCampos()" class="btn btn-primary btn-block">Entrar</button>
+              <button (click)="login()" [disabled]="!validaCampos()" class="btn btn-primary btn-block">Entrar</button>
             </div>
             <!-- /.col -->
           </div>
