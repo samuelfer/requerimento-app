@@ -1,4 +1,4 @@
-import { Pessoa } from './../../shared/pessoa.model';
+import { Pessoa } from '../../shared/model/pessoa.model';
 import { PessoaService } from './../pessoa.service';
 import { Component, OnInit } from '@angular/core';
 
