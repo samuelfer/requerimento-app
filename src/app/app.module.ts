@@ -13,6 +13,7 @@ import { FooterComponent } from './template/footer/footer.component';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TopMenuComponent } from './template/top-menu/top-menu.component';
     DashboardComponent,
     SidebarComponent,
     TopMenuComponent,
+    LoginComponent,
   ],
   imports: [
     HttpClientModule,

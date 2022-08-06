@@ -18,7 +18,7 @@ export class RequerimentoFormComponent implements OnInit {
   requerimento: Requerimento = {
     pessoa: new Pessoa(),
     assunto: '',
-    numero: '335/2022',
+    numero: '',
     dataRequerimento: new Date(),
   };
 
@@ -46,7 +46,7 @@ export class RequerimentoFormComponent implements OnInit {
     if (this.validaCampos()) {
       this.requerimentoService.cadastrar(this.requerimento).subscribe(
         (response) => {
-          this.toastr.success('Sucesso!', 'Cadastro realizado com sucesso');
+          this.toastr.success('Cadastro realizado com sucesso');
           this.redirect();
         },
         (error) => {
