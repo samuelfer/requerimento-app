@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.translate('pt');
-    this.router.navigate(['requerimentos/cadastro']);
+    this.router.navigate(['login']);
   }
 
   translate(lang: string) {
