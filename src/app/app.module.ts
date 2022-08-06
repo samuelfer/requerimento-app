@@ -14,6 +14,7 @@ import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     RequerimentoModule,
     ToastrModule,
     TranslateModule.forRoot({

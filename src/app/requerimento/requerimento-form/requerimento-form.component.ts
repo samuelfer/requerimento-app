@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { PessoaService } from './../../pessoa/pessoa.service';
-import { Pessoa } from './../../shared/pessoa.model';
-import { Requerimento } from './../../shared/requerimento.model';
+import { Pessoa } from '../../shared/model/pessoa.model';
+import { Requerimento } from '../../shared/model/requerimento.model';
 import { RequerimentoService } from './../requerimento.service';
 
 @Component({

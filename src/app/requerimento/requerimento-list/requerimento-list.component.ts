@@ -1,4 +1,4 @@
-import { Requerimento } from './../../shared/requerimento.model';
+import { Requerimento } from '../../shared/model/requerimento.model';
 import { RequerimentoService } from './../requerimento.service';
 import { Component, OnInit } from '@angular/core';
 
