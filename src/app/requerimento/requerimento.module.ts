@@ -1,7 +1,7 @@
 import { RequerimentoRoutes } from './requerimento.routing';
 import { RequerimentoFormComponent } from './requerimento-form/requerimento-form.component';
 import { RequerimentoListComponent } from './requerimento-list/requerimento-list.component';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
@@ -10,6 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { EditorModule } from 'primeng/editor';
 import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [RequerimentoListComponent, RequerimentoFormComponent],
@@ -23,6 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CalendarModule,
     EditorModule,
     ButtonModule,
+    InputTextModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class RequerimentoModule {}
