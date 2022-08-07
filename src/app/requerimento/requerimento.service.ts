@@ -29,4 +29,8 @@ export class RequerimentoService {
   cadastrar(requerimento: Requerimento): Observable<Requerimento> {
     return this.http.post<Requerimento>(`${this.apiUrl}`, requerimento);
   }
+
+  atualizar(requerimento: Requerimento): Observable<Requerimento> {
+    return this.http.put<Requerimento>(`${this.apiUrl}`, requerimento);
+  }
 }
