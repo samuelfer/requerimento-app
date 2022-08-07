@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { PessoaService } from './../../pessoa/pessoa.service';
@@ -21,16 +21,22 @@ export class RequerimentoFormComponent implements OnInit {
     numero: '',
     dataRequerimento: new Date(),
   };
+  requerimentoId: string | null;
 
   constructor(
     private requerimentoService: RequerimentoService,
     private pessoaService: PessoaService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private activedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.listarVereadores();
+    this.requerimentoId = this.activedRoute.snapshot.paramMap.get('id');
+    if (this.requerimentoId !== null) {
+      this.findById(+this.requerimentoId);
+    }
   }
 
   public listarVereadores() {
@@ -78,5 +84,16 @@ export class RequerimentoFormComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  findById(requerimentoId: number): void {
+    this.requerimentoService.listarPorId(requerimentoId).subscribe(
+      (response) => {
+        this.requerimento = response;
+      },
+      (ex) => {
+        this.toastr.error(ex.error.error);
+      }
+    );
   }
 }

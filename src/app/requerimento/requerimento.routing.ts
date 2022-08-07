@@ -9,6 +9,11 @@ const routes: Routes = [
     component: RequerimentoFormComponent,
     data: { title: 'Preencher requerimento' },
   },
+  {
+    path: ':id',
+    component: RequerimentoFormComponent,
+    data: { title: 'Editar requerimento' },
+  },
 ];
 
 export const RequerimentoRoutes = RouterModule.forChild(routes);

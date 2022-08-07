@@ -12,7 +12,7 @@
               <div class="card-tools float-right">
                 <div class="input-group input-group-sm">
                   <div class="input-group-append">
-                    <a [routerLink]="['/requerimentos/cadastro']" type="button" class="btn btn-block btn-primary">Novo
+                    <a [routerLink]="['/requerimentos/cadastro']" type="button" class="btn btn-block btn-success">Novo
                       requerimento</a>
                   </div>
                 </div>
@@ -36,7 +36,9 @@
                     <td>{{ requerimento.numero }}</td>
                     <td>{{ requerimento.pessoa?.nome }}</td>
                     <td>{{ requerimento.dataRequerimento }}</td>
-                    <td>{{ requerimento.assunto | slice:0:50 }}</td>
+                    <td>
+                      <div [innerHtml]="requerimento.assunto | slice:0:150"></div>
+                    </td>
                     <td>
                       <div class="btn-group">
                         <a (click)="gerarPdf(requerimento)" class="btn btn-white" title="Gerar arquivo">

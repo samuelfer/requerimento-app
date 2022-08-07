@@ -16,6 +16,13 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
+                  <label>Número</label>
+                  <br>
+                  <input type="text" pInputText [(ngModel)]="requerimento.numero" name="numero" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
                   <label>Vereador</label>
                   <br>
                   <p-dropdown [options]="vereadorList" [(ngModel)]="requerimento.pessoa" name="pessoa"
@@ -60,12 +67,8 @@
           </div>
         </form>
       </div>
-      <!-- /.card-body -->
-
 
     </div>
-    <!-- /.card -->
 
-    <!-- /.container-fluid -->
   </section>
 </div>
