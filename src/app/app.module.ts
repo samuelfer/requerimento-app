@@ -1,4 +1,9 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { RequerimentoModule } from './requerimento/requerimento.module';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -52,7 +57,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     }),
   ],
   exports: [TranslateModule],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
