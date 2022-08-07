@@ -56,8 +56,22 @@ export class RequerimentoFormComponent implements OnInit {
           this.redirect();
         },
         (error) => {
+          this.toastr.error('Ocorreu um erro!', error.error);
+        }
+      );
+    }
+  }
+
+  atualizar(): void {
+    if (this.validaCampos()) {
+      this.requerimentoService.atualizar(this.requerimento).subscribe(
+        (response) => {
+          this.toastr.success('Registro atualizado com sucesso');
+          this.redirect();
+        },
+        (error) => {
           console.log(error);
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar cadastrar');
+          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
         }
       );
     }
