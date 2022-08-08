@@ -23,6 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
       });
       return next.handle(cloneReq);
     } else {
+      console.log('Mesnagem de error ', request);
       return next.handle(request);
     }
   }
