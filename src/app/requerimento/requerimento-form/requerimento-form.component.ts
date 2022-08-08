@@ -100,7 +100,7 @@ export class RequerimentoFormComponent implements OnInit {
     return true;
   }
 
-  findById(requerimentoId: number): void {
+  private findById(requerimentoId: number): void {
     this.requerimentoService.listarPorId(requerimentoId).subscribe(
       (response) => {
         this.requerimento = response;

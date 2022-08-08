@@ -9,6 +9,11 @@ const routes: Routes = [
     component: PessoaFormComponent,
     data: { title: 'Cadastrar' },
   },
+  {
+    path: ':id',
+    component: PessoaFormComponent,
+    data: { title: 'Editar' },
+  },
 ];
 
 export const PessoaRoutes = RouterModule.forChild(routes);

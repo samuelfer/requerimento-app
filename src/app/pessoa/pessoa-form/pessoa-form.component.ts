@@ -1,6 +1,6 @@
 import { Pessoa } from '../../shared/model/pessoa.model';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PessoaService } from '../pessoa.service';
 
@@ -14,14 +14,21 @@ export class PessoaFormComponent implements OnInit {
     nome: '',
     cargo: 'Vereador',
   };
+  pessoaId: string | null;
 
   constructor(
     private pessoaService: PessoaService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private activedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
+    if (this.pessoaId !== null) {
+      this.findById(+this.pessoaId);
+    }
+  }
 
   cadastrar(): void {
     if (this.validaCampos()) {
@@ -38,6 +45,21 @@ export class PessoaFormComponent implements OnInit {
     }
   }
 
+  atualizar(): void {
+    if (this.validaCampos()) {
+      this.pessoaService.atualizar(this.pessoa).subscribe(
+        (response) => {
+          this.toastr.success('Registro atualizado com sucesso');
+          this.redirect();
+        },
+        (error) => {
+          console.log(error);
+          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
+        }
+      );
+    }
+  }
+
   private redirect() {
     this.router.navigate(['vereadores']);
   }
@@ -48,5 +70,16 @@ export class PessoaFormComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  private findById(requerimentoId: number): void {
+    this.pessoaService.listarPorId(requerimentoId).subscribe(
+      (response) => {
+        this.pessoa = response;
+      },
+      (error) => {
+        this.toastr.error(error.error.error);
+      }
+    );
   }
 }

@@ -16,7 +16,15 @@ export class PessoaService {
     return this.http.get<Pessoa[]>(`${this.apiUrl}`);
   }
 
+  listarPorId(id: number): Observable<Pessoa> {
+    return this.http.get<Pessoa>(`${this.apiUrl}/${id}`);
+  }
+
   cadastrar(pessoa: Pessoa): Observable<Pessoa> {
     return this.http.post<Pessoa>(`${this.apiUrl}`, pessoa);
+  }
+
+  atualizar(pessoa: Pessoa): Observable<Pessoa> {
+    return this.http.put<Pessoa>(`${this.apiUrl}`, pessoa);
   }
 }

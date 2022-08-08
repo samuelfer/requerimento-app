@@ -35,7 +35,7 @@
                   <tr>
                     <td>{{ requerimento.numero }}</td>
                     <td>{{ requerimento.pessoa?.nome }}</td>
-                    <td>{{ requerimento.dataRequerimento }}</td>
+                    <td>{{ requerimento.dataRequerimento | date: 'dd/MM/yyyy HH:mm' }}</td>
                     <td>
                       <div [innerHtml]="requerimento.assunto | slice:0:150"></div>
                     </td>
