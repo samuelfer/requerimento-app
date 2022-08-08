@@ -1,6 +1,7 @@
 import { Dashboard } from './../../shared/dashboard-count.model';
 import { DashboardService } from './dashboard.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,22 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   loading = false;
-  counts: Dashboard;
-  constructor(private dashboardService: DashboardService) {}
+  qtdVereador = 0;
+  qtdUsuario = 0;
+  qtdRequerimento = 0;
+  qtdServidor = 0;
+
+  constructor(
+    private dashboardService: DashboardService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.listar();
+    this.listarCount();
   }
 
-  public listar() {
+  public listarCount() {
     this.loading = true;
     this.dashboardService.counts().subscribe(
       (response: Dashboard): void => {
-        this.counts = response;
+        this.qtdVereador = response.qtdVereador;
+        this.qtdServidor = response.qtdServidor;
+        this.qtdRequerimento = response.qtdRequerimento;
+        this.qtdUsuario = response.qtdUsuario;
         this.loading = false;
       },
       (error) => {
         this.loading = false;
+        this.toastr.error(
+          'Ocorreu um erro!',
+          'Erro ao tentar listar os quantitativos'
+        );
       }
     );
   }

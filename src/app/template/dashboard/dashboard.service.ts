@@ -13,6 +13,6 @@ export class DashboardService {
   constructor(private http: HttpClient) {}
 
   counts(): Observable<Dashboard> {
-    return this.http.get<Dashboard>(`${this.apiUrl}`);
+    return this.http.get<Dashboard>(`${this.apiUrl}/counts`);
   }
 }
