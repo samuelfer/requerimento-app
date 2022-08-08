@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
         this.loading = false;
         this.toastr.error(
           'Ocorreu um erro!',
-          'Erro ao tentar listar os quantitativos'
+          'Erro ao tentar listar os quantitativos!'
         );
       }
     );
