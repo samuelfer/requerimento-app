@@ -16,7 +16,7 @@ export class TopMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['dashboard']);
   }
 
   logout() {

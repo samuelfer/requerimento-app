@@ -11,6 +11,7 @@ import { EditorModule } from 'primeng/editor';
 import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [RequerimentoListComponent, RequerimentoFormComponent],
@@ -25,6 +26,7 @@ import { InputTextModule } from 'primeng/inputtext';
     EditorModule,
     ButtonModule,
     InputTextModule,
+    PaginatorModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
