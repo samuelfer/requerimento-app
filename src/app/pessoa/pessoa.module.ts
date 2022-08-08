@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [PessoaListComponent, PessoaFormComponent],
@@ -17,6 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     TableModule,
     InputTextModule,
+    PaginatorModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
