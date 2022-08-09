@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate {
     if (authenticated) {
       return true;
     } else {
-      console.log('No auth.guard');
       this.toastr.error('Token expirado!', 'Por favor, faça o login novamente');
       this.router.navigate(['login']);
       return false;

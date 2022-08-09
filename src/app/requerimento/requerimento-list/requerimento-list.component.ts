@@ -49,12 +49,10 @@ export class RequerimentoListComponent implements OnInit {
       },
 
       (error) => {
-        console.log('Errpr aqui no gerar pdf');
-        alert('Erro2');
-        // this.mensagemService.mensagemErrorInfo(
-        //   error,
-        //   'Houve algum problema ao tentar gerar o PDF.'
-        // );
+        this.toastr.error(
+          'Desculpe, ocorreu um erro ao tentar gerar o PDF!',
+          'Atenção'
+        );
       }
     );
   }
