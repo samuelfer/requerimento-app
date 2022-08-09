@@ -6,12 +6,17 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -21,6 +26,8 @@ export class AuthGuard implements CanActivate {
     if (authenticated) {
       return true;
     } else {
+      console.log('No auth.guard');
+      this.toastr.error('Token expirado!', 'Por favor, faça o login novamente');
       this.router.navigate(['login']);
       return false;
     }

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Requerimento } from '../../shared/model/requerimento.model';
 import { RequerimentoService } from './../requerimento.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class RequerimentoListComponent implements OnInit {
   requerimentoList: Requerimento[];
   loading = false;
-  constructor(private requerimentoService: RequerimentoService) {}
+  constructor(
+    private requerimentoService: RequerimentoService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.listar();
@@ -41,12 +45,11 @@ export class RequerimentoListComponent implements OnInit {
         window.document.body.appendChild(a);
         a.click();
         a.remove();
-        // this.mensagemService.mensagemSucesso(
-        //   'PDF de Recibo de Pagamento de Diária gerado com sucesso.'
-        // );
+        this.toastr.info('O PDF está sendo gerado...', 'Aguarde');
       },
 
       (error) => {
+        console.log('Errpr aqui no gerar pdf');
         alert('Erro2');
         // this.mensagemService.mensagemErrorInfo(
         //   error,

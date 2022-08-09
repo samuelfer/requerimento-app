@@ -70,7 +70,6 @@ export class RequerimentoFormComponent implements OnInit {
           this.redirect();
         },
         (error) => {
-          console.log(error);
           this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
         }
       );
