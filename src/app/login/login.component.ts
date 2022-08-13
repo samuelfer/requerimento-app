@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.credenciais).subscribe(
       (response) => {
+        console.log(response);
         this.authService.successLogin(
           response.headers.get('Authorization').substring(7)
         );
