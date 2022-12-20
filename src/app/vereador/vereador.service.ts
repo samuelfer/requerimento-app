@@ -7,8 +7,8 @@ import { Pessoa } from '../shared/model/pessoa.model';
 @Injectable({
   providedIn: 'root',
 })
-export class PessoaService {
-  private apiUrl = `${environment.URL_API}/pessoas`;
+export class VereadorService {
+  private apiUrl = `${environment.URL_API}/vereadores`;
 
   constructor(private http: HttpClient) {}
 

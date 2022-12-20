@@ -1,11 +1,12 @@
-import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { registerLocaleData } from '@angular/common';
 import {
+  HTTP_INTERCEPTORS,
   HttpClient,
   HttpClientModule,
-  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { RequerimentoModule } from './requerimento/requerimento.module';
+import localePt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -14,14 +15,14 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './template/footer/footer.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoginComponent } from './login/login.component';
+import { RequerimentoModule } from './requerimento/requerimento.module';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
+import { FooterComponent } from './template/footer/footer.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
-import { LoginComponent } from './login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import localePt from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
+import { VereadorModule } from './vereador/vereador.module';
 
 registerLocaleData(localePt, 'pt');
 
@@ -42,6 +43,7 @@ registerLocaleData(localePt, 'pt');
     FormsModule,
     ReactiveFormsModule,
     RequerimentoModule,
+    VereadorModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,

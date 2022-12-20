@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { PessoaService } from './../../pessoa/pessoa.service';
+import { VereadorService } from './../../vereador/vereador.service';
 import { Pessoa } from '../../shared/model/pessoa.model';
 import { Requerimento } from '../../shared/model/requerimento.model';
 import { RequerimentoService } from './../requerimento.service';
@@ -25,7 +25,7 @@ export class RequerimentoFormComponent implements OnInit {
 
   constructor(
     private requerimentoService: RequerimentoService,
-    private pessoaService: PessoaService,
+    private vereadorService: VereadorService,
     private router: Router,
     private toastr: ToastrService,
     private activedRoute: ActivatedRoute
@@ -40,11 +40,16 @@ export class RequerimentoFormComponent implements OnInit {
   }
 
   public listarVereadores() {
-    this.pessoaService.listarTodos().subscribe(
+    this.vereadorService.listarTodos().subscribe(
       (response: Pessoa[]): void => {
         this.vereadorList = response;
       },
-      (error) => {}
+      (error) => {
+        this.toastr.error(
+          'Erro ao tentar listar os vereadores',
+          'Ocorreu um erro!'
+        );
+      }
     );
   }
 
