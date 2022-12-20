@@ -16,9 +16,6 @@ export class LoginComponent implements OnInit {
     senha: '',
   };
 
-  email = new FormControl(null, Validators.email);
-  senha = new FormControl(null, Validators.minLength(3));
-
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -27,22 +24,33 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  validaCampos(): boolean {
-    return this.email.valid && this.senha.valid;
+  login() {
+    if (this.validaCampos()) {
+      this.authService.login(this.credenciais).subscribe(
+        (response) => {
+          this.authService.successLogin(
+            response.headers.get('Authorization').substring(7)
+          );
+          // this.router.navigateByUrl('dashboard');
+          this.router.navigate(['/']);
+        },
+        () => {
+          this.toastr.error('Usuário e/ou senha inválidos!', 'Login');
+        }
+      );
+    }
   }
 
-  login() {
-    this.authService.login(this.credenciais).subscribe(
-      (response) => {
-        console.log(response);
-        this.authService.successLogin(
-          response.headers.get('Authorization').substring(7)
-        );
-        this.router.navigate(['']);
-      },
-      () => {
-        this.toastr.error('Usuário e/ou senha inválidos!', 'Login');
-      }
-    );
+  private validaCampos(): boolean {
+    if (this.credenciais.email === undefined || this.credenciais.email === '') {
+      this.toastr.error('Por favor, informe o email');
+      return false;
+    }
+
+    if (this.credenciais.senha === undefined || this.credenciais.senha === '') {
+      this.toastr.error('Por favor, informe a senha');
+      return false;
+    }
+    return true;
   }
 }

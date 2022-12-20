@@ -1,29 +1,35 @@
+import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
 import { Pessoa } from '../../shared/model/pessoa.model';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { PessoaService } from '../pessoa.service';
+import { VereadorService } from '../vereador.service';
+import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
 
 @Component({
-  selector: 'app-pessoa-form',
-  templateUrl: './pessoa-form.component.html',
-  styleUrls: ['./pessoa-form.component.scss'],
+  selector: 'app-vereador-form',
+  templateUrl: './vereador-form.component.html',
+  styleUrls: ['./vereador-form.component.scss'],
 })
-export class PessoaFormComponent implements OnInit {
+export class VereadorFormComponent implements OnInit {
   pessoa: Pessoa = {
     nome: '',
-    cargo: 'Vereador',
+    cargo: '',
+    tipoPessoa: new TipoPessoa(),
   };
   pessoaId: string | null;
+  tipoPessoaList: TipoPessoa[];
 
   constructor(
-    private pessoaService: PessoaService,
+    private vereadorService: VereadorService,
     private router: Router,
     private toastr: ToastrService,
-    private activedRoute: ActivatedRoute
+    private activedRoute: ActivatedRoute,
+    private tipoPessoaService: TipoPessoaService
   ) {}
 
   ngOnInit(): void {
+    this.getTipoPessoas();
     this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.pessoaId !== null) {
       this.findById(+this.pessoaId);
@@ -32,13 +38,12 @@ export class PessoaFormComponent implements OnInit {
 
   cadastrar(): void {
     if (this.validaCampos()) {
-      this.pessoaService.cadastrar(this.pessoa).subscribe(
-        (response) => {
+      this.vereadorService.cadastrar(this.pessoa).subscribe(
+        () => {
           this.toastr.success('Cadastro realizado com sucesso');
           this.redirect();
         },
-        (error) => {
-          console.log(error);
+        () => {
           this.toastr.error('Ocorreu um erro!', 'Erro ao tentar cadastrar');
         }
       );
@@ -47,7 +52,7 @@ export class PessoaFormComponent implements OnInit {
 
   atualizar(): void {
     if (this.validaCampos()) {
-      this.pessoaService.atualizar(this.pessoa).subscribe(
+      this.vereadorService.atualizar(this.pessoa).subscribe(
         (response) => {
           this.toastr.success('Registro atualizado com sucesso');
           this.redirect();
@@ -73,9 +78,20 @@ export class PessoaFormComponent implements OnInit {
   }
 
   private findById(requerimentoId: number): void {
-    this.pessoaService.listarPorId(requerimentoId).subscribe(
+    this.vereadorService.listarPorId(requerimentoId).subscribe(
       (response) => {
         this.pessoa = response;
+      },
+      (error) => {
+        this.toastr.error(error.error.error);
+      }
+    );
+  }
+
+  public getTipoPessoas(): void {
+    this.tipoPessoaService.listarTipoPessoas().subscribe(
+      (response) => {
+        this.tipoPessoaList = response;
       },
       (error) => {
         this.toastr.error(error.error.error);

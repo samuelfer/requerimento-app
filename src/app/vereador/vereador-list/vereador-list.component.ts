@@ -1,14 +1,14 @@
 import { Pessoa } from '../../shared/model/pessoa.model';
-import { PessoaService } from './../pessoa.service';
+import { VereadorService } from './../vereador.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pessoa-list',
-  templateUrl: './pessoa-list.component.html',
-  styleUrls: ['./pessoa-list.component.scss'],
+  templateUrl: './vereador-list.component.html',
+  styleUrls: ['./vereador-list.component.scss'],
 })
-export class PessoaListComponent implements OnInit {
-  constructor(private pessoaService: PessoaService) {}
+export class VereadorListComponent implements OnInit {
+  constructor(private vereadorService: VereadorService) {}
 
   pessoaList: Pessoa[];
   loading = false;
@@ -19,7 +19,7 @@ export class PessoaListComponent implements OnInit {
 
   public listar() {
     this.loading = true;
-    this.pessoaService.listarTodos().subscribe(
+    this.vereadorService.listarTodos().subscribe(
       (response: Pessoa[]): void => {
         this.pessoaList = response;
         this.loading = false;

@@ -1,6 +1,5 @@
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { AuthGuard } from './auth/auth.guard';
-import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 
@@ -28,7 +27,14 @@ const routes: Routes = [
       {
         path: 'vereadores',
         loadChildren: () =>
-          import('./pessoa/pessoa.module').then((m) => m.PessoaModule),
+          import('./vereador/vereador.module').then((m) => m.VereadorModule),
+      },
+      {
+        path: 'tipo-pessoa',
+        loadChildren: () =>
+          import('./tipo-pessoa/tipo-pessoa.module').then(
+            (m) => m.TipoPessoaModule
+          ),
       },
     ],
   },
