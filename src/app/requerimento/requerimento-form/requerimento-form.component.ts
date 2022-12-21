@@ -61,7 +61,10 @@ export class RequerimentoFormComponent implements OnInit {
           this.redirect();
         },
         (error) => {
-          this.toastr.error('Ocorreu um erro!', error.error);
+          this.toastr.error(
+            'Ocorreu um erro!',
+            'Ocorreu um erro ao tentar salvar o requerimento'
+          );
         }
       );
     }
