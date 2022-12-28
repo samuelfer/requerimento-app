@@ -36,6 +36,13 @@ const routes: Routes = [
             (m) => m.TipoPessoaModule
           ),
       },
+      {
+        path: 'servidores',
+        loadChildren: () =>
+          import('./servidores/servidores.module').then(
+            (m) => m.ServidoresModule
+          ),
+      },
     ],
   },
 ];

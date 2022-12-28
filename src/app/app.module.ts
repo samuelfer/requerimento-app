@@ -23,6 +23,7 @@ import { FooterComponent } from './template/footer/footer.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { VereadorModule } from './vereador/vereador.module';
+import { ServidoresModule } from './servidores/servidores.module';
 
 registerLocaleData(localePt, 'pt');
 
@@ -44,6 +45,7 @@ registerLocaleData(localePt, 'pt');
     ReactiveFormsModule,
     RequerimentoModule,
     VereadorModule,
+    ServidoresModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,
