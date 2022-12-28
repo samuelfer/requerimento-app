@@ -1,0 +1,55 @@
+<div class="content-wrapper mt-4">
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="card card-secondary">
+        <div class="card-header">
+          <h3 class="card-title">Cadastrar servidor</h3>
+
+        </div>
+        <form #vereadorForm="ngForm">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <label>Nome</label>
+                <br>
+                <input [(ngModel)]="pessoa.nome" name="nome" type="text" pInputText [style]="{ width: '75%' }">
+              </div>
+              <div class="col-md-4">
+                <label>Cargo</label>
+                <br>
+                <input [(ngModel)]="pessoa.cargo" name="cargo" type="text" pInputText [style]="{ width: '75%' }">
+              </div>
+            </div>
+            <div class="row" *ngIf="pessoa.id">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Tipo</label>
+                  <br>
+                  <p-dropdown [options]="tipoPessoaList" [(ngModel)]="pessoa.tipoPessoa" name="tipoPessoa"
+                    optionLabel="descricao" placeholder="Selecione" [required]="true" [style]="{'width':'75%'}">
+                  </p-dropdown>
+                </div>
+              </div>
+            </div>
+            <p-footer>
+              <div class="btn-right mt-4">
+                <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                  class="p-button-success p-button-sm"></button>
+                <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
+                  class="p-button-secondary p-button-sm ml-2"></button>
+              </div>
+            </p-footer>
+            <!-- /.col -->
+          </div>
+        </form>
+      </div>
+      <!-- /.card-body -->
+
+
+    </div>
+    <!-- /.card -->
+
+    <!-- /.container-fluid -->
+  </section>
+</div>
