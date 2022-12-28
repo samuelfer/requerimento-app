@@ -1,14 +1,18 @@
 import { Pessoa } from '../../shared/model/pessoa.model';
-import { VereadorService } from './../vereador.service';
+import { VereadoresService } from '../vereadores.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-pessoa-list',
-  templateUrl: './vereador-list.component.html',
-  styleUrls: ['./vereador-list.component.scss'],
+  templateUrl: './vereadores-list.component.html',
+  styleUrls: ['./vereadores-list.component.scss'],
 })
-export class VereadorListComponent implements OnInit {
-  constructor(private vereadorService: VereadorService) {}
+export class VereadoresListComponent implements OnInit {
+  constructor(
+    private vereadorService: VereadoresService,
+    private toastr: ToastrService
+  ) {}
 
   pessoaList: Pessoa[];
   loading = false;
@@ -24,8 +28,9 @@ export class VereadorListComponent implements OnInit {
         this.pessoaList = response;
         this.loading = false;
       },
-      (error) => {
+      () => {
         this.loading = false;
+        this.toastr.error('Ocorreu um erro ao tentar listar os registros');
       }
     );
   }

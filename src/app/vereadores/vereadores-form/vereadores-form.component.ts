@@ -3,15 +3,15 @@ import { Pessoa } from '../../shared/model/pessoa.model';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { VereadorService } from '../vereador.service';
+import { VereadoresService } from '../vereadores.service';
 import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
 
 @Component({
-  selector: 'app-vereador-form',
-  templateUrl: './vereador-form.component.html',
-  styleUrls: ['./vereador-form.component.scss'],
+  selector: 'app-vereadores-form',
+  templateUrl: './vereadores-form.component.html',
+  styleUrls: ['./vereadores-form.component.scss'],
 })
-export class VereadorFormComponent implements OnInit {
+export class VereadoresFormComponent implements OnInit {
   pessoa: Pessoa = {
     nome: '',
     cargo: '',
@@ -21,7 +21,7 @@ export class VereadorFormComponent implements OnInit {
   tipoPessoaList: TipoPessoa[];
 
   constructor(
-    private vereadorService: VereadorService,
+    private vereadorService: VereadoresService,
     private router: Router,
     private toastr: ToastrService,
     private activedRoute: ActivatedRoute,
