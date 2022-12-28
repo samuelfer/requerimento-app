@@ -38,12 +38,27 @@
               </a>
             </li>
           </ul>
+
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['requerimentos/cadastro']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['requerimentos']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
-              Vereador(a)
+              Vereadores
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -61,6 +76,52 @@
               </a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Servidores
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['servidores/cadastro']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['servidores']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Assessores
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['assessores/cadastro']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Cadastrar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['assessores']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Listar</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a (click)="logout()" class="nav-link" data-widget="control-sidebar" title="Clique aqui para Sair do Sistema"
             data-slide="true" role="button">
