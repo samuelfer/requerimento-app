@@ -1,6 +1,6 @@
-import { VereadorRoutes } from './vereador.routing';
-import { VereadorFormComponent } from './vereador-form/vereador-form.component';
-import { VereadorListComponent } from './vereador-list/vereador-list.component';
+import { VereadoresRoutes } from './vereadores.routing';
+import { VereadoresFormComponent } from './vereadores-form/vereadores-form.component';
+import { VereadoresListComponent } from './vereadores-list/vereadores-list.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,10 +10,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
-  declarations: [VereadorListComponent, VereadorFormComponent],
+  declarations: [VereadoresListComponent, VereadoresFormComponent],
   imports: [
     CommonModule,
-    VereadorRoutes,
+    VereadoresRoutes,
     FormsModule,
     ButtonModule,
     TableModule,
@@ -22,4 +22,4 @@ import { PaginatorModule } from 'primeng/paginator';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class VereadorModule {}
+export class VereadoresModule {}
