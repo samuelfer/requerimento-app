@@ -2,18 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { TipoPessoaEnum } from '../shared/enum/tipo-pessoa.enum';
 import { Pessoa } from '../shared/model/pessoa.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class VereadorService {
-  private apiUrl = `${environment.URL_API}/vereadores`;
+export class ServidoresService {
+  private apiUrl = `${environment.URL_API}/pessoas`;
 
   constructor(private http: HttpClient) {}
 
   listarTodos(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>(`${this.apiUrl}`);
+    const tipoPessoaId = TipoPessoaEnum.TIPO_SERVIDOR;
+    return this.http.get<Pessoa[]>(`${this.apiUrl}/tipo/${tipoPessoaId}`);
   }
 
   listarPorId(id: number): Observable<Pessoa> {

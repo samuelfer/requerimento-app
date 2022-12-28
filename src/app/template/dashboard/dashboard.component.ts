@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Dashboard } from './../../shared/dashboard-count.model';
 import { DashboardService } from './dashboard.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +18,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private dashboardService: DashboardService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

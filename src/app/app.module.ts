@@ -22,7 +22,8 @@ import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
-import { VereadorModule } from './vereador/vereador.module';
+import { VereadoresModule } from './vereadores/vereadores.module';
+import { ServidoresModule } from './servidores/servidores.module';
 
 registerLocaleData(localePt, 'pt');
 
@@ -43,7 +44,8 @@ registerLocaleData(localePt, 'pt');
     FormsModule,
     ReactiveFormsModule,
     RequerimentoModule,
-    VereadorModule,
+    VereadoresModule,
+    ServidoresModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,

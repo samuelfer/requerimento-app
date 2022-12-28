@@ -27,13 +27,22 @@ const routes: Routes = [
       {
         path: 'vereadores',
         loadChildren: () =>
-          import('./vereador/vereador.module').then((m) => m.VereadorModule),
+          import('./vereadores/vereadores.module').then(
+            (m) => m.VereadoresModule
+          ),
       },
       {
         path: 'tipo-pessoa',
         loadChildren: () =>
           import('./tipo-pessoa/tipo-pessoa.module').then(
             (m) => m.TipoPessoaModule
+          ),
+      },
+      {
+        path: 'servidores',
+        loadChildren: () =>
+          import('./servidores/servidores.module').then(
+            (m) => m.ServidoresModule
           ),
       },
     ],
