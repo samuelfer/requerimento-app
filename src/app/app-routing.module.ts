@@ -27,7 +27,9 @@ const routes: Routes = [
       {
         path: 'vereadores',
         loadChildren: () =>
-          import('./vereador/vereador.module').then((m) => m.VereadorModule),
+          import('./vereadores/vereadores.module').then(
+            (m) => m.VereadoresModule
+          ),
       },
       {
         path: 'tipo-pessoa',
