@@ -1,3 +1,5 @@
+import { TipoPessoaEnum } from './../shared/enum/tipo-pessoa.enum';
+import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,12 +10,13 @@ import { Pessoa } from '../shared/model/pessoa.model';
   providedIn: 'root',
 })
 export class VereadorService {
-  private apiUrl = `${environment.URL_API}/vereadores`;
+  private apiUrl = `${environment.URL_API}/pessoas`;
 
   constructor(private http: HttpClient) {}
 
   listarTodos(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>(`${this.apiUrl}`);
+    const tipoPessoaId = TipoPessoaEnum.TIPO_VEREADOR;
+    return this.http.get<Pessoa[]>(`${this.apiUrl}/${tipoPessoaId}`);
   }
 
   listarPorId(id: number): Observable<Pessoa> {
