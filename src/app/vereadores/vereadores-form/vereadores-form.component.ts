@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VereadoresService } from '../vereadores.service';
 import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
+import { Cargo } from 'src/app/shared/model/cargo.model';
 
 @Component({
   selector: 'app-vereadores-form',
@@ -14,8 +15,9 @@ import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
 export class VereadoresFormComponent implements OnInit {
   pessoa: Pessoa = {
     nome: '',
-    cargo: '',
+    cargo: new Cargo(),
     tipoPessoa: new TipoPessoa(),
+    ativo: true,
   };
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];
