@@ -86,8 +86,8 @@ export class AssessoresFormComponent implements OnInit {
     return true;
   }
 
-  private findById(requerimentoId: number): void {
-    this.assessoresService.listarPorId(requerimentoId).subscribe(
+  private findById(assessorId: number): void {
+    this.assessoresService.listarPorId(assessorId).subscribe(
       (response) => {
         this.pessoa = response;
       },
