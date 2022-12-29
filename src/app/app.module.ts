@@ -1,3 +1,4 @@
+import { CargosModule } from './cargos/cargos.module';
 import { registerLocaleData } from '@angular/common';
 import {
   HTTP_INTERCEPTORS,
@@ -15,16 +16,16 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AssessoresModule } from './assessores/assessores.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 import { RequerimentoModule } from './requerimento/requerimento.module';
+import { ServidoresModule } from './servidores/servidores.module';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { VereadoresModule } from './vereadores/vereadores.module';
-import { ServidoresModule } from './servidores/servidores.module';
-import { AssessoresModule } from './assessores/assessores.module';
 
 registerLocaleData(localePt, 'pt');
 
@@ -48,6 +49,7 @@ registerLocaleData(localePt, 'pt');
     VereadoresModule,
     ServidoresModule,
     AssessoresModule,
+    CargosModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,
