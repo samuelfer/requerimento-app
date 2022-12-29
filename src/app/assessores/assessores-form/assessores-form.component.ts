@@ -1,3 +1,4 @@
+import { CargosService } from './../../cargos/cargos.service';
 import { TipoPessoaEnum } from '../../shared/enum/tipo-pessoa.enum';
 import { AssessoresService } from '../assessores.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
 import { Pessoa } from 'src/app/shared/model/pessoa.model';
 import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
+import { Cargo } from 'src/app/shared/model/cargo.model';
 
 @Component({
   selector: 'app-servidores-form',
@@ -15,22 +17,31 @@ import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
 export class AssessoresFormComponent implements OnInit {
   pessoa: Pessoa = {
     nome: '',
-    cargo: '',
+    cargo: new Cargo(),
     tipoPessoa: new TipoPessoa(),
+    ativo: true,
   };
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];
+  cargosList: Cargo[];
+
+  opcoesStatus = [
+    { value: true, descricao: 'Sim' },
+    { value: false, descricao: 'Não' },
+  ];
 
   constructor(
     private assessoresService: AssessoresService,
     private router: Router,
     private toastr: ToastrService,
     private activedRoute: ActivatedRoute,
-    private tipoPessoaService: TipoPessoaService
+    private tipoPessoaService: TipoPessoaService,
+    private cargoService: CargosService
   ) {}
 
   ngOnInit(): void {
     this.getTipoPessoas();
+    this.getCargos();
     this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.pessoaId !== null) {
       this.findById(+this.pessoaId);
@@ -101,6 +112,17 @@ export class AssessoresFormComponent implements OnInit {
     this.tipoPessoaService.listarTipoPessoas().subscribe(
       (response) => {
         this.tipoPessoaList = response;
+      },
+      (error) => {
+        this.toastr.error(error.error.error);
+      }
+    );
+  }
+
+  private getCargos(): void {
+    this.cargoService.listarTodos().subscribe(
+      (response) => {
+        this.cargosList = response;
       },
       (error) => {
         this.toastr.error(error.error.error);

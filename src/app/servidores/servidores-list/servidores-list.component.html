@@ -35,12 +35,12 @@
                 <ng-template pTemplate="body" let-pessoa>
                   <tr>
                     <td>{{ pessoa.nome }}</td>
-                    <td>{{ pessoa?.cargo }}</td>
+                    <td>{{ pessoa?.cargo.descricao }}</td>
                     <td>{{ pessoa.ativo ? 'Sim' : 'Não' }}</td>
                     <td>
                       <div class="btn-group">
                         <button title="Editar" type="button" class="btn btn-white"
-                          [routerLink]="['/vereadores', pessoa.id]">
+                          [routerLink]="['/servidores', pessoa.id]">
                           <em class="fa fa-edit"></em>
                         </button>
                       </div>
