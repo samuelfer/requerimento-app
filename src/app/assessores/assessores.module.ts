@@ -1,3 +1,4 @@
+import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ import { AssessoresRoutes } from './assessores.routing';
     TableModule,
     InputTextModule,
     PaginatorModule,
+    DropdownModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
