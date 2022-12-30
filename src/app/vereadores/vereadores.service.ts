@@ -1,3 +1,4 @@
+import { Vereador } from './../shared/model/vereador.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,24 +11,23 @@ import { TipoPessoaEnum } from '../shared/enum/tipo-pessoa.enum';
   providedIn: 'root',
 })
 export class VereadoresService {
-  private apiUrl = `${environment.URL_API}/pessoas`;
+  private apiUrl = `${environment.URL_API}/vereadores`;
 
   constructor(private http: HttpClient) {}
 
-  listarTodos(): Observable<Pessoa[]> {
-    const tipoPessoaId = TipoPessoaEnum.TIPO_VEREADOR;
-    return this.http.get<Pessoa[]>(`${this.apiUrl}/tipo/${tipoPessoaId}`);
+  listarTodos(): Observable<Vereador[]> {
+    return this.http.get<Vereador[]>(`${this.apiUrl}`);
   }
 
-  listarPorId(id: number): Observable<Pessoa> {
-    return this.http.get<Pessoa>(`${this.apiUrl}/${id}`);
+  listarPorId(id: number): Observable<Vereador> {
+    return this.http.get<Vereador>(`${this.apiUrl}/${id}`);
   }
 
-  cadastrar(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.post<Pessoa>(`${this.apiUrl}`, pessoa);
+  cadastrar(pessoa: Vereador): Observable<Vereador> {
+    return this.http.post<Vereador>(`${this.apiUrl}`, pessoa);
   }
 
-  atualizar(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.put<Pessoa>(`${this.apiUrl}`, pessoa);
+  atualizar(pessoa: Vereador): Observable<Vereador> {
+    return this.http.put<Vereador>(`${this.apiUrl}`, pessoa);
   }
 }
