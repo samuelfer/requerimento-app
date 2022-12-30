@@ -1,3 +1,5 @@
+import { Cargo } from './../../shared/model/cargo.model';
+import { CargosService } from './../../cargos/cargos.service';
 import { TipoPessoaEnum } from './../../shared/enum/tipo-pessoa.enum';
 import { ServidoresService } from './../servidores.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,22 +17,31 @@ import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
 export class ServidoresFormComponent implements OnInit {
   pessoa: Pessoa = {
     nome: '',
-    cargo: '',
+    cargo: new Cargo(),
     tipoPessoa: new TipoPessoa(),
+    ativo: true,
   };
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];
+  cargosList: Cargo[];
+
+  opcoesStatus = [
+    { value: true, descricao: 'Sim' },
+    { value: false, descricao: 'Não' },
+  ];
 
   constructor(
     private servidoresService: ServidoresService,
     private router: Router,
     private toastr: ToastrService,
     private activedRoute: ActivatedRoute,
-    private tipoPessoaService: TipoPessoaService
+    private tipoPessoaService: TipoPessoaService,
+    private cargoService: CargosService
   ) {}
 
   ngOnInit(): void {
     this.getTipoPessoas();
+    this.getCargos();
     this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.pessoaId !== null) {
       this.findById(+this.pessoaId);
@@ -83,6 +94,11 @@ export class ServidoresFormComponent implements OnInit {
       this.toastr.error('Por favor, informe o nome');
       return false;
     }
+
+    if (this.pessoa.cargo === null || this.pessoa.cargo === undefined) {
+      this.toastr.error('Por favor, informe o cargo');
+      return false;
+    }
     return true;
   }
 
@@ -97,10 +113,21 @@ export class ServidoresFormComponent implements OnInit {
     );
   }
 
-  public getTipoPessoas(): void {
+  private getTipoPessoas(): void {
     this.tipoPessoaService.listarTipoPessoas().subscribe(
       (response) => {
         this.tipoPessoaList = response;
+      },
+      (error) => {
+        this.toastr.error(error.error.error);
+      }
+    );
+  }
+
+  private getCargos(): void {
+    this.cargoService.listarTodos().subscribe(
+      (response) => {
+        this.cargosList = response;
       },
       (error) => {
         this.toastr.error(error.error.error);

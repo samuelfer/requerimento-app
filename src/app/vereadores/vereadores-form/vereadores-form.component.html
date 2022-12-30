@@ -16,18 +16,11 @@
                 <input [(ngModel)]="pessoa.nome" name="nome" type="text" pInputText [style]="{ width: '75%' }">
               </div>
               <div class="col-md-4">
-                <label>Cargo</label>
-                <br>
-                <input [(ngModel)]="pessoa.cargo" name="cargo" type="text" pInputText [style]="{ width: '75%' }">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-8">
                 <div class="form-group">
-                  <label>Assessor</label>
+                  <label>Cargo</label>
                   <br>
-                  <p-dropdown [options]="tipoPessoaList" [(ngModel)]="pessoa.tipoPessoa" name="tipoPessoa"
-                    optionLabel="descricao" placeholder="Selecione" [required]="true" [style]="{'width':'75%'}">
+                  <p-dropdown [options]="cargosList" [(ngModel)]="pessoa.cargo" name="cargo" optionLabel="descricao"
+                    placeholder="Selecione" [required]="true" [style]="{'width':'75%'}">
                   </p-dropdown>
                 </div>
               </div>

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { TipoPessoaEnum } from '../shared/enum/tipo-pessoa.enum';
-import { Pessoa } from '../shared/model/pessoa.model';
+
+import { Assessor } from './../shared/model/assessor.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,19 +13,19 @@ export class AssessoresService {
 
   constructor(private http: HttpClient) {}
 
-  listarTodos(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>(`${this.apiUrl}`);
+  listarTodos(): Observable<Assessor[]> {
+    return this.http.get<Assessor[]>(`${this.apiUrl}`);
   }
 
-  listarPorId(id: number): Observable<Pessoa> {
-    return this.http.get<Pessoa>(`${this.apiUrl}/${id}`);
+  listarPorId(id: number): Observable<Assessor> {
+    return this.http.get<Assessor>(`${this.apiUrl}/${id}`);
   }
 
-  cadastrar(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.post<Pessoa>(`${this.apiUrl}`, pessoa);
+  cadastrar(pessoa: Assessor): Observable<Assessor> {
+    return this.http.post<Assessor>(`${this.apiUrl}`, pessoa);
   }
 
-  atualizar(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.put<Pessoa>(`${this.apiUrl}`, pessoa);
+  atualizar(pessoa: Assessor): Observable<Assessor> {
+    return this.http.put<Assessor>(`${this.apiUrl}`, pessoa);
   }
 }
