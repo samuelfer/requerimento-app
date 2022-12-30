@@ -1,7 +1,8 @@
-import { ServidoresService } from './../servidores.service';
 import { Component, OnInit } from '@angular/core';
-import { Pessoa } from 'src/app/shared/model/pessoa.model';
 import { ToastrService } from 'ngx-toastr';
+import { Servidor } from 'src/app/shared/model/servidor.model';
+
+import { ServidoresService } from './../servidores.service';
 
 @Component({
   selector: 'app-servidores-list',
@@ -14,7 +15,7 @@ export class ServidoresListComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  pessoaList: Pessoa[];
+  pessoaList: Servidor[];
   loading = false;
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class ServidoresListComponent implements OnInit {
   public listar() {
     this.loading = true;
     this.servidoresService.listarTodos().subscribe(
-      (response: Pessoa[]): void => {
+      (response: Servidor[]): void => {
         this.pessoaList = response;
         this.loading = false;
       },
