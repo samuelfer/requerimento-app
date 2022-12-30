@@ -1,4 +1,3 @@
-import { Vereador } from './vereador.model';
 import { Cargo } from './cargo.model';
 import { TipoPessoa } from './tipo-pessoa.model';
 
