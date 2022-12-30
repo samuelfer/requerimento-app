@@ -27,13 +27,14 @@
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Nome</th>
+                    <th>Cargo</th>
                     <th>Ações</th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-pessoa>
                   <tr>
                     <td>{{ pessoa.nome }}</td>
-
+                    <td>{{ pessoa.cargo?.descricao }}</td>
                     <td>
                       <div class="btn-group">
                         <button title="Editar" type="button" class="btn btn-white"
