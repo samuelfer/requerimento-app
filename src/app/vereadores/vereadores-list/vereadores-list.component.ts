@@ -1,3 +1,4 @@
+import { Vereador } from './../../shared/model/vereador.model';
 import { Pessoa } from '../../shared/model/pessoa.model';
 import { VereadoresService } from '../vereadores.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,7 @@ export class VereadoresListComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  pessoaList: Pessoa[];
+  pessoaList: Vereador[];
   loading = false;
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class VereadoresListComponent implements OnInit {
   public listar() {
     this.loading = true;
     this.vereadorService.listarTodos().subscribe(
-      (response: Pessoa[]): void => {
+      (response: Vereador[]): void => {
         this.pessoaList = response;
         this.loading = false;
       },
