@@ -1,3 +1,4 @@
+import { Servidor } from './../shared/model/servidor.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -13,19 +14,19 @@ export class ServidoresService {
 
   constructor(private http: HttpClient) {}
 
-  listarTodos(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>(`${this.apiUrl}`);
+  listarTodos(): Observable<Servidor[]> {
+    return this.http.get<Servidor[]>(`${this.apiUrl}`);
   }
 
-  listarPorId(id: number): Observable<Pessoa> {
-    return this.http.get<Pessoa>(`${this.apiUrl}/${id}`);
+  listarPorId(id: number): Observable<Servidor> {
+    return this.http.get<Servidor>(`${this.apiUrl}/${id}`);
   }
 
-  cadastrar(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.post<Pessoa>(`${this.apiUrl}`, pessoa);
+  cadastrar(pessoa: Servidor): Observable<Servidor> {
+    return this.http.post<Servidor>(`${this.apiUrl}`, pessoa);
   }
 
-  atualizar(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.put<Pessoa>(`${this.apiUrl}`, pessoa);
+  atualizar(pessoa: Servidor): Observable<Servidor> {
+    return this.http.put<Servidor>(`${this.apiUrl}`, pessoa);
   }
 }

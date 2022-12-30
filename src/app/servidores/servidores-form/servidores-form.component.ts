@@ -1,13 +1,14 @@
-import { Cargo } from './../../shared/model/cargo.model';
-import { CargosService } from './../../cargos/cargos.service';
-import { TipoPessoaEnum } from './../../shared/enum/tipo-pessoa.enum';
-import { ServidoresService } from './../servidores.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
-import { Pessoa } from 'src/app/shared/model/pessoa.model';
 import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
+import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
+
+import { CargosService } from './../../cargos/cargos.service';
+import { TipoPessoaEnum } from './../../shared/enum/tipo-pessoa.enum';
+import { Cargo } from './../../shared/model/cargo.model';
+import { Servidor } from './../../shared/model/servidor.model';
+import { ServidoresService } from './../servidores.service';
 
 @Component({
   selector: 'app-servidores-form',
@@ -15,7 +16,7 @@ import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
   styleUrls: ['./servidores-form.component.scss'],
 })
 export class ServidoresFormComponent implements OnInit {
-  pessoa: Pessoa = {
+  pessoa: Servidor = {
     nome: '',
     cargo: new Cargo(),
     tipoPessoa: new TipoPessoa(),
