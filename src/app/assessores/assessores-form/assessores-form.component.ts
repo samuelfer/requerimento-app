@@ -1,16 +1,14 @@
-import { Assessor } from './../../shared/model/assessor.model';
-import { VereadoresService } from './../../vereadores/vereadores.service';
-import { Vereador } from './../../shared/model/vereador.model';
-import { CargosService } from './../../cargos/cargos.service';
-import { TipoPessoaEnum } from '../../shared/enum/tipo-pessoa.enum';
-import { AssessoresService } from '../assessores.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
-import { Pessoa } from 'src/app/shared/model/pessoa.model';
 import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
-import { Cargo } from 'src/app/shared/model/cargo.model';
+import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
+
+import { TipoPessoaEnum } from '../../shared/enum/tipo-pessoa.enum';
+import { AssessoresService } from '../assessores.service';
+import { Assessor } from './../../shared/model/assessor.model';
+import { Vereador } from './../../shared/model/vereador.model';
+import { VereadoresService } from './../../vereadores/vereadores.service';
 
 @Component({
   selector: 'app-servidores-form',
@@ -20,14 +18,12 @@ import { Cargo } from 'src/app/shared/model/cargo.model';
 export class AssessoresFormComponent implements OnInit {
   pessoa: Assessor = {
     nome: '',
-    cargo: new Cargo(),
     tipoPessoa: new TipoPessoa(),
     ativo: true,
     vereador: new Vereador(),
   };
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];
-  cargosList: Cargo[];
   vereadorList: Vereador[];
 
   opcoesStatus = [
@@ -41,13 +37,11 @@ export class AssessoresFormComponent implements OnInit {
     private toastr: ToastrService,
     private activedRoute: ActivatedRoute,
     private tipoPessoaService: TipoPessoaService,
-    private cargoService: CargosService,
     private vereadorService: VereadoresService
   ) {}
 
   ngOnInit(): void {
     this.getTipoPessoas();
-    this.getCargos();
     this.getVereadores();
     this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.pessoaId !== null) {
@@ -58,7 +52,6 @@ export class AssessoresFormComponent implements OnInit {
   cadastrar(): void {
     if (this.validaCampos()) {
       this.preencheTipoPessoa();
-      console.log('Pessoa ', this.pessoa);
       this.assessoresService.cadastrar(this.pessoa).subscribe(
         () => {
           this.toastr.success('Cadastro realizado com sucesso');
@@ -120,17 +113,6 @@ export class AssessoresFormComponent implements OnInit {
     this.tipoPessoaService.listarTipoPessoas().subscribe(
       (response) => {
         this.tipoPessoaList = response;
-      },
-      (error) => {
-        this.toastr.error(error.error.error);
-      }
-    );
-  }
-
-  private getCargos(): void {
-    this.cargoService.listarTodos().subscribe(
-      (response) => {
-        this.cargosList = response;
       },
       (error) => {
         this.toastr.error(error.error.error);
