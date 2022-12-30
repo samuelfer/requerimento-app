@@ -42,6 +42,16 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Vereador</label>
+                  <br>
+                  <p-dropdown [options]="vereadorList" [(ngModel)]="pessoa.vereador" optionLabel="nome"
+                    placeholder="Selecione" name="vereador"></p-dropdown>
+                </div>
+              </div>
+            </div>
             <p-footer>
               <div class="btn-right mt-4">
                 <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
