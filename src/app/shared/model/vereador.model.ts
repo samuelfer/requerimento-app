@@ -6,7 +6,7 @@ export class Vereador {
   id?: number;
   nome: string;
   cargo: Cargo;
-  assessor?: Assessor[];
+  assessorList?: Assessor[];
   ativo: boolean;
   tipoPessoa: TipoPessoa;
 
