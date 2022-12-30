@@ -22,21 +22,20 @@
             <div class="card-body table-responsive p-0">
 
               <p-table [value]="pessoaList" responsiveLayout="scroll" class="table" [paginator]="true" [rows]="5"
-                [showCurrentPageReport]="false" [rowsPerPageOptions]="[5, 10, 25, 50]"
-                [alwaysShowPaginator]="pessoaList.length != 0">
+                [showCurrentPageReport]="false" [rowsPerPageOptions]="[5, 10, 25, 50]">
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Nome</th>
-                    <th>Cargo</th>
                     <th>Ativo</th>
+                    <th>Vereador</th>
                     <th>Ações</th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-pessoa>
                   <tr>
                     <td>{{ pessoa.nome }}</td>
-                    <td>{{ pessoa?.cargo?.descricao }}</td>
                     <td>{{ pessoa.ativo ? 'Sim' : 'Não' }}</td>
+                    <td>{{ pessoa?.vereador?.nome }}</td>
                     <td>
                       <div class="btn-group">
                         <button title="Editar" type="button" class="btn btn-white"
