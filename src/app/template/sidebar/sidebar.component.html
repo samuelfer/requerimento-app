@@ -132,6 +132,23 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-cogs"></i>
+            <p>
+              Segurança
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['usuarios']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Usuários</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
           <a (click)="logout()" class="nav-link" data-widget="control-sidebar" title="Clique aqui para Sair do Sistema"
             data-slide="true" role="button">
             <i class="fa fa-reply nav-icon" aria-hidden="true"></i>
