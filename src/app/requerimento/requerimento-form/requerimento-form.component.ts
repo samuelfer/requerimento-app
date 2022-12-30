@@ -1,3 +1,4 @@
+import { Vereador } from './../../shared/model/vereador.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +14,7 @@ import { RequerimentoService } from './../requerimento.service';
   styleUrls: ['./requerimento-form.component.scss'],
 })
 export class RequerimentoFormComponent implements OnInit {
-  vereadorList: Pessoa[];
+  vereadorList: Vereador[];
 
   requerimento: Requerimento = {
     pessoa: new Pessoa(),
@@ -41,7 +42,7 @@ export class RequerimentoFormComponent implements OnInit {
 
   public listarVereadores() {
     this.vereadorService.listarTodos().subscribe(
-      (response: Pessoa[]): void => {
+      (response: Vereador[]): void => {
         this.vereadorList = response;
       },
       () => {
