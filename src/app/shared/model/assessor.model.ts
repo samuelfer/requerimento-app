@@ -1,10 +1,14 @@
-import { Pessoa } from 'src/app/shared/model/pessoa.model';
+import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
 import { Cargo } from './cargo.model';
+import { Vereador } from './vereador.model';
+
 export class Assessor {
   id?: number;
   nome: string;
   cargo: Cargo;
-  vereador: Pessoa;
+  tipoPessoa: TipoPessoa;
+  ativo: boolean;
+  vereador: Vereador;
 
   constructor() {}
 }
