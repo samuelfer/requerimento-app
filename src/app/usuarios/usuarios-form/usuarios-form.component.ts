@@ -23,6 +23,7 @@ export class UsuariosFormComponent implements OnInit {
     { value: true, descricao: 'Sim' },
     { value: false, descricao: 'Não' },
   ];
+  titulo = 'Cadastrar usuário';
 
   constructor(
     private usuarioService: UsuariosService,
@@ -34,6 +35,7 @@ export class UsuariosFormComponent implements OnInit {
   ngOnInit(): void {
     this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.pessoaId !== null) {
+      this.titulo = 'Editar usuário';
       this.findById(+this.pessoaId);
     }
   }
