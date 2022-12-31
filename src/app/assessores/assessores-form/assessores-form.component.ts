@@ -25,7 +25,7 @@ export class AssessoresFormComponent implements OnInit {
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];
   vereadorList: Vereador[];
-
+  titulo = 'Cadastrar assessor';
   opcoesStatus = [
     { value: true, descricao: 'Sim' },
     { value: false, descricao: 'Não' },
@@ -45,6 +45,7 @@ export class AssessoresFormComponent implements OnInit {
     this.getVereadores();
     this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.pessoaId !== null) {
+      this.titulo = 'Editar assessor';
       this.findById(+this.pessoaId);
     }
   }

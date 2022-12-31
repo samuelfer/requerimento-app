@@ -15,6 +15,7 @@ export class CargosFormComponent implements OnInit {
     ativo: true,
   };
   cargoId: string | null;
+  titulo = 'Cadastrar cargo;';
 
   constructor(
     private cargoService: CargosService,
@@ -26,6 +27,7 @@ export class CargosFormComponent implements OnInit {
   ngOnInit(): void {
     this.cargoId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.cargoId !== null) {
+      this.titulo = 'Editar cargo';
       this.findById(+this.cargoId);
     }
   }

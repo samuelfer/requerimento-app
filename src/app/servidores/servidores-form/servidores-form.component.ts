@@ -30,6 +30,7 @@ export class ServidoresFormComponent implements OnInit {
     { value: true, descricao: 'Sim' },
     { value: false, descricao: 'Não' },
   ];
+  titulo = 'Cadastrar servidor';
 
   constructor(
     private servidoresService: ServidoresService,
@@ -45,6 +46,7 @@ export class ServidoresFormComponent implements OnInit {
     this.getCargos();
     this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.pessoaId !== null) {
+      this.titulo = 'Editar servidor';
       this.findById(+this.pessoaId);
     }
   }
