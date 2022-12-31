@@ -28,6 +28,7 @@ export class VereadoresFormComponent implements OnInit {
   tipoPessoaList: TipoPessoa[];
   cargosList: Cargo[];
   assessorList: Assessor[];
+  titulo = 'Cadastrar vereador';
 
   constructor(
     private vereadorService: VereadoresService,
@@ -45,6 +46,7 @@ export class VereadoresFormComponent implements OnInit {
     this.getAssessores();
     this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.pessoaId !== null) {
+      this.titulo = 'Editar vereador';
       this.findById(+this.pessoaId);
     }
   }
