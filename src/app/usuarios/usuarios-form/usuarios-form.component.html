@@ -10,18 +10,26 @@
         <form #vereadorForm="ngForm">
           <div class="card-body">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <label>Nome</label>
                 <br>
                 <input [(ngModel)]="pessoa.nome" name="nome" type="text" pInputText [style]="{ width: '75%' }">
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
+                <label>Email</label>
+                <br>
+                <input [(ngModel)]="pessoa.email" name="email" type="text" pInputText [style]="{ width: '75%' }">
+              </div>
+              <div class="col-md-6" *ngIf="!pessoa.id">
+                <label>Senha</label>
+                <br>
+                <input [(ngModel)]="pessoa.senha" name="senha" type="password" pInputText [style]="{ width: '75%' }">
+              </div>
+              <div class="col-md-4" *ngIf="pessoa.id">
                 <div class="form-group">
-                  <label>Cargo</label>
-                  <br>
-                  <p-dropdown [options]="cargosList" [(ngModel)]="pessoa.cargo" name="cargo" optionLabel="descricao"
-                    placeholder="Selecione" [required]="true" [style]="{'width':'75%'}">
-                  </p-dropdown>
+                  <label>Ativo</label>
+                  <br />
+                  <p-dropdown [options]="opcoesStatus" [(ngModel)]="pessoa.ativo" optionLabel="descricao"></p-dropdown>
                 </div>
               </div>
             </div>
