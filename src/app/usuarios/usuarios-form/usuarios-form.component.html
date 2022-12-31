@@ -4,7 +4,7 @@
 
       <div class="card card-secondary">
         <div class="card-header">
-          <h3 class="card-title">Cadastrar usuário</h3>
+          <h3 class="card-title">{{ titulo }}</h3>
 
         </div>
         <form #vereadorForm="ngForm">
@@ -36,7 +36,9 @@
             <p-footer>
               <div class="btn-right mt-4">
                 <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
-                  class="p-button-success p-button-sm"></button>
+                  class="p-button-success p-button-sm" *ngIf="!pessoa.id"></button>
+                <button (click)="atualizar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                  class="p-button-success p-button-sm" *ngIf="pessoa.id"></button>
                 <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
                   class="p-button-secondary p-button-sm ml-2"></button>
               </div>
