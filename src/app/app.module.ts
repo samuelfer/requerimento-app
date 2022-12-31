@@ -26,6 +26,7 @@ import { FooterComponent } from './template/footer/footer.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { VereadoresModule } from './vereadores/vereadores.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 registerLocaleData(localePt, 'pt');
 
@@ -50,6 +51,7 @@ registerLocaleData(localePt, 'pt');
     ServidoresModule,
     AssessoresModule,
     CargosModule,
+    UsuariosModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,

@@ -57,6 +57,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./cargos/cargos.module').then((m) => m.CargosModule),
       },
+      {
+        path: 'usuarios',
+        loadChildren: () =>
+          import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
+      },
     ],
   },
 ];
