@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { MensagemService } from 'src/app/service/mensagemService';
 import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
 import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
 
@@ -34,7 +34,7 @@ export class AssessoresFormComponent implements OnInit {
   constructor(
     private assessoresService: AssessoresService,
     private router: Router,
-    private toastr: ToastrService,
+    private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute,
     private tipoPessoaService: TipoPessoaService,
     private vereadorService: VereadoresService
@@ -55,11 +55,16 @@ export class AssessoresFormComponent implements OnInit {
       this.preencheTipoPessoa();
       this.assessoresService.cadastrar(this.pessoa).subscribe(
         () => {
-          this.toastr.success('Cadastro realizado com sucesso');
+          this.mensagemService.mensagemSucesso(
+            'Cadastro realizado com sucesso'
+          );
           this.redirect();
         },
-        () => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar cadastrar');
+        (error) => {
+          this.mensagemService.mensagemError(
+            error,
+            'Ocorreu um erro! Erro ao tentar cadastrar'
+          );
         }
       );
     }
@@ -70,11 +75,16 @@ export class AssessoresFormComponent implements OnInit {
       this.preencheTipoPessoa();
       this.assessoresService.atualizar(this.pessoa).subscribe(
         () => {
-          this.toastr.success('Registro atualizado com sucesso');
+          this.mensagemService.mensagemSucesso(
+            'Registro atualizado com sucesso'
+          );
           this.redirect();
         },
-        () => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
+        (error) => {
+          this.mensagemService.mensagemError(
+            error,
+            'Ocorreu um erro! Erro ao tentar atualizar'
+          );
         }
       );
     }
@@ -93,9 +103,15 @@ export class AssessoresFormComponent implements OnInit {
 
   private validaCampos(): boolean {
     if (this.pessoa.nome === null || this.pessoa.nome === undefined) {
-      this.toastr.error('Por favor, informe o nome');
+      this.mensagemService.mensagemAlerta('Por favor, informe o nome');
       return false;
     }
+
+    if (this.pessoa.vereador === null || this.pessoa.vereador === undefined) {
+      this.mensagemService.mensagemAlerta('Por favor, informe o vereador');
+      return false;
+    }
+
     return true;
   }
 
@@ -105,7 +121,10 @@ export class AssessoresFormComponent implements OnInit {
         this.pessoa = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro! Erro ao tentar listar'
+        );
       }
     );
   }
@@ -116,7 +135,10 @@ export class AssessoresFormComponent implements OnInit {
         this.tipoPessoaList = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro! Erro ao tentar listar'
+        );
       }
     );
   }
@@ -127,7 +149,10 @@ export class AssessoresFormComponent implements OnInit {
         this.vereadorList = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro! Erro ao tentar listar'
+        );
       }
     );
   }
