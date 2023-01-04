@@ -15,7 +15,7 @@ export class CargosFormComponent implements OnInit {
     ativo: true,
   };
   cargoId: string | null;
-  titulo = 'Cadastrar cargo;';
+  titulo = 'Cadastrar cargo';
 
   constructor(
     private cargoService: CargosService,
