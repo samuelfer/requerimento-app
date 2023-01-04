@@ -1,16 +1,17 @@
-import { Vereador } from './../../shared/model/vereador.model';
-import { AssessoresService } from './../../assessores/assessores.service';
-import { Assessor } from './../../shared/model/assessor.model';
-import { CargosService } from './../../cargos/cargos.service';
-import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
-import { Pessoa } from '../../shared/model/pessoa.model';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { VereadoresService } from '../vereadores.service';
-import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
-import { Cargo } from 'src/app/shared/model/cargo.model';
+import { MensagemService } from 'src/app/service/mensagemService';
 import { TipoPessoaEnum } from 'src/app/shared/enum/tipo-pessoa.enum';
+import { Cargo } from 'src/app/shared/model/cargo.model';
+import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
+import { TipoPessoaService } from 'src/app/tipo-pessoa/tipo-pessoa.service';
+
+import { VereadoresService } from '../vereadores.service';
+import { AssessoresService } from './../../assessores/assessores.service';
+import { CargosService } from './../../cargos/cargos.service';
+import { Assessor } from './../../shared/model/assessor.model';
+import { Vereador } from './../../shared/model/vereador.model';
 
 @Component({
   selector: 'app-vereadores-form',
@@ -34,6 +35,7 @@ export class VereadoresFormComponent implements OnInit {
     private vereadorService: VereadoresService,
     private router: Router,
     private toastr: ToastrService,
+    private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute,
     private tipoPessoaService: TipoPessoaService,
     private cargoService: CargosService,
@@ -56,11 +58,16 @@ export class VereadoresFormComponent implements OnInit {
       this.preencheTipoPessoa();
       this.vereadorService.cadastrar(this.pessoa).subscribe(
         () => {
-          this.toastr.success('Cadastro realizado com sucesso');
+          this.mensagemService.mensagemSucesso(
+            'Cadastro realizado com sucesso'
+          );
           this.redirect();
         },
-        () => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar cadastrar');
+        (error) => {
+          this.mensagemService.mensagemError(
+            error,
+            'Ocorreu um erro! Erro ao tentar cadastrar'
+          );
         }
       );
     }
