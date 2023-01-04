@@ -34,7 +34,6 @@ export class VereadoresFormComponent implements OnInit {
   constructor(
     private vereadorService: VereadoresService,
     private router: Router,
-    private toastr: ToastrService,
     private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute,
     private tipoPessoaService: TipoPessoaService,
@@ -78,11 +77,16 @@ export class VereadoresFormComponent implements OnInit {
       this.preencheTipoPessoa();
       this.vereadorService.atualizar(this.pessoa).subscribe(
         () => {
-          this.toastr.success('Registro atualizado com sucesso');
+          this.mensagemService.mensagemSucesso(
+            'Registro atualizado com sucesso'
+          );
           this.redirect();
         },
         (error) => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
+          this.mensagemService.mensagemError(
+            error,
+            'Ocorreu um erro! Erro ao tentar atualizar'
+          );
         }
       );
     }
@@ -101,7 +105,7 @@ export class VereadoresFormComponent implements OnInit {
 
   private validaCampos(): boolean {
     if (this.pessoa.nome === null || this.pessoa.nome === undefined) {
-      this.toastr.error('Por favor, informe o nome');
+      this.mensagemService.mensagemAlerta('Por favor, informe o nome');
       return false;
     }
     return true;
@@ -113,7 +117,7 @@ export class VereadoresFormComponent implements OnInit {
         this.pessoa = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(error, 'Erro ao tentar listar');
       }
     );
   }
@@ -124,7 +128,7 @@ export class VereadoresFormComponent implements OnInit {
         this.tipoPessoaList = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(error, 'Erro ao tentar listar');
       }
     );
   }
@@ -135,7 +139,7 @@ export class VereadoresFormComponent implements OnInit {
         this.cargosList = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(error, 'Erro ao tentar listar');
       }
     );
   }
@@ -146,7 +150,7 @@ export class VereadoresFormComponent implements OnInit {
         this.assessorList = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(error, 'Erro ao tentar listar');
       }
     );
   }

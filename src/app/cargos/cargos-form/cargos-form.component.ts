@@ -1,8 +1,9 @@
-import { CargosService } from './../cargos.service';
-import { Cargo } from '../../shared/model/cargo.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { MensagemService } from 'src/app/service/mensagemService';
+
+import { Cargo } from '../../shared/model/cargo.model';
+import { CargosService } from './../cargos.service';
 
 @Component({
   selector: 'app-cargos-form',
@@ -20,7 +21,7 @@ export class CargosFormComponent implements OnInit {
   constructor(
     private cargoService: CargosService,
     private router: Router,
-    private toastr: ToastrService,
+    private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute
   ) {}
 
@@ -35,11 +36,16 @@ export class CargosFormComponent implements OnInit {
     if (this.validaCampos()) {
       this.cargoService.cadastrar(this.cargo).subscribe(
         () => {
-          this.toastr.success('Cadastro realizado com sucesso');
+          this.mensagemService.mensagemSucesso(
+            'Cadastro realizado com sucesso'
+          );
           this.redirect();
         },
-        () => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar cadastrar');
+        (error) => {
+          this.mensagemService.mensagemError(
+            error,
+            'Ocorreu um erro! Erro ao tentar cadastrar'
+          );
         }
       );
     }
@@ -49,11 +55,16 @@ export class CargosFormComponent implements OnInit {
     if (this.validaCampos()) {
       this.cargoService.atualizar(this.cargo).subscribe(
         () => {
-          this.toastr.success('Registro atualizado com sucesso');
+          this.mensagemService.mensagemSucesso(
+            'Registro atualizado com sucesso'
+          );
           this.redirect();
         },
-        () => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
+        (error) => {
+          this.mensagemService.mensagemError(
+            error,
+            'Ocorreu um erro! Erro ao tentar atualizar'
+          );
         }
       );
     }
@@ -65,7 +76,7 @@ export class CargosFormComponent implements OnInit {
 
   private validaCampos(): boolean {
     if (this.cargo.descricao === null || this.cargo.descricao === '') {
-      this.toastr.error('Por favor, informe a descrição');
+      this.mensagemService.mensagemAlerta('Por favor, informe a descrição');
       return false;
     }
     return true;
@@ -77,7 +88,10 @@ export class CargosFormComponent implements OnInit {
         this.cargo = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar listar'
+        );
       }
     );
   }
