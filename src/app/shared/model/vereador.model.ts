@@ -1,6 +1,5 @@
+import { Cargo } from 'src/app/shared/model/cargo.model';
 import { TipoPessoa } from 'src/app/shared/model/tipo-pessoa.model';
-
-import { Cargo } from './cargo.model';
 
 export class Vereador {
   id?: number;

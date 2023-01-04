@@ -1,4 +1,3 @@
-import { CargosModule } from './cargos/cargos.module';
 import { registerLocaleData } from '@angular/common';
 import {
   HTTP_INTERCEPTORS,
@@ -13,10 +12,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
+import { MensagemService } from 'src/app/service/mensagemService';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AssessoresModule } from './assessores/assessores.module';
+import { CargosModule } from './cargos/cargos.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 import { RequerimentoModule } from './requerimento/requerimento.module';
@@ -25,8 +26,8 @@ import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
-import { VereadoresModule } from './vereadores/vereadores.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { VereadoresModule } from './vereadores/vereadores.module';
 
 registerLocaleData(localePt, 'pt');
 
@@ -74,6 +75,7 @@ registerLocaleData(localePt, 'pt');
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: MensagemService },
   ],
   bootstrap: [AppComponent],
 })
