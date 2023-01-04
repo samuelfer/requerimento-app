@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { MensagemService } from 'src/app/service/mensagemService';
 import { Usuario } from 'src/app/shared/model/usuario.mode';
 
 import { UsuariosService } from './../usuarios.service';
@@ -28,7 +28,7 @@ export class UsuariosFormComponent implements OnInit {
   constructor(
     private usuarioService: UsuariosService,
     private router: Router,
-    private toastr: ToastrService,
+    private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute
   ) {}
 
@@ -44,11 +44,16 @@ export class UsuariosFormComponent implements OnInit {
     if (this.validaCampos()) {
       this.usuarioService.cadastrar(this.pessoa).subscribe(
         () => {
-          this.toastr.success('Cadastro realizado com sucesso');
+          this.mensagemService.mensagemSucesso(
+            'Cadastro realizado com sucesso'
+          );
           this.redirect();
         },
-        () => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar cadastrar');
+        (error) => {
+          this.mensagemService.mensagemError(
+            error,
+            'Ocorreu um erro! Erro ao tentar cadastrar'
+          );
         }
       );
     }
@@ -58,11 +63,16 @@ export class UsuariosFormComponent implements OnInit {
     if (this.validaCampos()) {
       this.usuarioService.atualizar(this.pessoa).subscribe(
         () => {
-          this.toastr.success('Registro atualizado com sucesso');
+          this.mensagemService.mensagemSucesso(
+            'Registro atualizado com sucesso'
+          );
           this.redirect();
         },
-        () => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
+        (error) => {
+          this.mensagemService.mensagemError(
+            error,
+            'Ocorreu um erro! Erro ao tentar atualizar'
+          );
         }
       );
     }
@@ -74,15 +84,15 @@ export class UsuariosFormComponent implements OnInit {
 
   private validaCampos(): boolean {
     if (this.pessoa.nome === null || this.pessoa.nome === '') {
-      this.toastr.error('Por favor, informe o nome');
+      this.mensagemService.mensagemAlerta('Por favor, informe o nome');
       return false;
     }
     if (this.pessoa.email === null || this.pessoa.email === '') {
-      this.toastr.error('Por favor, informe o email');
+      this.mensagemService.mensagemAlerta('Por favor, informe o email');
       return false;
     }
     if (this.pessoa.senha === null || this.pessoa.senha === '') {
-      this.toastr.error('Por favor, informe a senha');
+      this.mensagemService.mensagemAlerta('Por favor, informe a senha');
       return false;
     }
     return true;
@@ -94,7 +104,10 @@ export class UsuariosFormComponent implements OnInit {
         this.pessoa = response;
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar listar'
+        );
       }
     );
   }
