@@ -1,3 +1,4 @@
+import { MensagemService } from './../../service/mensagemService';
 import { OficioService } from './../oficio.service';
 import { Component, OnInit } from '@angular/core';
 import { Oficio } from 'src/app/shared/model/oficio.model';
@@ -5,7 +6,6 @@ import { Pessoa } from 'src/app/shared/model/pessoa.model';
 import { Vereador } from 'src/app/shared/model/vereador.model';
 import { VereadoresService } from 'src/app/vereadores/vereadores.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-oficio-form',
@@ -30,7 +30,7 @@ export class OficioFormComponent implements OnInit {
     private oficioService: OficioService,
     private vereadorService: VereadoresService,
     private router: Router,
-    private toastr: ToastrService,
+    private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute
   ) {}
 
@@ -48,10 +48,10 @@ export class OficioFormComponent implements OnInit {
       (response: Vereador[]): void => {
         this.vereadorList = response;
       },
-      () => {
-        this.toastr.error(
-          'Erro ao tentar listar os vereadores',
-          'Ocorreu um erro!'
+      (error) => {
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar listar os vereadores!'
         );
       }
     );
@@ -60,13 +60,15 @@ export class OficioFormComponent implements OnInit {
   cadastrar(): void {
     if (this.validaCampos()) {
       this.oficioService.cadastrar(this.oficio).subscribe(
-        (response) => {
-          this.toastr.success('Cadastro realizado com sucesso');
+        () => {
+          this.mensagemService.mensagemSucesso(
+            'Cadastro realizado com sucesso'
+          );
           this.redirect();
         },
         (error) => {
-          this.toastr.error(
-            'Ocorreu um erro!',
+          this.mensagemService.mensagemError(
+            error,
             'Ocorreu um erro ao tentar salvar o ofício'
           );
         }
@@ -77,12 +79,14 @@ export class OficioFormComponent implements OnInit {
   atualizar(): void {
     if (this.validaCampos()) {
       this.oficioService.atualizar(this.oficio).subscribe(
-        (response) => {
-          this.toastr.success('Registro atualizado com sucesso');
+        () => {
+          this.mensagemService.mensagemSucesso(
+            'Registro atualizado com sucesso'
+          );
           this.redirect();
         },
         (error) => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
+          this.mensagemService.mensagemError(error, 'Erro ao tentar atualizar');
         }
       );
     }
@@ -97,17 +101,21 @@ export class OficioFormComponent implements OnInit {
       this.oficio.pessoa === undefined ||
       Object.keys(this.oficio.pessoa).length === 0
     ) {
-      this.toastr.error('Por favor, informe o vereador');
+      this.mensagemService.mensagemAlerta('Por favor, informe o vereador');
       return false;
     }
 
     if (this.oficio.texto === null || this.oficio.texto === undefined) {
-      this.toastr.error('Por favor, informe o texto do ofício');
+      this.mensagemService.mensagemAlerta(
+        'Por favor, informe o texto do ofício'
+      );
       return false;
     }
 
     if (this.oficio.assunto === null || this.oficio.assunto === undefined) {
-      this.toastr.error('Por favor, informe o assunto do ofício');
+      this.mensagemService.mensagemAlerta(
+        'Por favor, informe o assunto do ofício'
+      );
       return false;
     }
     return true;
@@ -118,8 +126,11 @@ export class OficioFormComponent implements OnInit {
       (response) => {
         this.oficio = response;
       },
-      (ex) => {
-        this.toastr.error(ex.error.error);
+      (error) => {
+        this.mensagemService.mensagemError(
+          error,
+          'Erro ao tentar listar o ofício'
+        );
       }
     );
   }
