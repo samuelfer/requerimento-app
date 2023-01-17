@@ -15,6 +15,7 @@ import { RequerimentoService } from './../requerimento.service';
 })
 export class RequerimentoFormComponent implements OnInit {
   vereadorList: Vereador[];
+  titulo = 'Cadastrar requerimento';
 
   requerimento: Requerimento = {
     pessoa: new Pessoa(),
@@ -36,6 +37,7 @@ export class RequerimentoFormComponent implements OnInit {
     this.listarVereadores();
     this.requerimentoId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.requerimentoId !== null) {
+      this.titulo = 'Editar requerimento';
       this.findById(+this.requerimentoId);
     }
   }
