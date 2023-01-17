@@ -21,9 +21,12 @@ export class RequerimentoService {
   }
 
   gerarPdf(requerimento: Requerimento): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${requerimento.id}/gerarpdf`, {
-      responseType: 'blob' as 'json',
-    });
+    return this.http.get<Requerimento>(
+      `${this.apiUrl}/${requerimento.id}/gerarpdf`,
+      {
+        responseType: 'blob' as 'json',
+      }
+    );
   }
 
   cadastrar(requerimento: Requerimento): Observable<Requerimento> {
