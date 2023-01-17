@@ -1,0 +1,71 @@
+<div class="content-wrapper mt-4">
+  <section class="content">
+    <div class="container-fluid">
+
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title">Listagem de ofícios</h3>
+
+              <div class="card-tools float-right">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-append">
+                    <a [routerLink]="['/oficios/cadastro']" type="button" class="btn btn-block btn-primary">Novo
+                      ofício</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+
+              <p-table [value]="oficioList" responsiveLayout="scroll" class="table" [paginator]="true" [rows]="5"
+                [showCurrentPageReport]="false" [rowsPerPageOptions]="[5, 10, 25, 50]"
+                [alwaysShowPaginator]="oficioList.length != 0">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Número</th>
+                    <th>Vereador</th>
+                    <th>Data</th>
+                    <th>Destinatário</th>
+                    <th>Assunto</th>
+                    <th>Texto</th>
+                    <th>Ações</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-oficio>
+                  <tr>
+                    <td>{{ oficio.numero }}</td>
+                    <td>{{ oficio.pessoa?.nome }}</td>
+                    <td>{{ oficio.dataOficio | date: 'dd-MM-yyyy HH:mm' }}</td>
+                    <td>{{ oficio.destinatario }}</td>
+                    <td>{{ oficio.assunto }}</td>
+                    <td>
+                      <div [innerHtml]="oficio.texto | slice:0:150"></div>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <a (click)="gerarPdf(oficio)" class="btn btn-white" title="Gerar arquivo">
+                          <i class="pi pi-file-pdf"></i>
+                        </a>
+                        <button title="Editar" type="button" class="btn btn-white"
+                          [routerLink]="['/oficios', oficio.id]">
+                          <em class="fa fa-edit"></em>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+  </section>
+</div>

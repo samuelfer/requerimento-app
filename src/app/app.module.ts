@@ -1,3 +1,4 @@
+import { OficioModule } from './oficio/oficio.module';
 import { registerLocaleData } from '@angular/common';
 import {
   HTTP_INTERCEPTORS,
@@ -53,6 +54,7 @@ registerLocaleData(localePt, 'pt');
     AssessoresModule,
     CargosModule,
     UsuariosModule,
+    OficioModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,

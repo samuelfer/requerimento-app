@@ -25,6 +25,11 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'oficios',
+        loadChildren: () =>
+          import('./oficio/oficio.module').then((m) => m.OficioModule),
+      },
+      {
         path: 'vereadores',
         loadChildren: () =>
           import('./vereadores/vereadores.module').then(
