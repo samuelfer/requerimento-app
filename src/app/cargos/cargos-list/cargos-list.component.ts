@@ -1,7 +1,8 @@
-import { Cargo } from '../../shared/model/cargo.model';
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+
+import { Cargo } from '../../shared/model/cargo.model';
 import { CargosService } from '../cargos.service';
+import { MensagemService } from './../../service/mensagemService';
 
 @Component({
   selector: 'app-cargos-list',
@@ -11,7 +12,7 @@ import { CargosService } from '../cargos.service';
 export class CargosListComponent implements OnInit {
   constructor(
     private cargoService: CargosService,
-    private toastr: ToastrService
+    private mensagemService: MensagemService
   ) {}
 
   cargosList: Cargo[];
@@ -28,9 +29,12 @@ export class CargosListComponent implements OnInit {
         this.cargosList = response;
         this.loading = false;
       },
-      () => {
+      (error) => {
         this.loading = false;
-        this.toastr.error('Ocorreu um erro ao tentar listar os registros');
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar listar os registros'
+        );
       }
     );
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
+import { MensagemService } from './../../service/mensagemService';
 import { Assessor } from './../../shared/model/assessor.model';
 import { AssessoresService } from './../assessores.service';
 
@@ -12,7 +12,7 @@ import { AssessoresService } from './../assessores.service';
 export class AssessoresListComponent implements OnInit {
   constructor(
     private acessoresService: AssessoresService,
-    private toastr: ToastrService
+    private mensagemService: MensagemService
   ) {}
 
   pessoaList: Assessor[];
@@ -29,9 +29,12 @@ export class AssessoresListComponent implements OnInit {
         this.pessoaList = response;
         this.loading = false;
       },
-      () => {
+      (error) => {
         this.loading = false;
-        this.toastr.error('Ocorreu um erro ao tentar listar os registros');
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar listar os registros'
+        );
       }
     );
   }

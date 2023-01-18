@@ -1,18 +1,20 @@
 import { MensagemService } from './../../service/mensagemService';
-import { Requerimento } from '../../shared/model/requerimento.model';
-import { RequerimentoService } from './../requerimento.service';
 import { Component, OnInit } from '@angular/core';
 
+import { Oficio } from './../../shared/model/oficio.model';
+import { OficioService } from './../oficio.service';
+
 @Component({
-  selector: 'app-requerimento-list',
-  templateUrl: './requerimento-list.component.html',
-  styleUrls: ['./requerimento-list.component.scss'],
+  selector: 'app-oficio-list',
+  templateUrl: './oficio-list.component.html',
+  styleUrls: ['./oficio-list.component.scss'],
 })
-export class RequerimentoListComponent implements OnInit {
-  requerimentoList: Requerimento[];
+export class OficioListComponent implements OnInit {
+  oficioList: Oficio[];
   loading = false;
+
   constructor(
-    private requerimentoService: RequerimentoService,
+    private oficioService: OficioService,
     private mensagemService: MensagemService
   ) {}
 
@@ -22,31 +24,34 @@ export class RequerimentoListComponent implements OnInit {
 
   public listar() {
     this.loading = true;
-    this.requerimentoService.listarTodos().subscribe(
-      (response: Requerimento[]): void => {
-        this.requerimentoList = response;
+    this.oficioService.listarTodos().subscribe(
+      (response: Oficio[]): void => {
+        this.oficioList = response;
         this.loading = false;
       },
       (error) => {
         this.loading = false;
-        this.mensagemService.mensagemError(error, 'Erro ao tentar listar');
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar listar os ofícios!'
+        );
       }
     );
   }
 
-  gerarPdf(requerimento: Requerimento): void {
-    this.requerimentoService.gerarPdf(requerimento).subscribe(
+  gerarPdf(oficio: Oficio): void {
+    this.oficioService.gerarPdf(oficio).subscribe(
       (data) => {
         data = new Blob([data], { type: 'application/pdf' });
         const objUrl = window.URL.createObjectURL(data);
         const a = document.createElement('a');
         a.href = objUrl;
         a.target = '_blank';
-        a.download = 'requerimento' + requerimento.id + '.pdf';
+        a.download = 'oficio' + oficio.id + '.pdf';
         window.document.body.appendChild(a);
         a.click();
         a.remove();
-        this.mensagemService.mensagemAlerta(
+        this.mensagemService.mensagemSucesso(
           'O PDF está sendo gerado..., Aguarde'
         );
       },

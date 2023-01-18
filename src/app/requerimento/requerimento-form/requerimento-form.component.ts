@@ -1,12 +1,12 @@
 import { Vereador } from './../../shared/model/vereador.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 import { VereadoresService } from '../../vereadores/vereadores.service';
 import { Pessoa } from '../../shared/model/pessoa.model';
 import { Requerimento } from '../../shared/model/requerimento.model';
 import { RequerimentoService } from './../requerimento.service';
+import { MensagemService } from 'src/app/service/mensagemService';
 
 @Component({
   selector: 'app-requerimento-form',
@@ -15,6 +15,7 @@ import { RequerimentoService } from './../requerimento.service';
 })
 export class RequerimentoFormComponent implements OnInit {
   vereadorList: Vereador[];
+  titulo = 'Cadastrar requerimento';
 
   requerimento: Requerimento = {
     pessoa: new Pessoa(),
@@ -28,7 +29,7 @@ export class RequerimentoFormComponent implements OnInit {
     private requerimentoService: RequerimentoService,
     private vereadorService: VereadoresService,
     private router: Router,
-    private toastr: ToastrService,
+    private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute
   ) {}
 
@@ -36,6 +37,7 @@ export class RequerimentoFormComponent implements OnInit {
     this.listarVereadores();
     this.requerimentoId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.requerimentoId !== null) {
+      this.titulo = 'Editar requerimento';
       this.findById(+this.requerimentoId);
     }
   }
@@ -45,10 +47,10 @@ export class RequerimentoFormComponent implements OnInit {
       (response: Vereador[]): void => {
         this.vereadorList = response;
       },
-      () => {
-        this.toastr.error(
-          'Erro ao tentar listar os vereadores',
-          'Ocorreu um erro!'
+      (error) => {
+        this.mensagemService.mensagemError(
+          error,
+          'Erro ao tentar listar os vereadores'
         );
       }
     );
@@ -57,13 +59,15 @@ export class RequerimentoFormComponent implements OnInit {
   cadastrar(): void {
     if (this.validaCampos()) {
       this.requerimentoService.cadastrar(this.requerimento).subscribe(
-        (response) => {
-          this.toastr.success('Cadastro realizado com sucesso');
+        () => {
+          this.mensagemService.mensagemSucesso(
+            'Cadastro realizado com sucesso'
+          );
           this.redirect();
         },
         (error) => {
-          this.toastr.error(
-            'Ocorreu um erro!',
+          this.mensagemService.mensagemError(
+            error,
             'Ocorreu um erro ao tentar salvar o requerimento'
           );
         }
@@ -74,12 +78,14 @@ export class RequerimentoFormComponent implements OnInit {
   atualizar(): void {
     if (this.validaCampos()) {
       this.requerimentoService.atualizar(this.requerimento).subscribe(
-        (response) => {
-          this.toastr.success('Registro atualizado com sucesso');
+        () => {
+          this.mensagemService.mensagemSucesso(
+            'Registro atualizado com sucesso'
+          );
           this.redirect();
         },
         (error) => {
-          this.toastr.error('Ocorreu um erro!', 'Erro ao tentar atualizar');
+          this.mensagemService.mensagemError(error, 'Erro ao tentar atualizar');
         }
       );
     }
@@ -94,7 +100,7 @@ export class RequerimentoFormComponent implements OnInit {
       this.requerimento.pessoa === undefined ||
       Object.keys(this.requerimento.pessoa).length === 0
     ) {
-      this.toastr.error('Por favor, informe o vereador');
+      this.mensagemService.mensagemAlerta('Por favor, informe o vereador');
       return false;
     }
 
@@ -102,7 +108,9 @@ export class RequerimentoFormComponent implements OnInit {
       this.requerimento.assunto === null ||
       this.requerimento.assunto === undefined
     ) {
-      this.toastr.error('Por favor, informe o assunto do requerimento');
+      this.mensagemService.mensagemAlerta(
+        'Por favor, informe o assunto do requerimento'
+      );
       return false;
     }
     return true;
@@ -113,8 +121,11 @@ export class RequerimentoFormComponent implements OnInit {
       (response) => {
         this.requerimento = response;
       },
-      (ex) => {
-        this.toastr.error(ex.error.error);
+      (error) => {
+        this.mensagemService.mensagemError(
+          error,
+          'Erro ao tentar listar o requerimento'
+        );
       }
     );
   }
