@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Oficio } from '../shared/model/oficio.model';
+import { Pessoa } from '../shared/model/pessoa.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,10 @@ export class OficioService {
 
   listarPorId(id: number): Observable<Oficio> {
     return this.http.get<Oficio>(`${this.apiUrl}/${id}`);
+  }
+
+  listarAssinantes(): Observable<Pessoa[]> {
+    return this.http.get<Pessoa[]>(`${this.apiUrl}/assinantes`);
   }
 
   gerarPdf(oficio: Oficio): Observable<any> {
