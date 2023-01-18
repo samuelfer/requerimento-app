@@ -51,7 +51,7 @@ export class OficioListComponent implements OnInit {
         window.document.body.appendChild(a);
         a.click();
         a.remove();
-        this.mensagemService.mensagemAlerta(
+        this.mensagemService.mensagemSucesso(
           'O PDF está sendo gerado..., Aguarde'
         );
       },
