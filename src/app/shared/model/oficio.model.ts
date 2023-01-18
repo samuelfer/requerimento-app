@@ -1,7 +1,7 @@
 import { Pessoa } from './pessoa.model';
 export class Oficio {
   id?: number;
-  pessoa: Pessoa;
+  assinante: Pessoa;
   dataOficio: Date;
   texto: string;
   assunto: string;
