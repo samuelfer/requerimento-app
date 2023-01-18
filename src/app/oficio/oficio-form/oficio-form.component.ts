@@ -1,11 +1,10 @@
-import { MensagemService } from './../../service/mensagemService';
-import { OficioService } from './../oficio.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Oficio } from 'src/app/shared/model/oficio.model';
 import { Pessoa } from 'src/app/shared/model/pessoa.model';
-import { Vereador } from 'src/app/shared/model/vereador.model';
-import { VereadoresService } from 'src/app/vereadores/vereadores.service';
-import { ActivatedRoute, Router } from '@angular/router';
+
+import { MensagemService } from './../../service/mensagemService';
+import { OficioService } from './../oficio.service';
 
 @Component({
   selector: 'app-oficio-form',
@@ -13,11 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./oficio-form.component.scss'],
 })
 export class OficioFormComponent implements OnInit {
-  vereadorList: Vereador[];
+  assinanteList: Pessoa[];
   titulo = 'Cadastrar ofício';
 
   oficio: Oficio = {
-    pessoa: new Pessoa(),
+    assinante: new Pessoa(),
     texto: '',
     assunto: '',
     numero: '',
@@ -28,7 +27,6 @@ export class OficioFormComponent implements OnInit {
 
   constructor(
     private oficioService: OficioService,
-    private vereadorService: VereadoresService,
     private router: Router,
     private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute
@@ -44,14 +42,14 @@ export class OficioFormComponent implements OnInit {
   }
 
   public listarVereadores() {
-    this.vereadorService.listarTodos().subscribe(
-      (response: Vereador[]): void => {
-        this.vereadorList = response;
+    this.oficioService.listarAssinantes().subscribe(
+      (response: Pessoa[]): void => {
+        this.assinanteList = response;
       },
       (error) => {
         this.mensagemService.mensagemError(
           error,
-          'Ocorreu um erro ao tentar listar os vereadores!'
+          'Ocorreu um erro ao tentar listar os assinantes!'
         );
       }
     );
@@ -98,8 +96,8 @@ export class OficioFormComponent implements OnInit {
 
   private validaCampos(): boolean {
     if (
-      this.oficio.pessoa === undefined ||
-      Object.keys(this.oficio.pessoa).length === 0
+      this.oficio.assinante === undefined ||
+      Object.keys(this.oficio.assinante).length === 0
     ) {
       this.mensagemService.mensagemAlerta('Por favor, informe o vereador');
       return false;
