@@ -1,9 +1,9 @@
-import { AuthService } from '../service/auth.service';
-import { ToastrService } from 'ngx-toastr';
-import { Credenciais } from '../shared/model/credenciais.model';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { AuthService } from '../service/auth.service';
+import { Credenciais } from '../shared/model/credenciais.model';
+import { MensagemService } from './../service/mensagemService';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private toastr: ToastrService,
+    private mensagemService: MensagemService,
     private authService: AuthService
   ) {}
 
@@ -31,11 +31,13 @@ export class LoginComponent implements OnInit {
           this.authService.successLogin(
             response.headers.get('Authorization').substring(7)
           );
-          // this.router.navigateByUrl('dashboard');
-          this.router.navigate(['/']);
+          this.router.navigateByUrl('dashboard');
         },
-        () => {
-          this.toastr.error('Usuário e/ou senha inválidos!', 'Login');
+        (error) => {
+          this.mensagemService.mensagemError(
+            error,
+            'Usuário e/ou senha inválidos!'
+          );
         }
       );
     }
@@ -43,12 +45,12 @@ export class LoginComponent implements OnInit {
 
   private validaCampos(): boolean {
     if (this.credenciais.email === undefined || this.credenciais.email === '') {
-      this.toastr.error('Por favor, informe o email');
+      this.mensagemService.mensagemAlerta('Por favor, informe o email');
       return false;
     }
 
     if (this.credenciais.senha === undefined || this.credenciais.senha === '') {
-      this.toastr.error('Por favor, informe a senha');
+      this.mensagemService.mensagemAlerta('Por favor, informe a senha');
       return false;
     }
     return true;
