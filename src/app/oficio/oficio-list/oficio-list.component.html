@@ -22,12 +22,11 @@
             <div class="card-body table-responsive p-0">
 
               <p-table [value]="oficioList" responsiveLayout="scroll" class="table" [paginator]="true" [rows]="5"
-                [showCurrentPageReport]="false" [rowsPerPageOptions]="[5, 10, 25, 50]"
-                [alwaysShowPaginator]="oficioList.length != 0">
+                [showCurrentPageReport]="false" [rowsPerPageOptions]="[5, 10, 25, 50]">
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Número</th>
-                    <th>Vereador</th>
+                    <th>Assinante</th>
                     <th>Data</th>
                     <th>Destinatário</th>
                     <th>Assunto</th>
@@ -38,7 +37,7 @@
                 <ng-template pTemplate="body" let-oficio>
                   <tr>
                     <td>{{ oficio.numero }}</td>
-                    <td>{{ oficio.pessoa?.nome }}</td>
+                    <td>{{ oficio.assinante?.nome }}</td>
                     <td>{{ oficio.dataOficio | date: 'dd-MM-yyyy HH:mm' }}</td>
                     <td>{{ oficio.destinatario }}</td>
                     <td>{{ oficio.assunto }}</td>
