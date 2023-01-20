@@ -52,7 +52,7 @@ export class OficioListComponent implements OnInit {
         a.click();
         a.remove();
         this.mensagemService.mensagemSucesso(
-          'O PDF está sendo gerado..., Aguarde'
+          'O PDF está sendo gerado... Aguarde'
         );
       },
 
