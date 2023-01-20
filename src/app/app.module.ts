@@ -1,4 +1,3 @@
-import { OficioModule } from './oficio/oficio.module';
 import { registerLocaleData } from '@angular/common';
 import {
   HTTP_INTERCEPTORS,
@@ -21,6 +20,7 @@ import { AssessoresModule } from './assessores/assessores.module';
 import { CargosModule } from './cargos/cargos.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginComponent } from './login/login.component';
+import { OficioModule } from './oficio/oficio.module';
 import { RequerimentoModule } from './requerimento/requerimento.module';
 import { ServidoresModule } from './servidores/servidores.module';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
