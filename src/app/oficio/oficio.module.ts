@@ -1,3 +1,4 @@
+import { FileService } from './../service/file.service';
 import { OficioFormComponent } from './oficio-form/oficio-form.component';
 import { OficioListComponent } from './oficio-list/oficio-list.component';
 import { OficioRoutes } from './oficio.routing';
@@ -11,6 +12,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
+import { TabViewModule } from 'primeng/tabview';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [OficioListComponent, OficioFormComponent],
@@ -26,7 +29,10 @@ import { PaginatorModule } from 'primeng/paginator';
     ButtonModule,
     InputTextModule,
     PaginatorModule,
+    TabViewModule,
+    PdfViewerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [{ provide: FileService }],
 })
 export class OficioModule {}
