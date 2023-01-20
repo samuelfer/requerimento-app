@@ -38,4 +38,16 @@ export class OficioService {
   atualizar(oficio: Oficio): Observable<Oficio> {
     return this.http.put<Oficio>(`${this.apiUrl}`, oficio);
   }
+
+  download(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/download/${id}`, {
+      responseType: 'blob',
+    });
+  }
+
+  preview(oficio: Oficio): Observable<any> {
+    return this.http.post(`${this.apiUrl}/preview-pdf`, oficio, {
+      responseType: 'blob' as 'json',
+    });
+  }
 }
