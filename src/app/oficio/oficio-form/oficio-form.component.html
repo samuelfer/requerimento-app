@@ -12,43 +12,52 @@
               <div class="card-body">
                 <div class="row">
 
-                  <div class="col-md-4">
+                  <div class="form-group col-md-2">
                     <label>Número</label>
                     <br>
-                    <input type="text" pInputText [(ngModel)]="oficio.numero" name="numero" class="col-md-4" />
+                    <input type="text" pInputText [(ngModel)]="oficio.numero" name="numero" class="col-md-12" />
                   </div>
 
-                  <div class="col-md-8">
-                    <label>Assunto</label>
-                    <br>
-                    <input type="text" pInputText [(ngModel)]="oficio.assunto" name="assunto" class="col-md-9" />
-                  </div>
-                </div>
-                <!-- /.form-group -->
-                <div class="row mt-2">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                     <label>Data:</label>
-                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                    <div class="input-group date" data-target-input="nearest">
                       <p-calendar [(ngModel)]="oficio.dataOficio" name="dataOficio" class="calendar-control" view="date"
                         dateFormat="dd/mm/yy" [showIcon]="true" [showButtonBar]="true" [yearNavigator]="true">
                       </p-calendar>
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Assinante</label>
-                    <br>
-                    <p-dropdown [options]="assinanteList" [(ngModel)]="oficio.assinante" name="assinante"
-                      optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'500px'}"
-                      class=" col-md-8">
-                    </p-dropdown>
-                  </div>
-
-                  <div class="col-md-8 mt-2">
+                  <div class="form-group col-md-7">
                     <label>Destinatário</label>
                     <br>
                     <input type="text" pInputText [(ngModel)]="oficio.destinatario" name="destinatario"
-                      class="col-md-8" />
+                      class="col-md-10" />
+                  </div>
+                </div>
+                <!-- /.form-group -->
+                <div class="row mt-2">
+
+                  <div class="form-group col-md-5">
+                    <label>Cargo do destinatário</label>
+                    <br>
+                    <input type="text" pInputText [(ngModel)]="oficio.cargoDestinatario" name="cargoDestinatario"
+                      class="col-md-9" />
+                  </div>
+
+                  <div class="form-group col-md-7">
+                    <label>Assunto</label>
+                    <br>
+                    <input type="text" pInputText [(ngModel)]="oficio.assunto" name="assunto" class="col-md-10" />
+                  </div>
+                </div>
+
+                <div class="row mt-2">
+                  <div class="form-group col-md-5">
+                    <label>Assinante</label>
+                    <br>
+                    <p-dropdown [options]="assinanteList" [(ngModel)]="oficio.assinante" name="assinante"
+                      optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'500px'}">
+                    </p-dropdown>
                   </div>
 
                   <!-- /.col -->
