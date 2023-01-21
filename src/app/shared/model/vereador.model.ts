@@ -7,6 +7,7 @@ export class Vereador {
   cargo: Cargo;
   ativo: boolean;
   tipoPessoa: TipoPessoa;
+  arquivoAssinatura: string;
 
   constructor() {}
 }

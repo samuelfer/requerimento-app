@@ -1,3 +1,4 @@
+import { DashboardDocumentoComponent } from './template/dashboard-documento/dashboard-documento.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+      },
+      {
+        path: 'documentos',
+        component: DashboardDocumentoComponent,
       },
       {
         path: 'requerimentos',
@@ -66,6 +71,13 @@ const routes: Routes = [
         path: 'usuarios',
         loadChildren: () =>
           import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
+      },
+      {
+        path: 'configuracoes',
+        loadChildren: () =>
+          import('./configuracao/configuracao.module').then(
+            (m) => m.ConfiguracaoModule
+          ),
       },
     ],
   },

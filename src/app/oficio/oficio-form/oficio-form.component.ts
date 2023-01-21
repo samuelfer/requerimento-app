@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FileService } from 'src/app/service/file.service';
 import { Oficio } from 'src/app/shared/model/oficio.model';
 import { Pessoa } from 'src/app/shared/model/pessoa.model';
 
@@ -22,14 +23,17 @@ export class OficioFormComponent implements OnInit {
     numero: '',
     dataOficio: new Date(),
     destinatario: '',
+    cargoDestinatario: '',
   };
   oficioId: string | null;
+  public pdfSrc = '';
 
   constructor(
     private oficioService: OficioService,
     private router: Router,
     private mensagemService: MensagemService,
-    private activedRoute: ActivatedRoute
+    private activedRoute: ActivatedRoute,
+    private fileService: FileService
   ) {}
 
   ngOnInit(): void {
@@ -130,6 +134,27 @@ export class OficioFormComponent implements OnInit {
           'Erro ao tentar listar o ofício'
         );
       }
+    );
+  }
+
+  onTabChange(event: any) {
+    if (event.index === 1) {
+      this.preview();
+    }
+  }
+
+  preview() {
+    this.oficioService.preview(this.oficio).subscribe(
+      (data) => {
+        const file = this.fileService.blobToFile(data, 'Pré-visualização');
+        const url = window.URL.createObjectURL(file);
+        this.pdfSrc = url;
+      },
+      (error) =>
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar exibir o arquivo.'
+        )
     );
   }
 }

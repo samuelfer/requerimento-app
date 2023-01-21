@@ -46,8 +46,8 @@ export class RequerimentoListComponent implements OnInit {
         window.document.body.appendChild(a);
         a.click();
         a.remove();
-        this.mensagemService.mensagemAlerta(
-          'O PDF está sendo gerado..., Aguarde'
+        this.mensagemService.mensagemSucesso(
+          'O PDF está sendo gerado... Aguarde'
         );
       },
 
