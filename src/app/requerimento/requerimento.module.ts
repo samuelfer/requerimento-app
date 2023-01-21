@@ -12,6 +12,8 @@ import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
+import { TabViewModule } from 'primeng/tabview';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [RequerimentoListComponent, RequerimentoFormComponent],
@@ -27,6 +29,8 @@ import { PaginatorModule } from 'primeng/paginator';
     ButtonModule,
     InputTextModule,
     PaginatorModule,
+    TabViewModule,
+    PdfViewerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
