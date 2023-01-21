@@ -7,7 +7,7 @@
           <h3 class="card-title">{{ titulo }}</h3>
         </div>
         <p-tabView (onChange)="onTabChange($event)">
-          <p-tabPanel header="Ofício" [selected]="true" leftIcon="fa fa-book">
+          <p-tabPanel header="Requerimento" [selected]="true" leftIcon="fa fa-book">
             <form>
               <div class="card-body">
                 <div class="row">
@@ -30,7 +30,7 @@
                   <!-- /.form-group -->
                   <div class="form-group col-md-4">
                     <label>Data:</label>
-                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                    <div class="input-group date" data-target-input="nearest">
                       <p-calendar [(ngModel)]="requerimento.dataRequerimento" name="dataRequerimento"
                         class="calendar-control" view="date" dateFormat="dd/mm/yy" [showIcon]="true"
                         [showButtonBar]="true" [yearNavigator]="true">
