@@ -148,7 +148,6 @@ export class OficioFormComponent implements OnInit {
         const file = this.fileService.blobToFile(data, 'Pré-visualização');
         const url = window.URL.createObjectURL(file);
         this.pdfSrc = url;
-        console.log(this.pdfSrc);
       },
       (error) =>
         this.mensagemService.mensagemError(
