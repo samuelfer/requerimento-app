@@ -14,15 +14,36 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
 
-    <!-- Notifications Dropdown Menu -->
-    <li class="nav-item">
-    </li>
-    <li class="nav-item">
-      <a (click)="logout()" class="nav-link" data-widget="control-sidebar" title="Clique aqui para Sair do Sistema"
-        data-slide="true" role="button">
-        Sair do Sistema
+    <!-- inicio configuracao Dropdown Menu -->
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#" title="Configurar sistema">
+        <i class="fas fa-cogs"></i>
       </a>
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <a href="#" class="dropdown-item">
+          <div class="media">
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+                Configuração
+                <span class="float-right text-sm text-muted"><i class="fas fa-cogs"></i></span>
+              </h3>
+            </div>
+          </div>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a (click)="logout()" class="dropdown-item" title="Clique aqui para sair do sistema" role="button">
+          <div class="media">
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+                Sair do sistema
+                <span class="float-right text-sm text-danger"><i class="fa fa-reply nav-icon"></i></span>
+              </h3>
+            </div>
+          </div>
+        </a>
+      </div>
     </li>
+    <!-- Fim configuracao -->
   </ul>
 </nav>
 
