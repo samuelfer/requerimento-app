@@ -30,6 +30,7 @@ import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { VereadoresModule } from './vereadores/vereadores.module';
+import { CardBoxComponent } from './shared/componentes/card-box/card-box.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -41,6 +42,7 @@ registerLocaleData(localePt, 'pt');
     SidebarComponent,
     TopMenuComponent,
     LoginComponent,
+    CardBoxComponent,
   ],
   imports: [
     HttpClientModule,
