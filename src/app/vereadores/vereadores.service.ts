@@ -1,11 +1,9 @@
-import { Vereador } from './../shared/model/vereador.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-import { Pessoa } from '../shared/model/pessoa.model';
-import { TipoPessoaEnum } from '../shared/enum/tipo-pessoa.enum';
+import { Vereador } from './../shared/model/vereador.model';
 
 @Injectable({
   providedIn: 'root',
