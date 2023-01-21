@@ -1,4 +1,4 @@
-# Sistema para Gerar Requerimentos
+# Sistema para Gerar Documentos
 
 Desenvolvido com [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
 
