@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AssessoresModule } from './assessores/assessores.module';
 import { CargosModule } from './cargos/cargos.module';
+import { ConfiguracaoModule } from './configuracao/configuracao.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 import { OficioModule } from './oficio/oficio.module';
@@ -55,6 +56,7 @@ registerLocaleData(localePt, 'pt');
     CargosModule,
     UsuariosModule,
     OficioModule,
+    ConfiguracaoModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,

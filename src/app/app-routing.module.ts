@@ -67,6 +67,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
       },
+      {
+        path: 'configuracoes',
+        loadChildren: () =>
+          import('./configuracao/configuracao.module').then(
+            (m) => m.ConfiguracaoModule
+          ),
+      },
     ],
   },
 ];
