@@ -36,4 +36,16 @@ export class RequerimentoService {
   atualizar(requerimento: Requerimento): Observable<Requerimento> {
     return this.http.put<Requerimento>(`${this.apiUrl}`, requerimento);
   }
+
+  download(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/download/${id}`, {
+      responseType: 'blob',
+    });
+  }
+
+  preview(requerimento: Requerimento): Observable<any> {
+    return this.http.post(`${this.apiUrl}/preview-pdf`, requerimento, {
+      responseType: 'blob' as 'json',
+    });
+  }
 }

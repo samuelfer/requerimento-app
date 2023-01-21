@@ -5,63 +5,74 @@
       <div class="card card-secondary">
         <div class="card-header">
           <h3 class="card-title">{{ titulo }}</h3>
-
         </div>
-        <form #requerimentoForm="ngForm">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Número</label>
-                  <br>
-                  <input type="text" pInputText [(ngModel)]="requerimento.numero" name="numero" />
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Vereador</label>
-                  <br>
-                  <p-dropdown [options]="vereadorList" [(ngModel)]="requerimento.pessoa" name="pessoa"
-                    optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'305px'}">
-                  </p-dropdown>
-                </div>
-              </div>
-              <!-- /.form-group -->
-              <div class="form-group col-md-4">
-                <label>Data:</label>
-                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                  <p-calendar [(ngModel)]="requerimento.dataRequerimento" name="dataRequerimento"
-                    class="calendar-control" view="date" dateFormat="dd/mm/yy" [showIcon]="true" [showButtonBar]="true"
-                    [yearNavigator]="true">
-                  </p-calendar>
-                </div>
-              </div>
+        <p-tabView (onChange)="onTabChange($event)">
+          <p-tabPanel header="Ofício" [selected]="true" leftIcon="fa fa-book">
+            <form>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Número</label>
+                      <br>
+                      <input type="text" pInputText [(ngModel)]="requerimento.numero" name="numero" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Vereador</label>
+                      <br>
+                      <p-dropdown [options]="vereadorList" [(ngModel)]="requerimento.pessoa" name="pessoa"
+                        optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'305px'}">
+                      </p-dropdown>
+                    </div>
+                  </div>
+                  <!-- /.form-group -->
+                  <div class="form-group col-md-4">
+                    <label>Data:</label>
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                      <p-calendar [(ngModel)]="requerimento.dataRequerimento" name="dataRequerimento"
+                        class="calendar-control" view="date" dateFormat="dd/mm/yy" [showIcon]="true"
+                        [showButtonBar]="true" [yearNavigator]="true">
+                      </p-calendar>
+                    </div>
+                  </div>
 
-              <!-- /.col -->
-              <div class="col-md-10">
-                <div class="form-group">
-                  <label for="texto">Assunto</label>
-                  <div>
-                    <p-editor [style]="{'height':'120px','font-size':'16px'}" [(ngModel)]="requerimento.assunto"
-                      name="assunto" required>
+                  <!-- /.col -->
+                  <div class="col-md-10">
+                    <div class="form-group">
+                      <label for="texto">Assunto</label>
+                      <div>
+                        <p-editor [style]="{'height':'120px','font-size':'16px'}" [(ngModel)]="requerimento.assunto"
+                          name="assunto" required>
 
-                    </p-editor>
+                        </p-editor>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
-
+                <p-footer>
+                  <div class="btn-right">
+                    <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                      class="p-button-success p-button-sm"></button>
+                    <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
+                      class="p-button-secondary p-button-sm ml-2"></button>
+                  </div>
+                </p-footer>
+                <!-- /.col -->
               </div>
+            </form>
+          </p-tabPanel>
+          <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye">
+            <div class="pdf-container">
+              <pdf-viewer [src]="pdfSrc" id="viewer" [original-size]="false" [zoom]="0.5" [show-borders]="true"
+                [disabled]="requerimento.numero == null || requerimento.assunto == null  && requerimento.pessoa == null">
+              </pdf-viewer>
             </div>
-            <p-footer>
-              <div class="btn-right">
-                <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
-                  class="p-button-success p-button-sm"></button>
-                <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
-                  class="p-button-secondary p-button-sm ml-2"></button>
-              </div>
-            </p-footer>
-            <!-- /.col -->
-          </div>
-        </form>
+          </p-tabPanel>
+        </p-tabView>
+
       </div>
 
     </div>
