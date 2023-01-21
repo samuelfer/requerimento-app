@@ -24,6 +24,7 @@ export class VereadoresFormComponent implements OnInit {
     cargo: new Cargo(),
     ativo: true,
     tipoPessoa: new TipoPessoa(),
+    arquivoAssinatura: '',
   };
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];

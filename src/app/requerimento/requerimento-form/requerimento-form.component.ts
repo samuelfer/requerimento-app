@@ -7,6 +7,7 @@ import { Pessoa } from '../../shared/model/pessoa.model';
 import { Requerimento } from '../../shared/model/requerimento.model';
 import { RequerimentoService } from './../requerimento.service';
 import { MensagemService } from 'src/app/service/mensagemService';
+import { FileService } from 'src/app/service/file.service';
 
 @Component({
   selector: 'app-requerimento-form',
@@ -24,13 +25,15 @@ export class RequerimentoFormComponent implements OnInit {
     dataRequerimento: new Date(),
   };
   requerimentoId: string | null;
+  public pdfSrc = '';
 
   constructor(
     private requerimentoService: RequerimentoService,
     private vereadorService: VereadoresService,
     private router: Router,
     private mensagemService: MensagemService,
-    private activedRoute: ActivatedRoute
+    private activedRoute: ActivatedRoute,
+    private fileService: FileService
   ) {}
 
   ngOnInit(): void {
@@ -127,6 +130,27 @@ export class RequerimentoFormComponent implements OnInit {
           'Erro ao tentar listar o requerimento'
         );
       }
+    );
+  }
+
+  onTabChange(event: any) {
+    if (event.index === 1) {
+      this.preview();
+    }
+  }
+
+  preview() {
+    this.requerimentoService.preview(this.requerimento).subscribe(
+      (data) => {
+        const file = this.fileService.blobToFile(data, 'Pré-visualização');
+        const url = window.URL.createObjectURL(file);
+        this.pdfSrc = url;
+      },
+      (error) =>
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar exibir o arquivo.'
+        )
     );
   }
 }

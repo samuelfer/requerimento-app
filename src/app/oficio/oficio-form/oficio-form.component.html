@@ -5,73 +5,96 @@
       <div class="card card-secondary">
         <div class="card-header">
           <h3 class="card-title">{{ titulo }}</h3>
-
         </div>
-        <form>
-          <div class="card-body">
-            <div class="row">
+        <p-tabView (onChange)="onTabChange($event)">
+          <p-tabPanel header="Ofício" [selected]="true" leftIcon="fa fa-book">
+            <form>
+              <div class="card-body">
+                <div class="row">
 
-              <div class="col-md-4">
-                <label>Número</label>
-                <br>
-                <input type="text" pInputText [(ngModel)]="oficio.numero" name="numero" class="col-md-4" />
-              </div>
+                  <div class="form-group col-md-2">
+                    <label>Número</label>
+                    <br>
+                    <input type="text" pInputText [(ngModel)]="oficio.numero" name="numero" class="col-md-12" />
+                  </div>
 
-              <div class="col-md-8">
-                <label>Assunto</label>
-                <br>
-                <input type="text" pInputText [(ngModel)]="oficio.assunto" name="assunto" class="col-md-9" />
-              </div>
-            </div>
-            <!-- /.form-group -->
-            <div class="row mt-2">
-              <div class="form-group col-md-4">
-                <label>Data:</label>
-                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                  <p-calendar [(ngModel)]="oficio.dataOficio" name="dataOficio" class="calendar-control" view="date"
-                    dateFormat="dd/mm/yy" [showIcon]="true" [showButtonBar]="true" [yearNavigator]="true">
-                  </p-calendar>
+                  <div class="form-group col-md-3">
+                    <label>Data:</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <p-calendar [(ngModel)]="oficio.dataOficio" name="dataOficio" class="calendar-control" view="date"
+                        dateFormat="dd/mm/yy" [showIcon]="true" [showButtonBar]="true" [yearNavigator]="true">
+                      </p-calendar>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-7">
+                    <label>Destinatário</label>
+                    <br>
+                    <input type="text" pInputText [(ngModel)]="oficio.destinatario" name="destinatario"
+                      class="col-md-10" />
+                  </div>
                 </div>
-              </div>
+                <!-- /.form-group -->
+                <div class="row mt-2">
 
-              <div class="form-group">
-                <label>Assinante</label>
-                <br>
-                <p-dropdown [options]="assinanteList" [(ngModel)]="oficio.assinante" name="assinante" optionLabel="nome"
-                  placeholder="Selecione" [required]="true" [style]="{'width':'500px'}" class=" col-md-8">
-                </p-dropdown>
-              </div>
+                  <div class="form-group col-md-5">
+                    <label>Cargo do destinatário</label>
+                    <br>
+                    <input type="text" pInputText [(ngModel)]="oficio.cargoDestinatario" name="cargoDestinatario"
+                      class="col-md-9" />
+                  </div>
 
-              <div class="col-md-8 mt-2">
-                <label>Destinatário</label>
-                <br>
-                <input type="text" pInputText [(ngModel)]="oficio.destinatario" name="destinatario" class="col-md-8" />
-              </div>
-
-              <!-- /.col -->
-              <div class="col-md-10 mt-2">
-                <div class="form-group">
-                  <label for="texto">Texto</label>
-                  <div>
-                    <p-editor [style]="{'height':'120px','font-size':'16px'}" [(ngModel)]="oficio.texto" name="texto"
-                      required>
-                    </p-editor>
+                  <div class="form-group col-md-7">
+                    <label>Assunto</label>
+                    <br>
+                    <input type="text" pInputText [(ngModel)]="oficio.assunto" name="assunto" class="col-md-10" />
                   </div>
                 </div>
 
+                <div class="row mt-2">
+                  <div class="form-group col-md-5">
+                    <label>Assinante</label>
+                    <br>
+                    <p-dropdown [options]="assinanteList" [(ngModel)]="oficio.assinante" name="assinante"
+                      optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'500px'}">
+                    </p-dropdown>
+                  </div>
+
+                  <!-- /.col -->
+                  <div class="col-md-10 mt-2">
+                    <div class="form-group">
+                      <label for="texto">Texto</label>
+                      <div>
+                        <p-editor [style]="{'height':'120px','font-size':'16px'}" [(ngModel)]="oficio.texto"
+                          name="texto" required>
+                        </p-editor>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <p-footer>
+                  <div class="btn-right">
+                    <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                      class="p-button-success p-button-sm"></button>
+                    <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
+                      class="p-button-secondary p-button-sm ml-2"></button>
+                  </div>
+                </p-footer>
+                <!-- /.col -->
               </div>
+            </form>
+          </p-tabPanel>
+          <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye">
+            <div class="pdf-container">
+              <pdf-viewer [src]="pdfSrc" id="viewer" [original-size]="false" [zoom]="0.5" [show-borders]="true"
+                [disabled]="oficio.numero == null || oficio.assunto == null  && oficio.assinante == null || oficio.destinatario == null
+                || oficio.texto">
+              </pdf-viewer>
             </div>
-            <p-footer>
-              <div class="btn-right">
-                <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
-                  class="p-button-success p-button-sm"></button>
-                <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
-                  class="p-button-secondary p-button-sm ml-2"></button>
-              </div>
-            </p-footer>
-            <!-- /.col -->
-          </div>
-        </form>
+          </p-tabPanel>
+        </p-tabView>
+
       </div>
 
     </div>
