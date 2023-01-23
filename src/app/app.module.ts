@@ -5,13 +5,14 @@ import {
   HttpClientModule,
 } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
+import { FileUploadModule } from 'primeng/fileupload';
 import { MensagemService } from 'src/app/service/mensagemService';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,15 +25,15 @@ import { LoginComponent } from './login/login.component';
 import { OficioModule } from './oficio/oficio.module';
 import { RequerimentoModule } from './requerimento/requerimento.module';
 import { ServidoresModule } from './servidores/servidores.module';
+import { CardBoxDocumentosComponent } from './shared/componentes/card-box-documentos/card-box-documentos.component';
 import { CardBoxComponent } from './shared/componentes/card-box/card-box.component';
+import { DashboardDocumentoComponent } from './template/dashboard-documento/dashboard-documento.component';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { VereadoresModule } from './vereadores/vereadores.module';
-import { DashboardDocumentoComponent } from './template/dashboard-documento/dashboard-documento.component';
-import { CardBoxDocumentosComponent } from './shared/componentes/card-box-documentos/card-box-documentos.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -55,6 +56,7 @@ registerLocaleData(localePt, 'pt');
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    FileUploadModule,
     RequerimentoModule,
     VereadoresModule,
     ServidoresModule,
@@ -81,6 +83,7 @@ registerLocaleData(localePt, 'pt');
       progressBar: true,
     }),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [TranslateModule],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
