@@ -6,5 +6,5 @@ Desenvolvido com [Angular CLI](https://github.com/angular/angular-cli) version 1
 <img src="https://github.com/samuelfer/requerimento-app/blob/master/gerar-documentos.jpg">
 <img src="https://github.com/samuelfer/requerimento-app/blob/master/preview-requerimento.jpg">
 <img src="https://github.com/samuelfer/requerimento-app/blob/master/preview-oficio.jpg">
-<img src="https://github.com/samuelfer/requerimento-app/blob/master/fullscreen.jpg">
+
 
