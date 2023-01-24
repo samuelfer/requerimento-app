@@ -12,7 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
-import { FileUploadModule } from 'primeng/fileupload';
 import { MensagemService } from 'src/app/service/mensagemService';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -56,7 +55,6 @@ registerLocaleData(localePt, 'pt');
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule,
     RequerimentoModule,
     VereadoresModule,
     ServidoresModule,
