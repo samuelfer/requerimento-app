@@ -10,17 +10,17 @@
         <form>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-7">
                 <label>Título sistema</label>
                 <br>
                 <input [(ngModel)]="configuracao.nome" name="nome" type="text" pInputText [style]="{ width: '75%' }">
               </div>
 
+              <div class="col-md-4">
+                <app-upload></app-upload>
+              </div>
 
-              <app-upload></app-upload>
-
-
-              <div class="col-md-10 mt-2">
+              <div class="col-md-7 mt-2">
                 <div class="form-group">
                   <label for="texto">Texto padrão requerimento</label>
                   <div>
@@ -31,7 +31,7 @@
                 </div>
               </div>
 
-              <div class="col-md-10 mt-2">
+              <div class="col-md-5">
                 <div class="form-group">
                   <label for="texto">Texto padrão ofício</label>
                   <div>

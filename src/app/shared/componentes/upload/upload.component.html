@@ -1,25 +1,8 @@
-<p-fileUpload name="uploadedFiles[]" chooseLabel="Selecionar" uploadLabel="Salvar" cancelLabel="Cancelar"
-  invalidFileSizeMessageSummary="Não foi possível carregar o arquivo"
-  invalidFileSizeMessageDetail="O arquivo excede o limite de 50MB">
-  <ng-template let-file pTemplate="file">
-    <div class="anexo_descricao">
-      <div class="row">
-        <label class="label-obg">Descrição: </label>
-        <div class="content_label">
-          <input type="text" maxlength="255" size="40" class="form-control" />
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="file_data">
-      <p><b>Nome do Arquivo:</b> {{ file.name }}</p>
-      <p><b>Tamanho:</b> </p>
-
-    </div>
-    <hr />
-    <div class="file_data">
-      <p>Clique em <b>Salvar</b> para salvar o arquivo</p>
-      <p>Clique em <b>Cancelar</b> para desistir e fechar a janela</p>
-    </div>
-  </ng-template>
-</p-fileUpload>
+<div class="form-group">
+  <label for="texto">Imagem pdf</label>
+  <div>
+    <p-fileUpload name="uploadedFiles[]" chooseLabel="Selecionar" uploadLabel="Salvar"
+      invalidFileSizeMessageSummary="Não foi possível carregar o arquivo"
+      invalidFileSizeMessageDetail="O arquivo excede o limite de 50MB" [showCancelButton]=false>
+    </p-fileUpload>
+  </div>
