@@ -1,4 +1,4 @@
-# Sistema para Gerar Documentos
+# Sistema para Gerenciamento de Documentos de Câmara e Prefeitura
 
 Desenvolvido com [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
 
