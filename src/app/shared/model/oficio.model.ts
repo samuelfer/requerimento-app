@@ -8,6 +8,7 @@ export class Oficio {
   numero: string;
   destinatario: string;
   cargoDestinatario: string;
+  formaTratamentoDestinatario: string;
 
   constructor() {}
 }
