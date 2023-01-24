@@ -91,7 +91,7 @@
               </div>
             </form>
           </p-tabPanel>
-          <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye" [disabled]="oficio.numero == ''  || oficio.assunto == ''  && oficio.assinante == null || oficio.destinatario == ''
+          <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye" [disabled]="oficio.numero == ''  || oficio.assunto == ''  || oficio.destinatario == ''
                 || oficio.texto == ''">
             <div class="pdf-container">
               <pdf-viewer [src]="pdfSrc" id="viewer" [original-size]="false" [zoom]="0.5" [show-borders]="true">

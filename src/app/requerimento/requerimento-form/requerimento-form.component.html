@@ -64,10 +64,10 @@
               </div>
             </form>
           </p-tabPanel>
-          <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye">
+          <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye"
+            [disabled]="requerimento.numero == '' || requerimento.assunto == ''  && requerimento.pessoa == null">
             <div class="pdf-container">
-              <pdf-viewer [src]="pdfSrc" id="viewer" [original-size]="false" [zoom]="0.5" [show-borders]="true"
-                [disabled]="requerimento.numero == null || requerimento.assunto == null  && requerimento.pessoa == null">
+              <pdf-viewer [src]="pdfSrc" id="viewer" [original-size]="false" [zoom]="0.5" [show-borders]="true">
               </pdf-viewer>
             </div>
           </p-tabPanel>
