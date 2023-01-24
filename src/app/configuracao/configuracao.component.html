@@ -16,21 +16,29 @@
                 <input [(ngModel)]="configuracao.nome" name="nome" type="text" pInputText [style]="{ width: '75%' }">
               </div>
 
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Texto padrão requerimento</label>
-                  <br>
 
+              <app-upload></app-upload>
+
+
+              <div class="col-md-10 mt-2">
+                <div class="form-group">
+                  <label for="texto">Texto padrão requerimento</label>
+                  <div>
+                    <p-editor [style]="{'height':'120px','font-size':'16px'}"
+                      [(ngModel)]="configuracao.textoPadraoRequerimento" name="textoPadraoRequerimento" required>
+                    </p-editor>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="row" *ngIf="configuracao.id">
-              <div class="col-md-8">
+              <div class="col-md-10 mt-2">
                 <div class="form-group">
-                  <label>Texto padrão ofício</label>
-                  <br>
-
+                  <label for="texto">Texto padrão ofício</label>
+                  <div>
+                    <p-editor [style]="{'height':'120px','font-size':'16px'}"
+                      [(ngModel)]="configuracao.textoPadraoOficio" name="textoPadraoOficio" required>
+                    </p-editor>
+                  </div>
                 </div>
               </div>
             </div>
