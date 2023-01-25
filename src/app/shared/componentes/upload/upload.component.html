@@ -1,8 +1,10 @@
 <div class="form-group">
   <label for="texto">Imagem pdf</label>
   <div>
-    <p-fileUpload name="uploadedFiles[]" chooseLabel="Selecionar" uploadLabel="Salvar"
-      invalidFileSizeMessageSummary="Não foi possível carregar o arquivo"
-      invalidFileSizeMessageDetail="O arquivo excede o limite de 50MB" [showCancelButton]=false>
+    <p-fileUpload name="file" [customUpload]="true" #file chooseLabel="Selecionar" uploadLabel="Salvar"
+      (uploadHandler)="upload($event)" invalidFileSizeMessageSummary="Não foi possível carregar o arquivo"
+      (onClear)="onClear()" invalidFileSizeMessageDetail="O arquivo excede o limite de 50MB" [showCancelButton]=false>
     </p-fileUpload>
   </div>
+
+  <img [src]="urlFoto" alt="" class="img-thumbnail rounded mx-auto d-block" *ngIf="urlFoto" width="250" />

@@ -16,10 +16,6 @@
                 <input [(ngModel)]="configuracao.nome" name="nome" type="text" pInputText [style]="{ width: '75%' }">
               </div>
 
-              <div class="col-md-4">
-                <app-upload></app-upload>
-              </div>
-
               <div class="col-md-7 mt-2">
                 <div class="form-group">
                   <label for="texto">Texto padrão requerimento</label>
@@ -41,6 +37,11 @@
                   </div>
                 </div>
               </div>
+
+              <div class="col-md-7">
+                <app-upload></app-upload>
+              </div>
+
             </div>
             <p-footer>
               <div class="btn-right mt-4">
