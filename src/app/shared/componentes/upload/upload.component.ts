@@ -1,4 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { MensagemService } from 'src/app/service/mensagemService';
+import { UploadService } from './upload.service';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { FileUpload } from 'primeng/fileupload';
+import {
+  DomSanitizer,
+  SafeResourceUrl,
+  SafeUrl,
+} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-upload',
@@ -6,133 +20,96 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload.component.scss'],
 })
 export class UploadComponent implements OnInit {
-  // @Output() arquivoIncluidoEmitter = new EventEmitter(); // emite informacao depois do upload
+  @Output() arquivoIncluidoEmitter = new EventEmitter(); // emite informacao depois do upload
 
-  // uploadedFiles: any[] = [];
+  uploadedFiles: any;
+  urlFotoInsegura: any;
+  urlFoto: any;
 
-  constructor() {}
+  @ViewChild('file') file: FileUpload;
 
-  // onUpload(event: any) {
-  // for (let file of event.files) {
-  //   this.uploadedFiles.push(file);
-  // }
-  // this.messageService.add({
-  //   severity: 'info',
-  //   summary: 'File Uploaded',
-  //   detail: '',
-  // });
-  // }
+  constructor(
+    private uploadService: UploadService,
+    private mensagemService: MensagemService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {}
 
-  // selecionado(event) {
-  //   this.setDescricaoArquivo(event);
-  // }
+  validateFile(file: File): boolean {
+    let isValidFile = true;
+    if (file.size === 0) {
+      this.mensagemService.mensagemAlerta(
+        'Não é possível enviar um arquivo com tamanho zero.'
+      );
+      isValidFile = false;
+    }
 
-  // onUpload(): void {
-  //   // if (!this.validateDescricao(this.descricao)) {
-  //   //   return;
-  //   // }
+    return isValidFile;
+  }
 
-  //   // if (event.files.length > 0) {
-  //   //   for (const file of event.files) {
-  //   //     if (!this.validateFile(file)) {
-  //   //       this.uploadedFiles = [];
-  //   //       return;
-  //   //     } else {
-  //   //       // const anexo = new Anexo(this.descricao, file);
-  //   //       // if (this.uploadedFiles.filter((a) => a.file === file).length <= 0) {
-  //   //       //   if (this.validateDescricao(anexo.descricao)) {
-  //   //       //     this.uploadedFiles.push(anexo);
-  //   //       //     this.descricao = '';
-  //   //       //   }
-  //   //       // }
-  //   //     }
-  //   //   }
-  //   // }
+  upload(event: any) {
+    this.onUpload(event);
+  }
 
-  //   let anexo = this.uploadedFiles.pop();
-  //   if (anexo) {
-  //     this.uploadFile();
-  //   }
-  // }
+  onUpload(event: any): void {
+    this.uploadService.create(this.file).subscribe(
+      (response) => {
+        this.mensagemService.mensagemSucesso('Arquivo enviado com sucesso.');
+        this.arquivoIncluidoEmitter.emit();
+        this.file.clear();
+        this.onClear();
+        this.getArquivo();
+      },
+      (error) => {
+        this.mensagemService.mensagemError(
+          error,
+          'Houve algum problema ao tentar salvar o arquivo.'
+        );
+      }
+    );
+  }
 
-  // validateDescricao(descricao: string): boolean {
-  //   let isValidDescricao = true;
-  //   if (descricao === '') {
-  //     this.mensagemService.mensagemAlerta(
-  //       'É necessário preencher a descrição do arquivo.'
-  //     );
-  //     isValidDescricao = false;
-  //   }
-  //   return isValidDescricao;
-  // }
+  onClear(): void {
+    this.uploadedFiles = [];
+  }
 
-  // validateFile(file: File): boolean {
-  //   let isValidFile = true;
-  //   if (file.size === 0) {
-  //     this.mensagemService.mensagemAlerta(
-  //       'Não é possível enviar um arquivo com tamanho zero.'
-  //     );
-  //     isValidFile = false;
-  //   }
+  public getArquivo(): void {
+    this.uploadService.downloadArquivo().subscribe(
+      (data) => {
+        this.createImageFromBlob(data);
+      },
+      (error) => {
+        this.mensagemService.mensagemError(
+          error,
+          'Houve algum problema ao tentar recuperar o arquivo.'
+        );
+      }
+    );
+  }
 
-  //   return isValidFile;
-  // }
+  createImageFromBlob(image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener(
+      'load',
+      () => {
+        if (reader.result === 'data:') {
+          this.urlFoto = null;
+        } else {
+          this.urlFotoInsegura = reader.result;
+          this.trataUrlFoto(this.urlFotoInsegura);
+        }
+      },
+      false
+    );
 
-  // uploadFile(): void {
-  // const idDiligencia = this.diligencia.id;
-  // if (this.idSolicitacaoAlteracaoDiaria === undefined) {
-  //   this.idSolicitacaoAlteracaoDiaria = 0;
-  // }
-  // if (this.idPagamentoDiaria === undefined) {
-  //   this.idPagamentoDiaria = 0;
-  // }
-  // const promise = this.arquivoService
-  //   .create(
-  //     anexo.file,
-  //     anexo.descricao,
-  //     idDiligencia,
-  //     this.tipoArquivo,
-  //     this.idPagamentoDiaria,
-  //     this.idSolicitacaoAlteracaoDiaria
-  //   )
-  //   .toPromise();
-  // promise
-  //   .then(() => {
-  //     this.mensagemService.mensagemSucesso('Arquivo enviado com sucesso.');
-  //     this.arquivoIncluidoEmitter.emit();
-  //     this.modalService.dismissAll();
-  //     this.fileinput.clear();
-  //     this.onClear();
-  //   })
-  //   .catch((error) => {
-  //     this.mensagemService.mensagemErrorInfo(
-  //       error,
-  //       'Houve algum problema ao carregar os arquivos.'
-  //     );
-  //   });
-  // }
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
 
-  // onClear(): void {
-  // this.showFormIncluirArquivo = false;
-  // this.uploadedFiles = [];
-  // this.showFormIncluirArquivo = true;
-  // this.modalService.dismissAll();
-  // }
-
-  // openModal() {
-  // this.modalService
-  //   .open(content, { backdrop: 'static', keyboard: false })
-  //   .result.then(() => {});
-  // }
-
-  // private setDescricaoArquivo() {
-  // if (event.files.length > 0) {
-  //   for (const file of event.files) {
-  //     this.descricao =
-  //       file.name.substr(0, file.name.lastIndexOf('.')) || file.name;
-  //   }
-  // }
-  // }
+  private trataUrlFoto(dataUrl: string) {
+    console.log('url ', dataUrl);
+    this.urlFoto = this.sanitizer.bypassSecurityTrustUrl(dataUrl);
+  }
 }
