@@ -24,6 +24,7 @@ export class OficioFormComponent implements OnInit {
     dataOficio: new Date(),
     destinatario: '',
     cargoDestinatario: '',
+    formaTratamentoDestinatario: '',
   };
   oficioId: string | null;
   public pdfSrc = '';
