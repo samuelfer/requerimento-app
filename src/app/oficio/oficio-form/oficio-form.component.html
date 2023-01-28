@@ -44,19 +44,24 @@
                       class="col-md-9" />
                   </div>
 
+                  <div class="form-group col-md-5">
+                    <label>Forma tratamento destinatário</label>
+                    <br>
+                    <input type="text" pInputText [(ngModel)]="oficio.formaTratamentoDestinatario"
+                      name="formaTratamentoDestinatario" class="col-md-9" />
+                  </div>
+                </div>
+                <div class="row mt-2">
                   <div class="form-group col-md-7">
                     <label>Assunto</label>
                     <br>
                     <input type="text" pInputText [(ngModel)]="oficio.assunto" name="assunto" class="col-md-10" />
                   </div>
-                </div>
-
-                <div class="row mt-2">
                   <div class="form-group col-md-5">
                     <label>Assinante</label>
                     <br>
                     <p-dropdown [options]="assinanteList" [(ngModel)]="oficio.assinante" name="assinante"
-                      optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'500px'}">
+                      optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'400px'}">
                     </p-dropdown>
                   </div>
 
@@ -85,11 +90,10 @@
               </div>
             </form>
           </p-tabPanel>
-          <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye">
+          <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye" [disabled]="oficio.numero == ''  || oficio.assunto == ''  || oficio.destinatario == ''
+                || oficio.texto == ''">
             <div class="pdf-container">
-              <pdf-viewer [src]="pdfSrc" id="viewer" [original-size]="false" [zoom]="0.5" [show-borders]="true"
-                [disabled]="oficio.numero == null || oficio.assunto == null  && oficio.assinante == null || oficio.destinatario == null
-                || oficio.texto">
+              <pdf-viewer [src]="pdfSrc" id="viewer" [original-size]="false" [zoom]="0.5" [show-borders]="true">
               </pdf-viewer>
             </div>
           </p-tabPanel>
