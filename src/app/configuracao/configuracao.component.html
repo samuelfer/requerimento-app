@@ -37,32 +37,33 @@
                   </div>
                 </div>
               </div>
-
-              <div class="col-md-7">
+              <<<<<<< HEAD <div class="col-md-7">
                 <app-upload></app-upload>
-              </div>
-
             </div>
-            <p-footer>
-              <div class="btn-right mt-4">
-                <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
-                  class="p-button-success p-button-sm" *ngIf="!configuracao.id"></button>
-                <button (click)="atualizar()" pButton type="bustton" label="Salvar" icon="pi pi-save"
-                  class="p-button-success p-button-sm" *ngIf="configuracao.id"></button>
-                <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
-                  class="p-button-secondary p-button-sm ml-2"></button>
-              </div>
-            </p-footer>
-            <!-- /.col -->
+
+            =======
+            >>>>>>> d837bffad848e1608ed3465bb726fbd62ba6cd6c
           </div>
-        </form>
+          <p-footer>
+            <div class="btn-right mt-4">
+              <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                class="p-button-success p-button-sm" *ngIf="!configuracao.id"></button>
+              <button (click)="atualizar()" pButton type="bustton" label="Salvar" icon="pi pi-save"
+                class="p-button-success p-button-sm" *ngIf="configuracao.id"></button>
+              <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
+                class="p-button-secondary p-button-sm ml-2"></button>
+            </div>
+          </p-footer>
+          <!-- /.col -->
       </div>
-      <!-- /.card-body -->
-
-
+      </form>
     </div>
-    <!-- /.card -->
+    <!-- /.card-body -->
 
-    <!-- /.container-fluid -->
-  </section>
+
+</div>
+<!-- /.card -->
+
+<!-- /.container-fluid -->
+</section>
 </div>
