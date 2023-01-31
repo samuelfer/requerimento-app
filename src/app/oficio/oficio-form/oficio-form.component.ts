@@ -1,3 +1,5 @@
+import { PronomeTratamentoService } from './../../pronome-tratamento/pronome-tratamento.service';
+import { PronomeTratamento } from './../../shared/model/pronome-tratamento.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FileService } from 'src/app/service/file.service';
@@ -24,13 +26,15 @@ export class OficioFormComponent implements OnInit {
     dataOficio: new Date(),
     destinatario: '',
     cargoDestinatario: '',
-    formaTratamentoDestinatario: '',
+    pronomeTratamento: new PronomeTratamento(),
   };
   oficioId: string | null;
   public pdfSrc = '';
+  pronomesList: PronomeTratamento[];
 
   constructor(
     private oficioService: OficioService,
+    private pronomeTratamentoService: PronomeTratamentoService,
     private router: Router,
     private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute,
@@ -39,6 +43,7 @@ export class OficioFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarVereadores();
+    this.listarPronomes();
     this.oficioId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.oficioId !== null) {
       this.titulo = 'Editar ofício';
@@ -156,6 +161,20 @@ export class OficioFormComponent implements OnInit {
           error,
           'Ocorreu um erro ao tentar exibir o arquivo.'
         )
+    );
+  }
+
+  private listarPronomes(): void {
+    this.pronomeTratamentoService.listarTodos().subscribe(
+      (response) => {
+        this.pronomesList = response;
+      },
+      (error) => {
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro! Erro ao tentar listar os pronomes'
+        );
+      }
     );
   }
 }
