@@ -123,6 +123,9 @@ export class RequerimentoFormComponent implements OnInit {
     this.requerimentoService.listarPorId(requerimentoId).subscribe(
       (response) => {
         this.requerimento = response;
+        this.requerimento.dataRequerimento = new Date(
+          response.dataRequerimento
+        );
       },
       (error) => {
         this.mensagemService.mensagemError(

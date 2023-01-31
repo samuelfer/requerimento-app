@@ -11,29 +11,26 @@
             <form>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Número</label>
-                      <br>
-                      <input type="text" pInputText [(ngModel)]="requerimento.numero" name="numero" />
-                    </div>
+                  <div class="form-group col-md-2">
+                    <label>Número</label>
+                    <br>
+                    <input [disabled]="requerimento.id != null" type="text" pInputText [(ngModel)]="requerimento.numero"
+                      name="numero" class="col-md-12" />
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Vereador</label>
-                      <br>
-                      <p-dropdown [options]="vereadorList" [(ngModel)]="requerimento.pessoa" name="pessoa"
-                        optionLabel="nome" placeholder="Selecione" [required]="true" [style]="{'width':'305px'}">
-                      </p-dropdown>
-                    </div>
+                  <div class="form-group col-md-10">
+                    <label>Vereador</label>
+                    <br>
+                    <p-dropdown [options]="vereadorList" [(ngModel)]="requerimento.pessoa" name="pessoa"
+                      optionLabel="nome" placeholder="Selecione" [required]="true" class="col-md-12">
+                    </p-dropdown>
                   </div>
                   <!-- /.form-group -->
                   <div class="form-group col-md-4">
                     <label>Data:</label>
                     <div class="input-group date" data-target-input="nearest">
                       <p-calendar [(ngModel)]="requerimento.dataRequerimento" name="dataRequerimento"
-                        class="calendar-control" view="date" dateFormat="dd/mm/yy" [showIcon]="true"
-                        [showButtonBar]="true" [yearNavigator]="true">
+                        class="calendar-control" [monthNavigator]="true" [showTime]=true hourFormat="24"
+                        dateFormat="dd/mm/yy" [showIcon]="true" [showButtonBar]="true" [yearNavigator]="true">
                       </p-calendar>
                     </div>
                   </div>
