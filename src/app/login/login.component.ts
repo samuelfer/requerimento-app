@@ -12,7 +12,7 @@ import { MensagemService } from './../service/mensagemService';
 })
 export class LoginComponent implements OnInit {
   credenciais: Credenciais = {
-    email: '',
+    username: '',
     senha: '',
   };
 
@@ -44,7 +44,10 @@ export class LoginComponent implements OnInit {
   }
 
   private validaCampos(): boolean {
-    if (this.credenciais.email === undefined || this.credenciais.email === '') {
+    if (
+      this.credenciais.username === undefined ||
+      this.credenciais.username === ''
+    ) {
       this.mensagemService.mensagemAlerta('Por favor, informe o email');
       return false;
     }
