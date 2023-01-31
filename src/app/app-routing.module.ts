@@ -79,6 +79,13 @@ const routes: Routes = [
             (m) => m.ConfiguracaoModule
           ),
       },
+      {
+        path: 'pronome-tratamento',
+        loadChildren: () =>
+          import('./pronome-tratamento/pronome-tratamento.module').then(
+            (m) => m.PronomeTratamentoModule
+          ),
+      },
     ],
   },
 ];
