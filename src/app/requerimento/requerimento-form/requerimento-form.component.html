@@ -15,7 +15,8 @@
                     <div class="form-group">
                       <label>Número</label>
                       <br>
-                      <input type="text" pInputText [(ngModel)]="requerimento.numero" name="numero" />
+                      <input [disabled]="requerimento.id != null" type="text" pInputText
+                        [(ngModel)]="requerimento.numero" name="numero" />
                     </div>
                   </div>
                   <div class="col-md-6">
