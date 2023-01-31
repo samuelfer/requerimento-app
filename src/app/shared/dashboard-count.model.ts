@@ -3,6 +3,7 @@ export class Dashboard {
   qtdVereador: number;
   qtdUsuario: number;
   qtdServidor: number;
+  qtdOficio: number;
 
   constructor() {}
 }
