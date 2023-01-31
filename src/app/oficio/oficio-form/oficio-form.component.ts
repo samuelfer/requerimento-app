@@ -133,6 +133,7 @@ export class OficioFormComponent implements OnInit {
     this.oficioService.listarPorId(oficioId).subscribe(
       (response) => {
         this.oficio = response;
+        this.oficio.dataOficio = new Date(response.dataOficio);
       },
       (error) => {
         this.mensagemService.mensagemError(

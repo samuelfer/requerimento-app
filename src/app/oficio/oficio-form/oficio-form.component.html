@@ -23,7 +23,8 @@
                     <label>Data:</label>
                     <div class="input-group date" data-target-input="nearest">
                       <p-calendar [(ngModel)]="oficio.dataOficio" name="dataOficio" class="calendar-control"
-                        [showIcon]="true" [showButtonBar]="true" [yearNavigator]="true">
+                        [monthNavigator]="true" [showTime]=true hourFormat="24" dateFormat="dd/mm/yy" [showIcon]="true"
+                        [showButtonBar]="true" [yearNavigator]="true">
                       </p-calendar>
                     </div>
                   </div>
