@@ -1,3 +1,4 @@
+import { PronomeTratamento } from './pronome-tratamento.model';
 import { Pessoa } from './pessoa.model';
 export class Oficio {
   id?: number;
@@ -8,7 +9,7 @@ export class Oficio {
   numero: string;
   destinatario: string;
   cargoDestinatario: string;
-  formaTratamentoDestinatario: string;
+  pronomeTratamento: PronomeTratamento;
 
   constructor() {}
 }
