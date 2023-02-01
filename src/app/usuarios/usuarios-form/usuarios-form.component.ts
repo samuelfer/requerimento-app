@@ -13,7 +13,7 @@ import { UsuariosService } from './../usuarios.service';
 export class UsuariosFormComponent implements OnInit {
   pessoa: Usuario = {
     nome: '',
-    email: '',
+    username: '',
     ativo: true,
     senha: '',
   };
@@ -87,7 +87,7 @@ export class UsuariosFormComponent implements OnInit {
       this.mensagemService.mensagemAlerta('Por favor, informe o nome');
       return false;
     }
-    if (this.pessoa.email === null || this.pessoa.email === '') {
+    if (this.pessoa.username === null || this.pessoa.username === '') {
       this.mensagemService.mensagemAlerta('Por favor, informe o email');
       return false;
     }
