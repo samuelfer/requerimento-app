@@ -1,3 +1,4 @@
+import { ModalPronomeTratamentoComponent } from './../shared/componentes/modal/pronome-tratamento/modal-pronome-tratamento.component';
 import { FileService } from './../service/file.service';
 import { OficioFormComponent } from './oficio-form/oficio-form.component';
 import { OficioListComponent } from './oficio-list/oficio-list.component';
@@ -14,9 +15,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
 import { TabViewModule } from 'primeng/tabview';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { DialogModule } from 'primeng/dialog';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
-  declarations: [OficioListComponent, OficioFormComponent],
+  declarations: [
+    OficioListComponent,
+    OficioFormComponent,
+    ModalPronomeTratamentoComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -31,6 +38,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     PaginatorModule,
     TabViewModule,
     PdfViewerModule,
+    DialogModule,
+    TooltipModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: FileService }],

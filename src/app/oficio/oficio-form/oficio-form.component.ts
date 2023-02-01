@@ -1,18 +1,21 @@
-import { PronomeTratamentoService } from './../../pronome-tratamento/pronome-tratamento.service';
-import { PronomeTratamento } from './../../shared/model/pronome-tratamento.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FileService } from 'src/app/service/file.service';
 import { Oficio } from 'src/app/shared/model/oficio.model';
 import { Pessoa } from 'src/app/shared/model/pessoa.model';
 
+import { ModalPronomeTratamentoComponent } from '../../shared/componentes/modal/pronome-tratamento/modal-pronome-tratamento.component';
+import { PronomeTratamentoService } from './../../pronome-tratamento/pronome-tratamento.service';
 import { MensagemService } from './../../service/mensagemService';
+import { PronomeTratamento } from './../../shared/model/pronome-tratamento.model';
 import { OficioService } from './../oficio.service';
 
 @Component({
   selector: 'app-oficio-form',
   templateUrl: './oficio-form.component.html',
   styleUrls: ['./oficio-form.component.scss'],
+  providers: [DialogService],
 })
 export class OficioFormComponent implements OnInit {
   assinanteList: Pessoa[];
@@ -31,6 +34,7 @@ export class OficioFormComponent implements OnInit {
   oficioId: string | null;
   public pdfSrc = '';
   pronomesList: PronomeTratamento[];
+  ref: DynamicDialogRef;
 
   constructor(
     private oficioService: OficioService,
@@ -38,7 +42,8 @@ export class OficioFormComponent implements OnInit {
     private router: Router,
     private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute,
-    private fileService: FileService
+    private fileService: FileService,
+    public dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +56,7 @@ export class OficioFormComponent implements OnInit {
     }
   }
 
-  public listarVereadores() {
+  listarVereadores() {
     this.oficioService.listarAssinantes().subscribe(
       (response: Pessoa[]): void => {
         this.assinanteList = response;
@@ -177,5 +182,36 @@ export class OficioFormComponent implements OnInit {
         );
       }
     );
+  }
+
+  salvarPronomeTratamento(): void {
+    this.ref = this.dialogService.open(ModalPronomeTratamentoComponent, {
+      header: 'Pronome de tratamento',
+      width: '40%',
+      data: this.oficio.pronomeTratamento,
+      contentStyle: { 'max-height': '350px', overflow: 'auto' },
+      baseZIndex: 10000,
+      closable: true,
+    });
+
+    this.ref.onClose.subscribe((pronome: PronomeTratamento) => {
+      this.oficio.pronomeTratamento = pronome;
+      if (pronome !== undefined) {
+        this.pronomeTratamentoService.cadastrar(pronome).subscribe(
+          (response) => {
+            this.pronomesList.push(response);
+
+            this.oficio.pronomeTratamento =
+              this.pronomesList[this.pronomesList.length - 1];
+          },
+          (error) => {
+            this.mensagemService.mensagemError(
+              error,
+              'Houve um erro ao tentar salvar o pronome'
+            );
+          }
+        );
+      }
+    });
   }
 }
