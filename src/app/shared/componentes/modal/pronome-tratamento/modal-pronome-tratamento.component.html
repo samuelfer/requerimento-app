@@ -1,0 +1,13 @@
+<label class="label-obg" style="margin-left: 0px;">Descrição</label>
+<div class="form-group">
+  <input [(ngModel)]="pronomeTratamento.descricao" name="descricao" type="text" pInputText [style]="{ width: '75%' }">
+</div>
+<p-footer>
+  <div class="btn-right">
+    <button pButton type="button" label="Salvar" icon="pi pi-save" (click)="close()"
+      class="p-button-success p-button-sm"></button>
+  </div>
+</p-footer>
+
+<p-confirmDialog [style]="{ width: '20vw' }" [baseZIndex]="10000">
+</p-confirmDialog>

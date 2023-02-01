@@ -47,11 +47,17 @@
                   </div>
 
                   <div class="form-group col-md-5">
-                    <label>Pronome tratamento destinatário</label>
+                    <label>Pronome tratamento destinatário</label><i class="pi pi-question-circle"
+                      pTooltip="Se o pronome desejado não aparecer na lista clique no botão abaixo para cadastrar um novo"
+                      tooltipPosition="top"></i>
+
                     <br>
                     <p-dropdown [options]="pronomesList" [(ngModel)]="oficio.pronomeTratamento" name="pronomeTratamento"
                       optionLabel="descricao" placeholder="Selecione" [required]="true" [style]="{'width':'75%'}">
                     </p-dropdown>
+                    <button type="button" pTooltip="Clique aqui para cadastrar um novo pronome" tooltipPosition="top"
+                      pButton pRipple icon="fa fa-edit" class="btn-add-credor" styleClass="p-button-warn"
+                      (click)="salvarPronomeTratamento()"></button>
                   </div>
                 </div>
                 <div class="row mt-2">
