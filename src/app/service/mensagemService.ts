@@ -10,7 +10,10 @@ export class MensagemService {
   }
 
   mensagemError(error: any, detail: any) {
-    console.log('Res ', error);
+    if (error.status == 401 || error.status == 403) {
+      this.toastr.error('Permissão de acesso negada.');
+    }
+
     if (error.error.errors) {
       error.error.errors.forEach((element: { message: string | undefined }) => {
         this.toastr.error(element.message);
