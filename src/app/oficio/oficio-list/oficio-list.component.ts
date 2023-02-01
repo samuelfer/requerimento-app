@@ -45,10 +45,7 @@ export class OficioListComponent implements OnInit {
         data = new Blob([data], { type: 'application/pdf' });
         const objUrl = window.URL.createObjectURL(data);
         const a = document.createElement('a');
-        a.href = objUrl;
-        a.target = '_blank';
-        a.download = 'oficio' + oficio.id + '.pdf';
-        window.document.body.appendChild(a);
+        window.open(objUrl, '_blank', 'width=1000, height=800');
         a.click();
         a.remove();
         this.mensagemService.mensagemSucesso(
