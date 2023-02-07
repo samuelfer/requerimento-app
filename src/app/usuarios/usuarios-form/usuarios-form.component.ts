@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MensagemService } from 'src/app/service/mensagemService';
-import { Usuario } from 'src/app/shared/model/usuario.mode';
+import { Role } from 'src/app/shared/enum/role-enum';
+import { Usuario } from 'src/app/shared/model/usuario.model';
 
 import { UsuariosService } from './../usuarios.service';
 
@@ -16,6 +17,7 @@ export class UsuariosFormComponent implements OnInit {
     username: '',
     ativo: true,
     senha: '',
+    role: Role.User,
   };
   pessoaId: string | null;
 

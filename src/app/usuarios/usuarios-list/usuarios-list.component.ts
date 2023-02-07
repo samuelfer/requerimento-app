@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { UsuariosService } from '../usuarios.service';
 
-import { Usuario } from './../../shared/model/usuario.mode';
+import { Usuario } from '../../shared/model/usuario.model';
 
 @Component({
   selector: 'app-usuario-list',
