@@ -1,16 +1,23 @@
-import { ServidoresRoutes } from './servidores.routing';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ServidoresListComponent } from './servidores-list/servidores-list.component';
-import { ServidoresFormComponent } from './servidores-form/servidores-form.component';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
+
+import { SenhaInputComponent } from './../shared/componentes/senha-input/senha-input.component';
+import { ServidoresFormComponent } from './servidores-form/servidores-form.component';
+import { ServidoresListComponent } from './servidores-list/servidores-list.component';
+import { ServidoresRoutes } from './servidores.routing';
 
 @NgModule({
-  declarations: [ServidoresListComponent, ServidoresFormComponent],
+  declarations: [
+    ServidoresListComponent,
+    ServidoresFormComponent,
+    SenhaInputComponent,
+  ],
   imports: [
     CommonModule,
     ServidoresRoutes,
@@ -19,6 +26,7 @@ import { PaginatorModule } from 'primeng/paginator';
     TableModule,
     InputTextModule,
     PaginatorModule,
+    TooltipModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
