@@ -19,6 +19,13 @@
                       name="numero" class="col-md-12" />
                   </div>
 
+                  <div class="form-group col-md-7">
+                    <label>Destinatário</label>
+                    <br>
+                    <input type="text" pInputText [(ngModel)]="oficio.destinatario" name="destinatario"
+                      class="col-md-10" />
+                  </div>
+
                   <div class="form-group col-md-3">
                     <label>Data:</label>
                     <div class="input-group date" data-target-input="nearest">
@@ -27,13 +34,6 @@
                         [showButtonBar]="true" [yearNavigator]="true">
                       </p-calendar>
                     </div>
-                  </div>
-
-                  <div class="form-group col-md-7">
-                    <label>Destinatário</label>
-                    <br>
-                    <input type="text" pInputText [(ngModel)]="oficio.destinatario" name="destinatario"
-                      class="col-md-10" />
                   </div>
                 </div>
                 <!-- /.form-group -->
@@ -47,7 +47,7 @@
                   </div>
 
                   <div class="form-group col-md-5">
-                    <label>Pronome tratamento destinatário</label><i class="pi pi-question-circle"
+                    <label>Pronome tratamento</label><i class="pi pi-question-circle"
                       pTooltip="Se o pronome desejado não aparecer na lista clique no botão abaixo para cadastrar um novo"
                       tooltipPosition="top"></i>
 
@@ -75,7 +75,7 @@
                   </div>
 
                   <!-- /.col -->
-                  <div class="col-md-10 mt-2">
+                  <div class="col-md-12 mt-2">
                     <div class="form-group">
                       <label for="texto">Texto</label>
                       <div>
