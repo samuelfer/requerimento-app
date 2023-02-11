@@ -10,10 +10,16 @@
         <form #vereadorForm="ngForm">
           <div class="card-body">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <label>Nome</label>
                 <br>
                 <input [(ngModel)]="pessoa.nome" name="nome" type="text" pInputText [style]="{ width: '75%' }">
+              </div>
+
+              <div class="col-md-6">
+                <label>Email</label>
+                <br>
+                <input [(ngModel)]="pessoa.email" name="email" type="text" pInputText [style]="{ width: '75%' }">
               </div>
 
               <div class="col-md-4" *ngIf="pessoa.id">
@@ -40,6 +46,26 @@
                   <br>
                   <p-dropdown [options]="vereadorList" [(ngModel)]="pessoa.vereador" optionLabel="nome"
                     placeholder="Selecione" name="vereador" [style]="{ width: '75%' }"></p-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="!pessoa.id">
+              <div class="col-md-3 mt-3">
+                <div class="form-group">
+                  <label>Usuário do sistema?</label><i class="pi pi-question-circle"
+                    pTooltip="Marque essa opção para cadastrar o servidor como usuário do sistema"
+                    tooltipPosition="top"></i>
+                  <br>
+                  <input type="checkbox" value="true" name="usuarioSistema" [(ngModel)]="pessoa.usuarioSistema"
+                    (change)="exibeInputSenha(pessoa.usuarioSistema)">
+                </div>
+              </div>
+
+              <div class="col-md-3 mt-2" *ngIf="showInputSenha">
+                <div class="form-group">
+                  <label>Senha</label>
+                  <br>
+                  <input [(ngModel)]="pessoa.senha" name="senha" type="password" pInputText [style]="{'width':'119%'}">
                 </div>
               </div>
             </div>
