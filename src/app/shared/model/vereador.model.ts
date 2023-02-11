@@ -8,6 +8,6 @@ export class Vereador {
   ativo: boolean;
   tipoPessoa: TipoPessoa;
   arquivoAssinatura: string;
-
+  usuarioSistema: boolean;
   constructor() {}
 }
