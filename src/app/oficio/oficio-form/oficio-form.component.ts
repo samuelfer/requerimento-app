@@ -49,6 +49,7 @@ export class OficioFormComponent implements OnInit {
   ngOnInit(): void {
     this.listarVereadores();
     this.listarPronomes();
+    this.listarTextoPadrao();
     this.oficioId = this.activedRoute.snapshot.paramMap.get('id');
     if (this.oficioId !== null) {
       this.titulo = 'Editar ofício';
@@ -212,6 +213,12 @@ export class OficioFormComponent implements OnInit {
           }
         );
       }
+    });
+  }
+
+  private listarTextoPadrao(): void {
+    this.oficioService.listarTextoPadrao().subscribe((response) => {
+      this.oficio.texto = response.textoPadraoOficio;
     });
   }
 }
