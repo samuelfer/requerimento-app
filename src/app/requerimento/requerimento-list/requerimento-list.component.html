@@ -35,7 +35,7 @@
                 <ng-template pTemplate="body" let-requerimento>
                   <tr>
                     <td>{{ requerimento.numero }}</td>
-                    <td>{{ requerimento.pessoa?.nome }}</td>
+                    <td>{{ requerimento.vereador?.nome }}</td>
                     <td>{{ requerimento.dataRequerimento | date: 'dd-MM-yyyy HH:mm' }}</td>
                     <td>
                       <div [innerHtml]="requerimento.assunto | slice:0:150"></div>

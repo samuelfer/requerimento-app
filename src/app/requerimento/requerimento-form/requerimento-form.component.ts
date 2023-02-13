@@ -19,7 +19,7 @@ export class RequerimentoFormComponent implements OnInit {
   titulo = 'Cadastrar requerimento';
 
   requerimento: Requerimento = {
-    pessoa: new Pessoa(),
+    vereador: new Pessoa(),
     assunto: '',
     numero: '',
     dataRequerimento: new Date(),
@@ -100,8 +100,8 @@ export class RequerimentoFormComponent implements OnInit {
 
   private validaCampos(): boolean {
     if (
-      this.requerimento.pessoa === undefined ||
-      Object.keys(this.requerimento.pessoa).length === 0
+      this.requerimento.vereador === undefined ||
+      Object.keys(this.requerimento.vereador).length === 0
     ) {
       this.mensagemService.mensagemAlerta('Por favor, informe o vereador');
       return false;
