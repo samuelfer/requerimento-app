@@ -15,7 +15,7 @@ export class AuthService {
   isLogado$ = this._isLogado$.asObservable();
 
   jwtService: JwtHelperService = new JwtHelperService();
-  user: UsuarioAccessToken;
+  user: UsuarioAccessToken | undefined;
 
   constructor(private http: HttpClient) {
     this._isLogado$.next(!!this.isAuthenticated());
@@ -52,7 +52,10 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  private getUser(token: string): UsuarioAccessToken {
-    return JSON.parse(atob(token.split('.')[1])) as UsuarioAccessToken;
+  private getUser(token: string): UsuarioAccessToken | undefined {
+    if (token) {
+      return JSON.parse(atob(token.split('.')[1])) as UsuarioAccessToken;
+    }
+    return undefined;
   }
 }
