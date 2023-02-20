@@ -20,9 +20,8 @@
                   <div class="form-group col-md-9">
                     <label>Vereador</label>
                     <br>
-                    <p-dropdown [options]="vereadorList" [(ngModel)]="requerimento.pessoa" name="pessoa"
-                      optionLabel="nome" placeholder="Selecione" [required]="true" class="col-md-12"
-                      [style]="{ width: '70%' }">
+                    <p-dropdown [options]="vereadorList" [(ngModel)]="requerimento.vereador" name="vereador"
+                      optionLabel="nome" [required]="true" class="col-md-12" [style]="{ width: '70%' }">
                     </p-dropdown>
                   </div>
 
@@ -54,8 +53,10 @@
                 </div>
                 <p-footer>
                   <div class="btn-right">
-                    <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
-                      class="p-button-success p-button-sm"></button>
+                    <button *ngIf="!requerimento.id" (click)="cadastrar()" pButton type="button" label="Salvar"
+                      icon="pi pi-save" class="p-button-success p-button-sm"></button>
+                    <button *ngIf="requerimento.id" (click)="atualizar()" pButton type="button" label="Salvar"
+                      icon="pi pi-save" class="p-button-success p-button-sm"></button>
                     <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
                       class="p-button-secondary p-button-sm ml-2"></button>
                   </div>
@@ -65,7 +66,7 @@
             </form>
           </p-tabPanel>
           <p-tabPanel header="Pré-visualização" leftIcon="pi pi-eye"
-            [disabled]="requerimento.numero == '' || requerimento.assunto == ''  && requerimento.pessoa == null">
+            [disabled]="requerimento.numero == '' || requerimento.assunto == ''  && requerimento.vereador == null">
             <div class="pdf-container">
               <pdf-viewer [src]="pdfSrc" id="viewer" [original-size]="false" [zoom]="0.5" [show-borders]="true">
               </pdf-viewer>

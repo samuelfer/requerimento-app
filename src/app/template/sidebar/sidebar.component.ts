@@ -18,7 +18,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {}
 
   hasRole(role: string): boolean {
-    return this.authService.user.authorities.includes(role);
+    if (this.authService.user) {
+      return this.authService.user.authorities.includes(role);
+    }
+    return false;
   }
 
   logout() {

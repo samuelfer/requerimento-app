@@ -18,9 +18,12 @@ import { ServidoresService } from './../servidores.service';
 export class ServidoresFormComponent implements OnInit {
   pessoa: Servidor = {
     nome: '',
+    email: '',
     cargo: new Cargo(),
     tipoPessoa: new TipoPessoa(),
     ativo: true,
+    usuarioSistema: false,
+    senha: '',
   };
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];
@@ -31,6 +34,7 @@ export class ServidoresFormComponent implements OnInit {
     { value: false, descricao: 'Não' },
   ];
   titulo = 'Cadastrar servidor';
+  showInputSenha: boolean;
 
   constructor(
     private servidoresService: ServidoresService,
@@ -54,6 +58,7 @@ export class ServidoresFormComponent implements OnInit {
   cadastrar(): void {
     if (this.validaCampos()) {
       this.preencheTipoPessoa();
+
       this.servidoresService.cadastrar(this.pessoa).subscribe(
         () => {
           this.mensagemService.mensagemSucesso(
@@ -158,5 +163,13 @@ export class ServidoresFormComponent implements OnInit {
         );
       }
     );
+  }
+
+  exibeInputSenha(value: boolean) {
+    if (value) {
+      this.showInputSenha = true;
+    } else {
+      this.showInputSenha = false;
+    }
   }
 }

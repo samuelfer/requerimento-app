@@ -10,21 +10,23 @@ export class MensagemService {
   }
 
   mensagemError(error: any, detail: any) {
+    if (error.status == 0) {
+      this.toastr.error('Erro de conexão com o sistema.');
+      return;
+    }
+
     if (error.status == 401 || error.status == 403) {
-      console.log('Aqui no error 401');
       this.toastr.error('Permissão de acesso negada.');
+      return;
     }
 
     if (error.error.errors) {
-      console.log('Aqui no error');
       error.error.errors.forEach((element: { message: string | undefined }) => {
         this.toastr.error(element.message);
       });
     } else if (error.error.message) {
-      console.log('Aqui no error2');
       this.toastr.error(error.error.message);
     } else {
-      console.log('Aqui no error3');
       this.toastr.error(detail);
     }
   }

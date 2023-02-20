@@ -18,9 +18,12 @@ import { VereadoresService } from './../../vereadores/vereadores.service';
 export class AssessoresFormComponent implements OnInit {
   pessoa: Assessor = {
     nome: '',
+    email: '',
     tipoPessoa: new TipoPessoa(),
     ativo: true,
     vereador: new Vereador(),
+    usuarioSistema: false,
+    senha: '',
   };
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];
@@ -30,6 +33,7 @@ export class AssessoresFormComponent implements OnInit {
     { value: true, descricao: 'Sim' },
     { value: false, descricao: 'Não' },
   ];
+  showInputSenha: boolean;
 
   constructor(
     private assessoresService: AssessoresService,
@@ -155,5 +159,13 @@ export class AssessoresFormComponent implements OnInit {
         );
       }
     );
+  }
+
+  exibeInputSenha(value: boolean) {
+    if (value) {
+      this.showInputSenha = true;
+    } else {
+      this.showInputSenha = false;
+    }
   }
 }

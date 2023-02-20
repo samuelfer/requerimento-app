@@ -1,7 +1,7 @@
 import { Pessoa } from './pessoa.model';
 export class Requerimento {
   id?: number;
-  pessoa: Pessoa;
+  vereador: Pessoa;
   dataRequerimento: Date;
   assunto: string;
   numero: string;

@@ -1,3 +1,4 @@
+import { Configuracao } from './../shared/model/configuracao.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -49,5 +50,9 @@ export class OficioService {
     return this.http.post(`${this.apiUrl}/preview-pdf`, oficio, {
       responseType: 'blob' as 'json',
     });
+  }
+
+  listarTextoPadrao(): Observable<Configuracao> {
+    return this.http.get<Configuracao>(`${this.apiUrl}/texto-padrao`);
   }
 }
