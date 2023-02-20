@@ -19,7 +19,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this._isLogado$.next(!!this.isAuthenticated());
-    this.user = this.getUser(this.token);
+    this.user = this.getUser(this.getToken());
   }
 
   login(credenciais: Credenciais): Observable<any> {
@@ -31,15 +31,15 @@ export class AuthService {
 
   successLogin(token: string): void {
     localStorage.setItem('token', token);
-    const listRoles = ['ADMIN'];
+    const listRoles = this.getPermissions(token);
     localStorage.setItem('rolesUsuario', JSON.stringify(listRoles));
     this._isLogado$.next(true);
     this.user = this.getUser(token);
   }
 
   isAuthenticated() {
-    if (this.token !== null) {
-      return !this.jwtService.isTokenExpired(this.token);
+    if (this.getToken() !== null) {
+      return !this.jwtService.isTokenExpired(this.getToken());
     }
     return false;
   }
@@ -48,7 +48,7 @@ export class AuthService {
     localStorage.clear();
   }
 
-  get token(): any {
+  private getToken(): any {
     return localStorage.getItem('token');
   }
 
@@ -57,5 +57,16 @@ export class AuthService {
       return JSON.parse(atob(token.split('.')[1])) as UsuarioAccessToken;
     }
     return undefined;
+  }
+
+  private getPermissions(token: string) {
+    return this.getUser(token)?.authorities;
+  }
+
+  hasPermission(permission: string) {
+    if (this.user && this.user.authorities) {
+      return this.user.authorities.includes(permission);
+    }
+    return false;
   }
 }

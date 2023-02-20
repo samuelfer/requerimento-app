@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
+import { UsuarioAccessToken } from 'src/app/shared/model/user-access-token';
 
 @Component({
   selector: 'app-top-menu',
@@ -9,11 +10,15 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./top-menu.component.scss'],
 })
 export class TopMenuComponent implements OnInit {
+  usuario: string;
+
   constructor(
     private router: Router,
     private authService: AuthService,
     private toast: ToastrService
-  ) {}
+  ) {
+    this.usuario = authService.user?.nome!;
+  }
 
   ngOnInit(): void {
     this.router.navigate(['dashboard']);
