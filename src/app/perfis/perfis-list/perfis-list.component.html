@@ -7,12 +7,12 @@
         <div class="col-12">
           <div class="card card-secondary">
             <div class="card-header">
-              <h3 class="card-title">Listagem de usuários</h3>
+              <h3 class="card-title">Listagem de perfis</h3>
 
               <div class="card-tools float-right">
                 <div class="input-group input-group-sm">
                   <div class="input-group-append">
-                    <a [routerLink]="['/admin/usuarios/cadastro']" type="button" class="btn btn-block btn-primary">Novo
+                    <a [routerLink]="['/admin/perfis/cadastro']" type="button" class="btn btn-block btn-primary">Novo
                       cadastro</a>
                   </div>
                 </div>
@@ -21,26 +21,25 @@
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
 
-              <p-table [value]="pessoaList" responsiveLayout="scroll" class="table" [paginator]="true" [rows]="5"
+              <p-table [value]="perfilList" responsiveLayout="scroll" class="table" [paginator]="true" [rows]="5"
                 [showCurrentPageReport]="false" [rowsPerPageOptions]="[5, 10, 25, 50]">
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Nome</th>
-                    <th>Email</th>
-                    <th>Ativo</th>
                     <th>Ações</th>
                   </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-pessoa>
+                <ng-template pTemplate="body" let-perfil>
                   <tr>
-                    <td>{{ pessoa.nome }}</td>
-                    <td>{{ pessoa.username }}</td>
-                    <td>{{ pessoa.ativo ? 'Sim' : 'Não' }}</td>
+                    <td>{{ perfil.nome }}</td>
                     <td>
                       <div class="btn-group">
                         <button title="Editar" type="button" class="btn btn-white"
-                          [routerLink]="['/admin/usuarios', pessoa.id]">
+                          [routerLink]="['/admin/perfis', perfil.id]">
                           <em class="fa fa-edit"></em>
+                        </button>
+                        <button title="Excluir" type="button" class="btn btn-white" (click)="deletar(perfil.id)">
+                          <em class="fa fa-trash color-red"></em>
                         </button>
                       </div>
                     </td>

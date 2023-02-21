@@ -1,50 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { PerfisService } from './../perfis.service';
+import { Component } from '@angular/core';
+import { Perfil } from 'src/app/shared/model/perfil.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MensagemService } from 'src/app/service/mensagemService';
-import { Role } from 'src/app/shared/enum/role-enum';
-import { Usuario } from 'src/app/shared/model/usuario.model';
-
-import { UsuariosService } from './../usuarios.service';
 
 @Component({
-  selector: 'app-usuario-form',
-  templateUrl: './usuarios-form.component.html',
-  styleUrls: ['./usuarios-form.component.scss'],
+  selector: 'app-perfis-form',
+  templateUrl: './perfis-form.component.html',
+  styleUrls: ['./perfis-form.component.scss'],
 })
-export class UsuariosFormComponent implements OnInit {
-  pessoa: Usuario = {
+export class PerfisFormComponent {
+  perfil: Perfil = {
     nome: '',
-    username: '',
-    ativo: true,
-    senha: '',
-    role: Role.User,
   };
-  pessoaId: string | null;
-
-  opcoesStatus = [
-    { value: true, descricao: 'Sim' },
-    { value: false, descricao: 'Não' },
-  ];
-  titulo = 'Cadastrar usuário';
+  perfilId: string | null;
+  titulo = 'Cadastrar perfil';
 
   constructor(
-    private usuarioService: UsuariosService,
+    private perfilService: PerfisService,
     private router: Router,
     private mensagemService: MensagemService,
     private activedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.pessoaId = this.activedRoute.snapshot.paramMap.get('id');
-    if (this.pessoaId !== null) {
-      this.titulo = 'Editar usuário';
-      this.findById(+this.pessoaId);
+    this.perfilId = this.activedRoute.snapshot.paramMap.get('id');
+    if (this.perfilId !== null) {
+      this.titulo = 'Editar perfil';
+      this.findById(+this.perfilId);
     }
   }
 
   cadastrar(): void {
     if (this.validaCampos()) {
-      this.usuarioService.cadastrar(this.pessoa).subscribe(
+      this.perfilService.cadastrar(this.perfil).subscribe(
         () => {
           this.mensagemService.mensagemSucesso(
             'Cadastro realizado com sucesso'
@@ -63,7 +52,7 @@ export class UsuariosFormComponent implements OnInit {
 
   atualizar(): void {
     if (this.validaCampos()) {
-      this.usuarioService.atualizar(this.pessoa).subscribe(
+      this.perfilService.atualizar(this.perfil).subscribe(
         () => {
           this.mensagemService.mensagemSucesso(
             'Registro atualizado com sucesso'
@@ -81,29 +70,21 @@ export class UsuariosFormComponent implements OnInit {
   }
 
   private redirect() {
-    this.router.navigate(['admin/usuarios']);
+    this.router.navigate(['admin/perfis']);
   }
 
   private validaCampos(): boolean {
-    if (this.pessoa.nome === null || this.pessoa.nome === '') {
+    if (this.perfil.nome === null || this.perfil.nome === '') {
       this.mensagemService.mensagemAlerta('Por favor, informe o nome');
-      return false;
-    }
-    if (this.pessoa.username === null || this.pessoa.username === '') {
-      this.mensagemService.mensagemAlerta('Por favor, informe o email');
-      return false;
-    }
-    if (this.pessoa.senha === null || this.pessoa.senha === '') {
-      this.mensagemService.mensagemAlerta('Por favor, informe a senha');
       return false;
     }
     return true;
   }
 
   private findById(requerimentoId: number): void {
-    this.usuarioService.listarPorId(requerimentoId).subscribe(
+    this.perfilService.listarPorId(requerimentoId).subscribe(
       (response) => {
-        this.pessoa = response;
+        this.perfil = response;
       },
       (error) => {
         this.mensagemService.mensagemError(

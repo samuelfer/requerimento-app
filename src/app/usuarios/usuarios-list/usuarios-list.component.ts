@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { UsuariosService } from '../usuarios.service';
+import { MensagemService } from 'src/app/service/mensagemService';
 
 import { Usuario } from '../../shared/model/usuario.model';
+import { UsuariosService } from '../usuarios.service';
 
 @Component({
   selector: 'app-usuario-list',
@@ -12,7 +12,7 @@ import { Usuario } from '../../shared/model/usuario.model';
 export class UsuariosListComponent implements OnInit {
   constructor(
     private usuarioService: UsuariosService,
-    private toastr: ToastrService
+    private mensagemService: MensagemService
   ) {}
 
   pessoaList: Usuario[];
@@ -29,9 +29,12 @@ export class UsuariosListComponent implements OnInit {
         this.pessoaList = response;
         this.loading = false;
       },
-      () => {
+      (error) => {
         this.loading = false;
-        this.toastr.error('Ocorreu um erro ao tentar listar os registros');
+        this.mensagemService.mensagemError(
+          error,
+          'Ocorreu um erro ao tentar listar os registros'
+        );
       }
     );
   }

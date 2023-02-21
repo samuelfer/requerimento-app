@@ -105,7 +105,7 @@ const routes: Routes = [
         // },
       },
       {
-        path: 'usuarios',
+        path: 'admin/usuarios',
         loadChildren: () =>
           import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
         canActivate: [AuthGuard],
@@ -124,6 +124,12 @@ const routes: Routes = [
           import('./pronome-tratamento/pronome-tratamento.module').then(
             (m) => m.PronomeTratamentoModule
           ),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'admin/perfis',
+        loadChildren: () =>
+          import('./perfis/perfis.module').then((m) => m.PerfisModule),
         canActivate: [AuthGuard],
       },
     ],
