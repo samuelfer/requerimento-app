@@ -8,6 +8,8 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [PerfisFormComponent, PerfisListComponent],
@@ -19,6 +21,8 @@ import { PaginatorModule } from 'primeng/paginator';
     TableModule,
     InputTextModule,
     PaginatorModule,
+    ConfirmPopupModule,
   ],
+  providers: [ConfirmationService],
 })
 export class PerfisModule {}
