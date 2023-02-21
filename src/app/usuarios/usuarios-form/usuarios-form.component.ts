@@ -81,7 +81,7 @@ export class UsuariosFormComponent implements OnInit {
   }
 
   private redirect() {
-    this.router.navigate(['usuarios']);
+    this.router.navigate(['admin/usuarios']);
   }
 
   private validaCampos(): boolean {
