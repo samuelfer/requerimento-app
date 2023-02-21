@@ -1,3 +1,4 @@
+import { PerfisModule } from './perfis/perfis.module';
 import { registerLocaleData } from '@angular/common';
 import {
   HTTP_INTERCEPTORS,
@@ -63,6 +64,7 @@ registerLocaleData(localePt, 'pt');
     UsuariosModule,
     OficioModule,
     ConfiguracaoModule,
+    PerfisModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,

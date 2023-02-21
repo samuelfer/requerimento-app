@@ -138,7 +138,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item" *ngIf="hasRole('ADMIN')">
+        <li class="nav-item" *ngIf="hasRole('ROLE_ADMIN')">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-key"></i>
             <p>
@@ -148,9 +148,17 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a [routerLink]="['usuarios']" class="nav-link">
+              <a [routerLink]="['admin/usuarios']" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Usuários</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a [routerLink]="['admin/perfis']" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Perfis</p>
               </a>
             </li>
           </ul>
