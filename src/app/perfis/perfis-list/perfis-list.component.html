@@ -1,7 +1,7 @@
+<p-confirmPopup></p-confirmPopup>
 <div class="content-wrapper mt-4">
   <section class="content">
     <div class="container-fluid">
-
       <!-- /.row -->
       <div class="row">
         <div class="col-12">
@@ -38,7 +38,8 @@
                           [routerLink]="['/admin/perfis', perfil.id]">
                           <em class="fa fa-edit"></em>
                         </button>
-                        <button title="Excluir" type="button" class="btn btn-white" (click)="deletar(perfil.id)">
+                        <button title="Excluir" type="button" class="btn btn-white"
+                          (click)="deletar($event, perfil.id)">
                           <em class="fa fa-trash color-red"></em>
                         </button>
                       </div>

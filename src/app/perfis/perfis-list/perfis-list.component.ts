@@ -2,6 +2,7 @@ import { Perfil } from './../../shared/model/perfil.model';
 import { MensagemService } from 'src/app/service/mensagemService';
 import { PerfisService } from './../perfis.service';
 import { Component } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-perfis-list',
@@ -11,7 +12,8 @@ import { Component } from '@angular/core';
 export class PerfisListComponent {
   constructor(
     private perfilService: PerfisService,
-    private mensagemService: MensagemService
+    private mensagemService: MensagemService,
+    private confirmationService: ConfirmationService
   ) {}
 
   perfilList: Perfil[];
@@ -38,17 +40,33 @@ export class PerfisListComponent {
     );
   }
 
-  public deletar(perfilId: number): void {
-    this.perfilService.deletar(perfilId).subscribe(
-      () => {
-        this.mensagemService.mensagemSucesso('Registro excluído com sucesso');
-      },
-      (error) => {
-        this.mensagemService.mensagemError(
-          error,
-          'Ocorreu um erro ao tentar excluir'
+  deletar(event: Event, perfilId: number) {
+    console.log();
+    this.confirmationService.confirm({
+      target: event.target!,
+      message: 'Tem certeza que deseja excluir o registro?',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      accept: () => {
+        this.perfilService.deletar(perfilId).subscribe(
+          () => {
+            this.mensagemService.mensagemSucesso(
+              'Registro excluído com sucesso'
+            );
+            this.listar();
+          },
+          (error) => {
+            this.mensagemService.mensagemError(
+              error,
+              'Ocorreu um erro ao tentar excluir'
+            );
+          }
         );
-      }
-    );
+      },
+      reject: () => {
+        //reject action
+      },
+    });
   }
 }
