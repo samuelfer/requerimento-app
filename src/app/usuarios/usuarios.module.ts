@@ -1,3 +1,4 @@
+import { UsuarioPerfilComponent } from './../shared/componentes/modal/usuario-perfil/usuario-perfil.component';
 import { UsuariosRoutes } from './usuarios.routing';
 import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
 import { UsuariosListComponent } from './usuarios-list/usuarios-list.component';
@@ -8,9 +9,14 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
-  declarations: [UsuariosListComponent, UsuariosFormComponent],
+  declarations: [
+    UsuariosListComponent,
+    UsuariosFormComponent,
+    UsuarioPerfilComponent,
+  ],
   imports: [
     CommonModule,
     UsuariosRoutes,
@@ -19,6 +25,7 @@ import { PaginatorModule } from 'primeng/paginator';
     TableModule,
     InputTextModule,
     PaginatorModule,
+    CheckboxModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

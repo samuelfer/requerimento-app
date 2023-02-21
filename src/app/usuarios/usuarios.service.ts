@@ -1,3 +1,4 @@
+import { UsuarioPerfil } from './../shared/model/usuario-perfil.model';
 import { Usuario } from '../shared/model/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -26,5 +27,14 @@ export class UsuariosService {
 
   atualizar(pessoa: Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.apiUrl}`, pessoa);
+  }
+
+  associarUsuarioPerfil(
+    usuarioPerfil: UsuarioPerfil
+  ): Observable<UsuarioPerfil> {
+    return this.http.post<UsuarioPerfil>(
+      `${this.apiUrl}/associar-perfil`,
+      usuarioPerfil
+    );
   }
 }
