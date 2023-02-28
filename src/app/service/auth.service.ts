@@ -32,7 +32,7 @@ export class AuthService {
   successLogin(token: string): void {
     localStorage.setItem('token', token);
     const listRoles = this.getPermissions(token);
-    localStorage.setItem('rolesUsuario', JSON.stringify(listRoles));
+
     this._isLogado$.next(true);
     this.user = this.getUser(token);
   }
@@ -63,10 +63,13 @@ export class AuthService {
     return this.getUser(token)?.authorities;
   }
 
-  hasPermission(permission: string) {
-    if (this.user && this.user.authorities) {
-      return this.user.authorities.includes(permission);
+  hasPermission(perfis: string[]): boolean {
+    let isAutorizado = false;
+    for (const perfil of this.user!.authorities) {
+      if (perfis.includes(perfil)) {
+        return (isAutorizado = true);
+      }
     }
-    return false;
+    return isAutorizado;
   }
 }

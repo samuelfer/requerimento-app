@@ -42,6 +42,9 @@
                           [routerLink]="['/admin/usuarios', pessoa.id]">
                           <em class="fa fa-edit"></em>
                         </button>
+                        <button title="Associar perfil" pButton type="button" label="perfis"
+                          class="p-button-warning p-button-sm" (click)="associarUsuarioPerfil(pessoa)"></button>
+
                       </div>
                     </td>
                   </tr>

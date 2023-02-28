@@ -22,7 +22,6 @@ export class ModalPronomeTratamentoComponent {
 
   close() {
     if (this.pronomeTratamento.descricao !== undefined) {
-      console.log('Entrei');
       this.ref.close(this.pronomeTratamento);
     } else {
       this.mensagemService.mensagemAlerta('Preencha a descrição.');

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardDocumentoComponent } from './template/dashboard-documento/dashboard-documento.component';
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
+import { Role } from './shared/enum/role-enum';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,17 +20,17 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [AuthGuard],
-        // data: {
-        //   roles: ['ADMIN'],
-        // },
+        data: {
+          roles: [Role.Admin, Role.User],
+        },
       },
       {
         path: 'documentos',
         component: DashboardDocumentoComponent,
         canActivate: [AuthGuard],
-        // data: {
-        //   roles: ['USUARIO'],
-        // },
+        data: {
+          roles: [Role.Admin, Role.User],
+        },
       },
       {
         path: 'requerimentos',
@@ -38,18 +39,18 @@ const routes: Routes = [
             (m) => m.RequerimentoModule
           ),
         canActivate: [AuthGuard],
-        // data: {
-        //   roles: [Role.Admin],
-        // },
+        data: {
+          roles: [Role.Admin, Role.User],
+        },
       },
       {
         path: 'oficios',
         loadChildren: () =>
           import('./oficio/oficio.module').then((m) => m.OficioModule),
         canActivate: [AuthGuard],
-        // data: {
-        //   roles: [Role.User],
-        // },
+        data: {
+          roles: [Role.Admin, Role.User],
+        },
       },
       {
         path: 'vereadores',
@@ -59,7 +60,7 @@ const routes: Routes = [
           ),
         canActivate: [AuthGuard, HasRoleGuard],
         data: {
-          roles: 'ADMIN',
+          roles: [Role.Admin, Role.User],
         },
       },
       {
@@ -69,9 +70,9 @@ const routes: Routes = [
             (m) => m.TipoPessoaModule
           ),
         canActivate: [AuthGuard],
-        // data: {
-        //   roles: ['USUARIO'],
-        // },
+        data: {
+          roles: [Role.Admin, Role.User],
+        },
       },
       {
         path: 'servidores',
@@ -80,9 +81,9 @@ const routes: Routes = [
             (m) => m.ServidoresModule
           ),
         canActivate: [AuthGuard],
-        // data: {
-        //   roles: ['USUARIO'],
-        // },
+        data: {
+          roles: [Role.Admin, Role.User],
+        },
       },
       {
         path: 'assessores',
@@ -91,24 +92,27 @@ const routes: Routes = [
             (m) => m.AssessoresModule
           ),
         canActivate: [AuthGuard],
-        // data: {
-        //   roles: ['USUARIO'],
-        // },
+        data: {
+          roles: [Role.Admin, Role.User],
+        },
       },
       {
         path: 'cargos',
         loadChildren: () =>
           import('./cargos/cargos.module').then((m) => m.CargosModule),
         canActivate: [AuthGuard],
-        // data: {
-        //   roles: ['USUARIO'],
-        // },
+        data: {
+          roles: [Role.Admin],
+        },
       },
       {
         path: 'admin/usuarios',
         loadChildren: () =>
           import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
         canActivate: [AuthGuard],
+        data: {
+          roles: [Role.Admin],
+        },
       },
       {
         path: 'configuracoes',
@@ -117,6 +121,9 @@ const routes: Routes = [
             (m) => m.ConfiguracaoModule
           ),
         canActivate: [AuthGuard],
+        data: {
+          roles: [Role.Admin],
+        },
       },
       {
         path: 'pronome-tratamento',
@@ -131,6 +138,9 @@ const routes: Routes = [
         loadChildren: () =>
           import('./perfis/perfis.module').then((m) => m.PerfisModule),
         canActivate: [AuthGuard],
+        data: {
+          roles: [Role.Admin],
+        },
       },
     ],
   },

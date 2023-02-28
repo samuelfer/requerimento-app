@@ -28,7 +28,7 @@ export class HasRoleGuard implements CanActivate {
     | boolean
     | UrlTree {
     let isAutorizado = false;
-    if (this.authService.user) {
+    if (this.authService.user && route.data.roles) {
       isAutorizado = this.authService.hasPermission(route.data.roles);
     }
 
