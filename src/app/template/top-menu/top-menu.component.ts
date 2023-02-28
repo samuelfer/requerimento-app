@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
-import { UsuarioAccessToken } from 'src/app/shared/model/user-access-token';
 
 @Component({
   selector: 'app-top-menu',
@@ -20,9 +19,7 @@ export class TopMenuComponent implements OnInit {
     this.usuario = authService.user?.nome!;
   }
 
-  ngOnInit(): void {
-    this.router.navigate(['dashboard']);
-  }
+  ngOnInit(): void {}
 
   logout() {
     this.router.navigate(['login']);

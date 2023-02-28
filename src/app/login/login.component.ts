@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
           this.authService.successLogin(
             response.headers.get('Authorization').substring(7)
           );
-          this.router.navigateByUrl('dashboard');
+          this.router.navigate(['dashboard']);
         },
         (error) => {
           this.mensagemService.mensagemError(
