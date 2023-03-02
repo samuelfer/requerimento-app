@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  URL_API: 'requerimento-api-production.up.railway.app',
+  production: true,
+  URL_API: 'https://requerimento-api-production.up.railway.app',
 };
