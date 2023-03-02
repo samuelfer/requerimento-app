@@ -115,7 +115,7 @@ export class OficioFormComponent implements OnInit {
       this.oficio.assinante === undefined ||
       Object.keys(this.oficio.assinante).length === 0
     ) {
-      this.mensagemService.mensagemAlerta('Por favor, informe o vereador');
+      this.mensagemService.mensagemAlerta('Por favor, informe o assinante');
       return false;
     }
 
