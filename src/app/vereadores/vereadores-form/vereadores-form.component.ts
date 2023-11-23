@@ -12,6 +12,7 @@ import { AssessoresService } from './../../assessores/assessores.service';
 import { CargosService } from './../../cargos/cargos.service';
 import { Assessor } from './../../shared/model/assessor.model';
 import { Vereador } from './../../shared/model/vereador.model';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 
 @Component({
   selector: 'app-vereadores-form',
@@ -26,6 +27,8 @@ export class VereadoresFormComponent implements OnInit {
     tipoPessoa: new TipoPessoa(),
     arquivoAssinatura: '',
     usuarioSistema: false,
+    dataInicioGestao: new Date(),
+    dataFimGestao: new Date(),
   };
   pessoaId: string | null;
   tipoPessoaList: TipoPessoa[];
@@ -96,7 +99,7 @@ export class VereadoresFormComponent implements OnInit {
 
   private preencheTipoPessoa(): void {
     const tipo = this.tipoPessoaList.find(
-      (tp) => tp.id === TipoPessoaEnum.TIPO_ASSESSOR
+      (tp) => tp.id === TipoPessoaEnum.TIPO_VEREADOR
     );
     this.pessoa.tipoPessoa = tipo!; //Exclamacao informa que tenho certeza que o valor nao eh nulo
   }

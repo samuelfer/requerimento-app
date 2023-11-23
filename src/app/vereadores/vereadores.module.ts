@@ -9,6 +9,7 @@ import { TableModule } from 'primeng/table';
 import { VereadoresFormComponent } from './vereadores-form/vereadores-form.component';
 import { VereadoresListComponent } from './vereadores-list/vereadores-list.component';
 import { VereadoresRoutes } from './vereadores.routing';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [VereadoresListComponent, VereadoresFormComponent],
@@ -20,6 +21,7 @@ import { VereadoresRoutes } from './vereadores.routing';
     TableModule,
     InputTextModule,
     PaginatorModule,
+    CalendarModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

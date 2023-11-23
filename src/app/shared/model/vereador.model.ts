@@ -9,5 +9,7 @@ export class Vereador {
   tipoPessoa: TipoPessoa;
   arquivoAssinatura: string;
   usuarioSistema: boolean;
+  dataInicioGestao: Date;
+  dataFimGestao: Date;
   constructor() {}
 }
