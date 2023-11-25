@@ -35,6 +35,7 @@ export class GestoesFormComponent {
 
   cadastrar(): void {
     if (this.validaCampos()) {
+      this.gestao.ativa = true;
       this.gestaoService.cadastrar(this.gestao).subscribe(
         () => {
           this.mensagemService.mensagemSucesso(
