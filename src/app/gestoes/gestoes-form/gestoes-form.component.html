@@ -1,0 +1,57 @@
+<div class="content-wrapper mt-4">
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="card card-secondary">
+        <div class="card-header">
+          <h3 class="card-title">{{ titulo }}</h3>
+
+        </div>
+        <form #vereadorForm="ngForm">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="form-group col-md-3">
+                <label>Início gestão:</label>
+                <div class="input-group date" data-target-input="nearest">
+                  <p-calendar [(ngModel)]="gestao.dataInicio" name="dataInicio" class="calendar-control"
+                    [monthNavigator]="true" dateFormat="dd/mm/yy" [showIcon]="true" [showButtonBar]="true"
+                    [yearNavigator]="true">
+                  </p-calendar>
+                </div>
+              </div>
+
+              <div class="form-group col-md-3">
+                <label>Fim gestão:</label>
+                <div class="input-group date" data-target-input="nearest">
+                  <p-calendar [(ngModel)]="gestao.dataFim" name="dataFim" class="calendar-control"
+                    [monthNavigator]="true" dateFormat="dd/mm/yy" [showIcon]="true" [showButtonBar]="true"
+                    [yearNavigator]="true">
+                  </p-calendar>
+                </div>
+              </div>
+
+            </div>
+            <p-footer>
+              <div class="btn-right mt-4">
+                <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                  class="p-button-success p-button-sm" *ngIf="!gestao.id"></button>
+                <button (click)="atualizar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                  class="p-button-success p-button-sm" *ngIf="gestao.id"></button>
+                <button routerLink="../" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
+                  class="p-button-secondary p-button-sm ml-2"></button>
+              </div>
+            </p-footer>
+            <!-- /.col -->
+          </div>
+        </form>
+      </div>
+      <!-- /.card-body -->
+
+
+    </div>
+    <!-- /.card -->
+
+    <!-- /.container-fluid -->
+  </section>
+</div>

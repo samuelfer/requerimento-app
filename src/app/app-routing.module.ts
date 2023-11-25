@@ -15,6 +15,7 @@ const routes: Routes = [
     path: '',
     component: TopMenuComponent,
     canActivate: [AuthGuard],
+
     children: [
       {
         path: 'dashboard',
@@ -137,6 +138,15 @@ const routes: Routes = [
         path: 'admin/perfis',
         loadChildren: () =>
           import('./perfis/perfis.module').then((m) => m.PerfisModule),
+        canActivate: [AuthGuard],
+        data: {
+          roles: [Role.Admin],
+        },
+      },
+      {
+        path: 'gestoes',
+        loadChildren: () =>
+          import('./gestoes/gestoes.module').then((m) => m.GestoesModule),
         canActivate: [AuthGuard],
         data: {
           roles: [Role.Admin],

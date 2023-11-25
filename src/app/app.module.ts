@@ -34,6 +34,7 @@ import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { VereadoresModule } from './vereadores/vereadores.module';
+import { GestoesModule } from './gestoes/gestoes.module';
 
 registerLocaleData(localePt, 'pt');
 
@@ -65,6 +66,7 @@ registerLocaleData(localePt, 'pt');
     OficioModule,
     ConfiguracaoModule,
     PerfisModule,
+    GestoesModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,
