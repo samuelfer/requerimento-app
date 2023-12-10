@@ -35,8 +35,6 @@ import { TopMenuComponent } from './template/top-menu/top-menu.component';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { VereadoresModule } from './vereadores/vereadores.module';
 import { GestoesModule } from './gestoes/gestoes.module';
-import { TipoGenericFormComponent } from './shared/componentes/tipo-generic/tipo-generic-form/tipo-generic-form.component';
-import { TipoGenericListComponent } from './shared/componentes/tipo-generic/tipo-generic-list/tipo-generic-list.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -50,9 +48,7 @@ registerLocaleData(localePt, 'pt');
     LoginComponent,
     CardBoxComponent,
     DashboardDocumentoComponent,
-    CardBoxDocumentosComponent,
-    TipoGenericFormComponent,
-    TipoGenericListComponent
+    CardBoxDocumentosComponent
   ],
   imports: [
     HttpClientModule,
