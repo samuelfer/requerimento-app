@@ -20,6 +20,7 @@ export class ConfiguracaoComponent implements OnInit {
   configuracaoId: string | null;
 
   titulo = 'Cadastrar configuração';
+  tipoArquivo = 'Logo_requerimento';
 
   constructor(
     private configuracaoService: ConfiguracaoService,

@@ -3,15 +3,14 @@ import { UploadService } from './upload.service';
 import {
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
 import { FileUpload } from 'primeng/fileupload';
 import {
-  DomSanitizer,
-  SafeResourceUrl,
-  SafeUrl,
+  DomSanitizer
 } from '@angular/platform-browser';
 
 @Component({
@@ -25,6 +24,8 @@ export class UploadComponent implements OnInit {
   uploadedFiles: any;
   urlFotoInsegura: any;
   urlFoto: any;
+  @Input()
+  tipoArquivo: string;
 
   @ViewChild('file') file: FileUpload;
 
@@ -48,12 +49,12 @@ export class UploadComponent implements OnInit {
     return isValidFile;
   }
 
-  upload(event: any) {
-    this.onUpload(event);
+  upload(event: any, tipoArquivo: string) {
+    this.onUpload(event, tipoArquivo);
   }
 
-  onUpload(event: any): void {
-    this.uploadService.create(this.file).subscribe(
+  onUpload(event: any, tipoArquivo: string): void {
+    this.uploadService.create(this.file, tipoArquivo).subscribe(
       (response) => {
         this.mensagemService.mensagemSucesso('Arquivo enviado com sucesso.');
         this.arquivoIncluidoEmitter.emit();
@@ -78,8 +79,6 @@ export class UploadComponent implements OnInit {
     this.uploadService.downloadArquivo(fileName).subscribe(
       (data) => {
         this.createImageFromBlob(data);
-
-        console.log('Data ', data)
       },
       (error) => {
         this.mensagemService.mensagemError(
@@ -111,7 +110,6 @@ export class UploadComponent implements OnInit {
   }
 
   private trataUrlFoto(dataUrl: string) {
-    console.log('url ', dataUrl);
     this.urlFoto = this.sanitizer.bypassSecurityTrustUrl(dataUrl);
   }
 }

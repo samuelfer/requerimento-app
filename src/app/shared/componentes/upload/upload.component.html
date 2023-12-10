@@ -1,8 +1,8 @@
 <div class="form-group">
   <label for="texto">Imagem pdf</label>
   <div>
-    <p-fileUpload name="file" [customUpload]="true" #file chooseLabel="Selecionar" uploadLabel="Salvar"
-      (uploadHandler)="upload($event)" invalidFileSizeMessageSummary="Não foi possível carregar o arquivo"
+    <p-fileUpload name="file" [tipoArquivo]="tipoArquivo" [customUpload]="true" #file chooseLabel="Selecionar" uploadLabel="Salvar"
+      (uploadHandler)="upload($event, tipoArquivo)" invalidFileSizeMessageSummary="Não foi possível carregar o arquivo"
       (onClear)="onClear()" invalidFileSizeMessageDetail="O arquivo excede o limite de 50MB" [showCancelButton]=false>
     </p-fileUpload>
   </div>
