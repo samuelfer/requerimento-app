@@ -13,17 +13,14 @@ export class UploadService {
   constructor(private http: HttpClient) {}
 
   create(file: any): Observable<any> {
-    console.log('Cheguei ', file.files[0]);
     const formData: FormData = new FormData();
     formData.append('file', file.files[0]);
-
-    console.log(formData);
     return this.http.post<any>(`${this.apiUrl}/upload`, formData);
   }
 
-  downloadArquivo(): Observable<any> {
+  downloadArquivo(fileName: string): Observable<any> {
     return this.http.get(
-      `${this.apiUrl}/download/VNvAMX4m-imagem_de_onibus.jpg`,
+      `${this.apiUrl}/download/${fileName}`,
       {
         responseType: 'blob',
       }

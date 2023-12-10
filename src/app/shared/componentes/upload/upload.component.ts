@@ -59,7 +59,7 @@ export class UploadComponent implements OnInit {
         this.arquivoIncluidoEmitter.emit();
         this.file.clear();
         this.onClear();
-        this.getArquivo();
+        this.getArquivo(response.fileName);
       },
       (error) => {
         this.mensagemService.mensagemError(
@@ -74,10 +74,12 @@ export class UploadComponent implements OnInit {
     this.uploadedFiles = [];
   }
 
-  public getArquivo(): void {
-    this.uploadService.downloadArquivo().subscribe(
+  public getArquivo(fileName: string): void {
+    this.uploadService.downloadArquivo(fileName).subscribe(
       (data) => {
         this.createImageFromBlob(data);
+
+        console.log('Data ', data)
       },
       (error) => {
         this.mensagemService.mensagemError(
