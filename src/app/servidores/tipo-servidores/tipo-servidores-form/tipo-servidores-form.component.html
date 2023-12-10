@@ -1,0 +1,43 @@
+<div class="content-wrapper mt-4">
+    <section class="content">
+      <div class="container-fluid">
+  
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">{{ titulo }}</h3>
+  
+          </div>
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Descrição</label>
+                  <br>
+                  <input [(ngModel)]="tipoServidor.descricao" name="descricao" type="text" pInputText [style]="{ width: '75%' }">
+                </div>
+              </div>
+              <p-footer>
+                <div class="btn-right mt-4">
+                  <button (click)="cadastrar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                    class="p-button-success p-button-sm" *ngIf="!tipoServidor.id"></button>
+                  <button (click)="atualizar()" pButton type="button" label="Salvar" icon="pi pi-save"
+                    class="p-button-success p-button-sm" *ngIf="tipoServidor.id"></button>
+                  <button (click)="redirect()" pButton type="button" label="Cancelar" icon="pi pi-angle-left"
+                    class="p-button-secondary p-button-sm ml-2"></button>
+                </div>
+              </p-footer>
+              <!-- /.col -->
+            </div>
+       
+          </form>
+   
+        </div>
+        <!-- /.card-body -->
+  
+  
+      </div>
+      <!-- /.card -->
+  
+      <!-- /.container-fluid -->
+    </section>
+  </div>

@@ -11,12 +11,16 @@ import { SenhaInputComponent } from './../shared/componentes/senha-input/senha-i
 import { ServidoresFormComponent } from './servidores-form/servidores-form.component';
 import { ServidoresListComponent } from './servidores-list/servidores-list.component';
 import { ServidoresRoutes } from './servidores.routing';
+import { TipoServidorFormComponent } from './tipo-servidores/tipo-servidores-form/tipo-servidores-form.component';
+import { TipoServidorListComponent } from './tipo-servidores/tipo-servidores-list/tipo-servidores-list.component';
 
 @NgModule({
   declarations: [
     ServidoresListComponent,
     ServidoresFormComponent,
     SenhaInputComponent,
+    TipoServidorFormComponent,
+    TipoServidorListComponent
   ],
   imports: [
     CommonModule,
